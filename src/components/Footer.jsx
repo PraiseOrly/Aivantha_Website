@@ -11,10 +11,8 @@ export default function Footer() {
       <div className="container">
         <div className={styles.grid}>
           <div className={styles.brand}>
-            <a href="#home" className={styles.logo} onClick={e => { e.preventDefault(); scrollTo('#home') }}>
-              <span className="brand-ai">Ai</span>
-              <span className="brand-vantha">Vantha</span>
-              <span className="brand-health"> Health</span>
+            <a href="#home" className={styles.logoLink} onClick={e => { e.preventDefault(); scrollTo('#home') }}>
+              <img src="/logo.png" alt="AiVantha Health" className={styles.logoImg} />
             </a>
             <p className={styles.tagline}><em>Building Africa's Intelligent Health Future</em></p>
             <div className={styles.pillars}>
@@ -50,10 +48,10 @@ export default function Footer() {
             <h4>Contact</h4>
             <ul>
               {[
-                ['info@aivanthahealth.com', 'mailto:info@aivanthahealth.com'],
-                ['talent@aivanthahealth.com', 'mailto:talent@aivanthahealth.com'],
-                ['research@aivanthahealth.com', 'mailto:research@aivanthahealth.com'],
-                ['media@aivanthahealth.com', 'mailto:media@aivanthahealth.com'],
+                ['info@aivantha.site',     'mailto:info@aivantha.site'    ],
+                ['talent@aivantha.site',   'mailto:talent@aivantha.site'  ],
+                ['research@aivantha.site', 'mailto:research@aivantha.site'],
+                ['media@aivantha.site',    'mailto:media@aivantha.site'   ],
               ].map(([label, href]) => (
                 <li key={href}><a href={href}>{label}</a></li>
               ))}

@@ -12,11 +12,19 @@
 
 .brand { display: flex; flex-direction: column; gap: 0; }
 
-.logo {
-  font-size: 1.45rem;
-  text-decoration: none;
+.logoLink {
   display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  text-decoration: none;
+}
+
+.logoImg {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  background: rgba(255,255,255,0.9);
+  border-radius: 6px;
+  padding: 4px 10px;
 }
 
 .tagline {
