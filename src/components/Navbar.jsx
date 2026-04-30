@@ -34,9 +34,7 @@ export default function Navbar() {
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
         <a href="#home" className={styles.brand} onClick={e => handleLink(e, '#home')}>
-          <span className="brand-ai">Ai</span>
-          <span className="brand-vantha">Vantha</span>
-          <span className="brand-health"> Health</span>
+          <img src="/logo.png" alt="AiVantha Health" className={styles.logoImg} />
         </a>
 
         <button
