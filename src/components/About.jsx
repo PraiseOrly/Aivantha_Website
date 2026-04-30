@@ -1,12 +1,57 @@
 import { useEffect, useRef } from 'react'
 import styles from './About.module.css'
 
+const values = [
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    ),
+    title: 'Ethical by Design',
+    desc: 'Responsible AI and data governance embedded in every solution — not added as compliance, but designed in from day one.',
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+      </svg>
+    ),
+    title: 'Evidence First',
+    desc: 'Every strategy, every tool, every deployment is grounded in rigorous research. We do not guess — we generate evidence.',
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="2" y1="12" x2="22" y2="12"/>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+    ),
+    title: 'Africa-Led',
+    desc: 'Built by Africans for Africa — grounded in local realities, not imported from systems designed for other contexts.',
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+        <polyline points="17 6 23 6 23 12"/>
+      </svg>
+    ),
+    title: 'Built to Scale',
+    desc: 'From pilot to national scale. We design for the full journey with long-term capacity building at the core.',
+  },
+]
+
 export default function About() {
   const ref = useRef(null)
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')),
-      { threshold: 0.12 }
+      { threshold: 0.08 }
     )
     ref.current?.querySelectorAll('.fade-up').forEach(el => observer.observe(el))
     return () => observer.disconnect()
@@ -15,55 +60,71 @@ export default function About() {
   return (
     <section className="section" id="about" ref={ref}>
       <div className="container">
+
+        {/* Header */}
         <div className="section-header fade-up">
-          <span className="section-tag">About Us</span>
-          <h2>Who We Are</h2>
+          <span className="section-tag">Who We Are</span>
+          <h2>We Built AiVantha to Change This</h2>
+          <div className="divider" />
         </div>
-        <div className={styles.grid}>
-          <div className={`${styles.text} fade-up`} style={{ transitionDelay: '.1s' }}>
-            <p>
+
+        {/* Story block */}
+        <div className={styles.storyGrid}>
+          <div className={`${styles.storyText} fade-up`} style={{ transitionDelay: '.1s' }}>
+            <p className={styles.lead}>
               <strong>AiVantha Health</strong> is an African AI and data-driven healthcare company
-              operating at the intersection of <strong>Research | Consulting | Innovation | Talent</strong>.
+              operating at the intersection of{' '}
+              <span className={styles.pillarsInline}>Research · Consulting · Innovation · Talent</span>.
             </p>
             <p>
               We design and deliver ethical, scalable, and locally grounded digital health solutions —
-              powered by cutting-edge research and Africa's top AI talent.
+              powered by cutting-edge research and Africa's top AI talent. Our integrated platform
+              ensures every solution is evidence-based, strategically aligned, technically robust,
+              and sustainably deployed.
             </p>
             <p>
-              Our integrated platform ensures that every solution is <strong>evidence-based</strong> through
-              Research, <strong>strategically aligned</strong> through Consulting,{' '}
-              <strong>technically robust</strong> through Innovation, and{' '}
-              <strong>sustainably deployed</strong> through Talent.
+              Founded in 2026 and headquartered in Nairobi, Kenya, we operate across East and West
+              Africa — serving governments, development partners, hospitals, NGOs, and private
+              healthcare organisations. Built to last. Not built to pilot.
             </p>
-            <p>
-              Founded in 2026 and headquartered in Nairobi, Kenya, AiVantha Health operates across
-              East and West Africa, serving governments, development partners, hospitals, NGOs, and
-              private healthcare organisations — delivering work that is built to last, not built to pilot.
-            </p>
-          </div>
-          <div className={styles.cards}>
-            <div className={`${styles.callout} ${styles.calloutBlue} fade-up`} style={{ transitionDelay: '.2s' }}>
-              <div className={styles.icon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                  <circle cx="12" cy="12" r="3"/>
-                </svg>
-              </div>
-              <h3>Our Vision</h3>
-              <p><em>An Africa where healthcare systems and decisions are powered by trusted data, ethical AI, and local expertise — driving better health outcomes for all.</em></p>
+            <div className={styles.badges}>
+              <span>Founded 2026</span>
+              <span>Nairobi, Kenya</span>
+              <span>Pan-African Operations</span>
             </div>
-            <div className={`${styles.callout} ${styles.calloutGold} fade-up`} style={{ transitionDelay: '.3s' }}>
-              <div className={styles.icon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M12 8v4l3 3"/>
-                </svg>
-              </div>
-              <h3>Our Mission</h3>
-              <p>To accelerate equitable, data-driven healthcare transformation in Africa through <strong>research, consulting, innovation, and talent deployment</strong>.</p>
+          </div>
+
+          <div className={styles.vmStack}>
+            <div className={`${styles.vmCard} ${styles.vmBlue} fade-up`} style={{ transitionDelay: '.2s' }}>
+              <div className={styles.vmLabel}>Our Vision</div>
+              <p>
+                <em>
+                  An Africa where healthcare systems and decisions are powered by trusted data,
+                  ethical AI, and local expertise — driving better health outcomes for all.
+                </em>
+              </p>
+            </div>
+            <div className={`${styles.vmCard} ${styles.vmGold} fade-up`} style={{ transitionDelay: '.3s' }}>
+              <div className={styles.vmLabel}>Our Mission</div>
+              <p>
+                To accelerate equitable, data-driven healthcare transformation in Africa through
+                <strong> research, consulting, innovation, and talent deployment</strong>.
+              </p>
             </div>
           </div>
         </div>
+
+        {/* Core values */}
+        <div className={styles.valuesGrid}>
+          {values.map((v, i) => (
+            <div key={v.title} className={`${styles.valueCard} fade-up`} style={{ transitionDelay: `${i * 0.1}s` }}>
+              <div className={styles.valueIcon}>{v.icon}</div>
+              <h4>{v.title}</h4>
+              <p>{v.desc}</p>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   )
