@@ -1,0 +1,63 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.text p {
+  color: var(--gray-700);
+  line-height: 1.82;
+  font-size: 1.02rem;
+  margin-bottom: 22px;
+}
+.text p:last-child { margin-bottom: 0; }
+
+.sidebar { display: flex; flex-direction: column; gap: 28px; }
+
+.expertiseBlock h4,
+.presenceBlock h4 {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--navy-800);
+  margin-bottom: 16px;
+}
+
+.tagCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tagCloud span {
+  background: var(--navy-50);
+  color: var(--navy-700);
+  border: 1px solid var(--navy-100);
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: .82rem;
+  font-weight: 500;
+  transition: background var(--t), color var(--t), border-color var(--t);
+  cursor: default;
+}
+.tagCloud span:hover {
+  background: var(--navy-700);
+  color: var(--white);
+  border-color: var(--navy-700);
+}
+
+.presenceBlock {
+  background: var(--gray-100);
+  border-radius: var(--r-md);
+  padding: 24px;
+}
+.presenceBlock p {
+  color: var(--gray-600);
+  font-size: .9rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; gap: 48px; }
+}
