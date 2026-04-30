@@ -200,10 +200,7 @@ export default function Services() {
               </div>
             ))}
           </div>
-          <div className={styles.trustAnchor}>
-            <p>{TRUST_ANCHOR}</p>
-          </div>
-        </div>
+</div>
 
       </div>
     </section>

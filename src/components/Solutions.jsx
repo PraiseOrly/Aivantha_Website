@@ -66,6 +66,9 @@ const techStack = [
   { category: 'Product Development',   tools: 'FastAPI · React · Flutter'          },
 ]
 
+// Trust anchor
+const TRUST_ANCHOR = "We are not a vendor. We are a long-term transformation partner — and we design every engagement to leave our clients stronger, more capable, and less dependent on external expertise over time."
+
 export default function Solutions() {
   const ref = useRef(null)
   useEffect(() => {
@@ -110,7 +113,7 @@ export default function Solutions() {
           ))}
         </div>
 
-        {/* Tech Ecosystem */}
+{/* Tech Ecosystem */}
         <div className={`${styles.techSection} fade-up`} style={{ transitionDelay: '.4s' }}>
           <h3>Core Technology Ecosystem</h3>
           <p>Across our divisions, we leverage industry-leading tools and open health standards.</p>
@@ -122,6 +125,11 @@ export default function Solutions() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Trust anchor */}
+        <div className={styles.trustAnchor}>
+          <p>{TRUST_ANCHOR}</p>
         </div>
       </div>
     </section>
