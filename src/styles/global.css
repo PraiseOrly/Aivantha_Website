@@ -1,6 +1,7 @@
 /* ===== TOKENS ===== */
 :root {
-  --navy-900: #0f2044;
+  --navy-950: #070f1e;
+  --navy-900: #0c1a3a;
   --navy-800: #1a3570;
   --navy-700: #1e3a8a;
   --navy-600: #1d4ed8;
@@ -12,6 +13,10 @@
   --gold-400: #d97706;
   --gold-100: #fef3c7;
   --gold-50:  #fffbeb;
+
+  --emerald-700: #047857;
+  --emerald-600: #059669;
+  --emerald-50:  #ecfdf5;
 
   --green-700: #15803d;
   --green-50:  #f0fdf4;
@@ -33,20 +38,28 @@
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
-  --shadow-md: 0 4px 14px rgba(0,0,0,.10);
-  --shadow-lg: 0 10px 32px rgba(0,0,0,.12);
-  --shadow-xl: 0 20px 52px rgba(0,0,0,.15);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+  --shadow-lg: 0 12px 36px rgba(0,0,0,.13);
+  --shadow-xl: 0 24px 60px rgba(0,0,0,.16);
+  --shadow-gold: 0 8px 28px rgba(200,150,12,.28);
 
   --r-sm: 6px;
   --r-md: 12px;
   --r-lg: 20px;
+  --r-xl: 28px;
   --t: .3s ease;
 }
 
 /* ===== RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
-body { font-family: var(--font); color: var(--gray-800); line-height: 1.6; overflow-x: hidden; }
+body {
+  font-family: var(--font);
+  color: var(--gray-800);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 img  { max-width: 100%; display: block; }
 a    { text-decoration: none; color: inherit; }
 ul   { list-style: none; }
@@ -57,43 +70,43 @@ button { font-family: var(--font); cursor: pointer; }
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 28px;
 }
 
-.section       { padding: 100px 0; }
-.section-alt   { padding: 100px 0; background: var(--gray-50); }
-.section-dark  { padding: 100px 0; background: var(--navy-900); color: var(--white); }
+.section      { padding: 108px 0; }
+.section-alt  { padding: 108px 0; background: var(--gray-50); }
+.section-dark { padding: 108px 0; background: var(--navy-900); color: var(--white); }
 
 /* ===== SECTION HEADER ===== */
-.section-header { text-align: center; margin-bottom: 64px; }
+.section-header { text-align: center; margin-bottom: 72px; }
 
 .section-tag {
   display: inline-block;
   color: var(--gold-500);
-  font-size: .72rem;
+  font-size: .7rem;
   font-weight: 700;
-  letter-spacing: .14em;
+  letter-spacing: .16em;
   text-transform: uppercase;
   margin-bottom: 14px;
 }
 .section-tag.gold-tag { color: var(--gold-400); }
 
 .section-header h2 {
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-size: clamp(1.9rem, 3.2vw, 3rem);
   font-weight: 800;
   color: var(--navy-800);
-  letter-spacing: -.02em;
-  margin-bottom: 16px;
-  line-height: 1.2;
+  letter-spacing: -.025em;
+  margin-bottom: 18px;
+  line-height: 1.15;
 }
 .section-header .h2-light { color: var(--white); }
 
 .section-lead {
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   color: var(--gray-600);
   max-width: 680px;
   margin: 0 auto;
-  line-height: 1.75;
+  line-height: 1.78;
 }
 .section-lead.lead-light { color: rgba(255,255,255,.72); }
 
@@ -110,6 +123,7 @@ button { font-family: var(--font); cursor: pointer; }
   letter-spacing: .02em;
   transition: var(--t);
   border: 2px solid transparent;
+  white-space: nowrap;
 }
 
 .btn-gold {
@@ -121,18 +135,29 @@ button { font-family: var(--font); cursor: pointer; }
   background: var(--gold-400);
   border-color: var(--gold-400);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(200,150,12,.38);
+  box-shadow: var(--shadow-gold);
 }
 
 .btn-outline-white {
   background: transparent;
   color: var(--white);
-  border-color: rgba(255,255,255,.55);
+  border-color: rgba(255,255,255,.45);
 }
 .btn-outline-white:hover {
   background: rgba(255,255,255,.1);
-  border-color: var(--white);
+  border-color: rgba(255,255,255,.8);
   transform: translateY(-2px);
+}
+
+.btn-navy {
+  background: var(--navy-700);
+  color: var(--white);
+  border-color: var(--navy-700);
+}
+.btn-navy:hover {
+  background: var(--navy-800);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 
 .btn-submit {
@@ -149,28 +174,61 @@ button { font-family: var(--font); cursor: pointer; }
 .btn-submit:hover {
   background: var(--gold-400);
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(200,150,12,.35);
+  box-shadow: var(--shadow-gold);
 }
 .btn-submit.success { background: var(--green-700); }
 
 /* ===== BRAND TEXT ===== */
 .brand-ai     { color: var(--gold-500); font-weight: 800; }
 .brand-vantha { color: var(--white);    font-weight: 800; }
-.brand-health { color: rgba(255,255,255,.65); font-weight: 400; }
+.brand-health { color: rgba(255,255,255,.6); font-weight: 400; }
 
-/* ===== FADE-IN ANIMATION ===== */
+/* ===== ANIMATE ON SCROLL ===== */
 .fade-up {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .6s ease, transform .6s ease;
+  transform: translateY(30px);
+  transition: opacity .65s ease, transform .65s ease;
 }
 .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* Stagger helper (applied via inline style transitionDelay) */
+
+/* ===== COUNTER ANIMATION ===== */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.count-animated { animation: countUp .5s ease both; }
+
+/* ===== GRADIENT TEXT ===== */
+.gradient-text {
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-text {
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  width: 48px; height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold-500), var(--gold-400));
+  margin: 20px auto 0;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .section, .section-alt, .section-dark { padding: 72px 0; }
-  .container { padding: 0 16px; }
+  .section, .section-alt, .section-dark { padding: 80px 0; }
+  .container { padding: 0 18px; }
+  .section-header { margin-bottom: 48px; }
 }
