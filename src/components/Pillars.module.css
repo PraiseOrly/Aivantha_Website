@@ -1,14 +1,50 @@
-.grid {
+.division {
+  margin-bottom: 64px;
+}
+.division:last-child { margin-bottom: 0; }
+
+.divisionHeader {
+  margin-bottom: 28px;
+  padding: 28px 32px;
+  background: var(--navy-50);
+  border-left: 4px solid var(--navy-700);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+
+.divisionLabel {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold-500);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.divisionHeader h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  margin-bottom: 6px;
+}
+
+.divisionHeader p {
+  color: var(--gray-600);
+  font-size: .94rem;
+  line-height: 1.6;
+}
+
+.pillarsRow {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+  gap: 24px;
 }
 
 .card {
   background: var(--white);
   border: 1px solid var(--gray-200);
   border-radius: var(--r-lg);
-  padding: 48px 40px;
+  padding: 40px 36px;
   position: relative;
   overflow: hidden;
   transition: transform var(--t), box-shadow var(--t), border-color var(--t);
@@ -21,15 +57,15 @@
   background: linear-gradient(90deg, var(--navy-700), var(--navy-600));
 }
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-xl);
   border-color: var(--navy-100);
 }
 
 .num {
   position: absolute;
-  top: 22px; right: 28px;
-  font-size: 3.5rem;
+  top: 18px; right: 24px;
+  font-size: 3.2rem;
   font-weight: 800;
   color: var(--gray-100);
   line-height: 1;
@@ -38,50 +74,69 @@
 }
 
 .iconWrap {
-  width: 52px; height: 52px;
+  width: 50px; height: 50px;
   background: var(--navy-50);
   border-radius: var(--r-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   color: var(--navy-700);
   transition: background var(--t), color var(--t);
 }
-.iconWrap svg { width: 26px; height: 26px; }
+.iconWrap svg { width: 24px; height: 24px; }
 .card:hover .iconWrap { background: var(--navy-700); color: var(--white); }
 
 .tag {
   display: inline-block;
   color: var(--gold-600);
-  font-size: .72rem;
+  font-size: .7rem;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
   margin-bottom: 8px;
 }
 
-.card h3 {
-  font-size: 1.25rem;
+.card h4 {
+  font-size: 1.18rem;
   font-weight: 700;
   color: var(--navy-800);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .focus {
-  font-size: .83rem;
+  font-size: .82rem;
   color: var(--gray-500);
   font-style: italic;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
-.desc {
+.itemList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.itemList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
   color: var(--gray-600);
-  font-size: .94rem;
-  line-height: 1.72;
+  font-size: .88rem;
+  line-height: 1.5;
+}
+
+.bullet {
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold-500);
+  margin-top: 6px;
 }
 
 @media (max-width: 768px) {
-  .grid { grid-template-columns: 1fr; }
-  .card { padding: 36px 28px; }
+  .pillarsRow { grid-template-columns: 1fr; }
+  .card { padding: 32px 24px; }
+  .divisionHeader { padding: 22px 20px; }
 }
