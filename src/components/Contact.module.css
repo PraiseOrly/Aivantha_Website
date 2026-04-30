@@ -1,0 +1,72 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 64px;
+}
+
+.info h3,
+.formWrap h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+
+.contactList { display: flex; flex-direction: column; gap: 22px; }
+
+.row { display: flex; flex-direction: column; gap: 4px; }
+
+.clabel {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+}
+.row a,
+.row span:last-child {
+  color: rgba(255,255,255,.78);
+  font-size: .93rem;
+  transition: color var(--t);
+}
+.row a:hover { color: var(--gold-400); }
+
+/* form */
+.fg { margin-bottom: 18px; }
+
+.fg label {
+  display: block;
+  font-size: .82rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.75);
+  margin-bottom: 7px;
+}
+
+.fg input,
+.fg select,
+.fg textarea {
+  width: 100%;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: var(--r-sm);
+  padding: 11px 15px;
+  color: var(--white);
+  font-size: .93rem;
+  font-family: var(--font);
+  transition: border-color var(--t), background var(--t);
+  resize: vertical;
+}
+.fg input::placeholder,
+.fg textarea::placeholder { color: rgba(255,255,255,.3); }
+.fg input:focus,
+.fg select:focus,
+.fg textarea:focus {
+  outline: none;
+  border-color: var(--gold-500);
+  background: rgba(255,255,255,.1);
+}
+.fg select option { background: var(--navy-900); color: var(--white); }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; gap: 48px; }
+}

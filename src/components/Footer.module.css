@@ -1,0 +1,67 @@
+.footer {
+  background: #070f1e;
+  padding: 80px 0 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.brand { display: flex; flex-direction: column; gap: 0; }
+
+.logo {
+  font-size: 1.45rem;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.tagline {
+  color: rgba(255,255,255,.45);
+  font-size: .88rem;
+  margin-bottom: 18px;
+}
+
+.pillars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  color: rgba(255,255,255,.3);
+  font-size: .78rem;
+}
+.sep { margin: 0 6px; }
+
+.col h4 {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.42);
+  margin-bottom: 18px;
+}
+
+.col ul { display: flex; flex-direction: column; gap: 10px; }
+
+.col a {
+  color: rgba(255,255,255,.58);
+  font-size: .88rem;
+  transition: color var(--t);
+  text-decoration: none;
+}
+.col a:hover { color: var(--gold-400); }
+
+.bottom {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 24px;
+  text-align: center;
+}
+.bottom p {
+  color: rgba(255,255,255,.28);
+  font-size: .78rem;
+}
+
+@media (max-width: 900px)  { .grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px)  { .grid { grid-template-columns: 1fr; gap: 36px; } }
