@@ -44,5 +44,13 @@
   line-height: 1.7;
 }
 
-@media (max-width: 900px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
+/* centre the 5th card on a 3-col row */
+.cardCenter {
+  grid-column: 2;
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .cardCenter { grid-column: auto; }
+}
 @media (max-width: 540px)  { .grid { grid-template-columns: 1fr; } }
