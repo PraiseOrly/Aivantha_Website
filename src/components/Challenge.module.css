@@ -1,16 +1,93 @@
+/* ===== HOOK BANNER ===== */
+.hookBanner {
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
+  padding: 72px 0;
+}
+
+.hookInner {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hookQuote {
+  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.4;
+  letter-spacing: -.015em;
+  margin-bottom: 22px;
+  font-style: italic;
+}
+
+.hookSub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.68);
+  line-height: 1.7;
+}
+.hookSub strong { color: var(--gold-500); }
+
+/* ===== PAIN POINTS ===== */
+.painSection { padding-bottom: 0; }
+
+.painGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.painCard {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--r-lg);
+  padding: 36px 30px;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+.painCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--navy-100);
+}
+
+.painIcon {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-600));
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  color: var(--white);
+}
+.painIcon svg { width: 24px; height: 24px; }
+
+.painCard h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  margin-bottom: 10px;
+}
+
+.painCard p {
+  color: var(--gray-600);
+  font-size: .92rem;
+  line-height: 1.68;
+}
+
+/* ===== DUAL GRID ===== */
 .dualGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  margin-bottom: 64px;
+  gap: 24px;
+  padding-bottom: 0;
 }
 
 .card {
-  padding: 40px;
+  padding: 38px;
   border-radius: var(--r-md);
   border-top: 4px solid;
 }
-
 .problemCard  { background: #fff5f5; border-color: #dc2626; }
 .responseCard { background: var(--green-50); border-color: #16a34a; }
 
@@ -18,14 +95,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
-
-.dot {
-  width: 12px; height: 12px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
+.dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
 .dotRed   { background: #dc2626; }
 .dotGreen { background: #16a34a; }
 
@@ -39,28 +111,40 @@
   padding: 10px 0;
   border-bottom: 1px solid rgba(0,0,0,.06);
   color: var(--gray-700);
-  font-size: .94rem;
+  font-size: .93rem;
   line-height: 1.5;
 }
 .card li:last-child { border-bottom: none; }
-
 .dash  { color: #dc2626; font-weight: 700; flex-shrink: 0; }
 .check { color: #16a34a; font-weight: 700; flex-shrink: 0; }
 
-/* market */
-.marketSection { }
+/* ===== MARKET SECTION ===== */
+.marketSection {
+  background: var(--gray-50);
+  padding: 72px 0;
+  margin-top: 64px;
+}
+
 .marketTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 800;
   color: var(--navy-800);
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 10px;
+  letter-spacing: -.02em;
+}
+
+.marketSub {
+  text-align: center;
+  color: var(--gray-500);
+  font-size: .95rem;
+  margin-bottom: 40px;
 }
 
 .marketGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  gap: 20px;
 }
 
 .mCard {
@@ -70,21 +154,36 @@
   padding: 28px 22px;
   text-align: center;
   transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  position: relative;
+  overflow: hidden;
+}
+.mCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-500), var(--gold-400));
+  transform: scaleX(0);
+  transition: transform var(--t);
+  transform-origin: left;
 }
 .mCard:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
   border-color: var(--navy-100);
 }
+.mCard:hover::before { transform: scaleX(1); }
 
-.mFig  { font-size: 1.9rem; font-weight: 800; color: var(--navy-700); margin-bottom: 8px; }
+.mFig  { font-size: 2rem; font-weight: 800; color: var(--navy-700); margin-bottom: 8px; line-height: 1; }
 .mDesc { font-size: .83rem; color: var(--gray-600); line-height: 1.4; margin-bottom: 8px; }
 .mSrc  { font-size: .72rem; color: var(--gray-400); font-style: italic; }
 
-@media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 900px) {
+  .painGrid   { grid-template-columns: 1fr; }
   .dualGrid   { grid-template-columns: 1fr; }
   .marketGrid { grid-template-columns: repeat(2, 1fr); }
-  .card       { padding: 28px 22px; }
+  .card       { padding: 28px 20px; }
 }
 @media (max-width: 480px) {
   .marketGrid { grid-template-columns: 1fr; }
