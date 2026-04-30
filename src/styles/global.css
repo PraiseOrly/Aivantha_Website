@@ -379,3 +379,35 @@ input, textarea, select { font-family: var(--font); }
 @media (max-width: 768px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
 }
+
+/* ===== VIEW TRANSITIONS API ===== */
+/* Smooth page/section transitions using View Transitions API */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 0.25s;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Only animate root for now - individual section transitions need JS */
+::view-transition-group(root) {
+  animation-duration: 0.35s;
+}
+
+/* Named view transitions for specific elements */
+::view-transition-group(navbar) {
+  z-index: 1000;
+}
+
+::view-transition-group(hero) {
+  z-index: 100;
+}
+
+::view-transition-old(hero),
+::view-transition-new(hero) {
+  animation-duration: 0.5s;
+}

@@ -19,6 +19,15 @@
   z-index: 0;
 }
 
+/* Background overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7); /* bg-gray-900/70 equivalent */
+  z-index: 1;
+  pointer-events: none;
+}
+
 /* Ambient glow effect */
 .bgGrid::after {
   content: '';
@@ -196,13 +205,15 @@
   z-index: 10;
 }
 
-/* Arrow buttons */
+/* Arrow buttons with backdrop blur */
 .arrow {
   width: 44px;
   height: 44px;
   border-radius: var(--r-full);
   border: 1px solid rgba(255,255,255,.2);
-  background: rgba(255,255,255,.04);
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: rgba(255,255,255,.6);
   display: flex;
   align-items: center;
@@ -210,6 +221,12 @@
   cursor: pointer;
   transition: all var(--t-base) var(--t-smooth);
   flex-shrink: 0;
+}
+
+.arrow:hover {
+  background: rgba(255,255,255,.15);
+  border-color: rgba(255,255,255,.4);
+  color: var(--white);
 }
 
 .arrow svg { width: 18px; height: 18px; }
