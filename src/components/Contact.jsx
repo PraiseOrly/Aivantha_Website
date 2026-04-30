@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react'
 import styles from './Contact.module.css'
 
 const contacts = [
-  { label: 'Partnership Enquiries',   value: 'info@aivanthahealth.com',      href: 'mailto:info@aivanthahealth.com'      },
-  { label: 'Talent Marketplace',      value: 'talent@aivanthahealth.com',    href: 'mailto:talent@aivanthahealth.com'    },
-  { label: 'Research Collaboration',  value: 'research@aivanthahealth.com',  href: 'mailto:research@aivanthahealth.com'  },
-  { label: 'Media & Press',           value: 'media@aivanthahealth.com',     href: 'mailto:media@aivanthahealth.com'     },
+  { label: 'General & Partnership',   value: 'info@aivantha.site',      href: 'mailto:info@aivantha.site'      },
+  { label: 'Talent Marketplace',      value: 'talent@aivantha.site',    href: 'mailto:talent@aivantha.site'    },
+  { label: 'Research Collaboration',  value: 'research@aivantha.site',  href: 'mailto:research@aivantha.site'  },
+  { label: 'Media & Press',           value: 'media@aivantha.site',     href: 'mailto:media@aivantha.site'     },
   { label: 'Headquarters',            value: 'Nairobi, Kenya · Pan-African Operations', href: null },
 ]
 
