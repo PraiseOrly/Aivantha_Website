@@ -1,4 +1,5 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
+import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import styles from './Navbar.module.css'
 
@@ -64,6 +65,10 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [mobileDropdown, setMobileDropdown] = useState(null)
+  
+  // Scroll-based parallax
+  const { scrollY } = useScroll()
+  const headerY = useTransform(scrollY, [0, 100], [0, -10])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -92,125 +97,145 @@ export default function Navbar() {
   }
 
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
+    <motion.nav 
+      className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    >
       <div className={`container ${styles.inner}`}>
-        <a href="#home" className={styles.brand} onClick={e => handleLink(e, '#home')}>
-          <img src="/AiVantha Logo.png" alt="AiVantha Health" className={styles.logoImg} />
-        </a>
+        {/* Parallax header content */}
+        <motion.div style={{ y: headerY }} className={styles.headerContent}>
+          <a href="#home" className={styles.brand} onClick={e => handleLink(e, '#home')}>
+            <img src="/AiVantha Logo.png" alt="AiVantha Health" className={styles.logoImg} />
+          </a>
 
-        {/* Desktop Navigation */}
-        <ul className={styles.links}>
-          {navItems.map((item) => (
-            <li 
-              key={item.label} 
-              className={styles.linkItem}
-              onMouseEnter={() => item.subItems && setActiveDropdown(item.label)}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              {item.subItems ? (
-                <>
-                  <button 
-                    className={`${styles.link} ${activeDropdown === item.label ? styles.linkActive : ''}`}
-                    onClick={() => toggleDropdown(item.label)}
-                  >
-                    {item.label}
-                    <svg className={styles.chevron} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                  </button>
-                  <AnimatePresence>
-                    {activeDropdown === item.label && (
-                      <motion.div
-                        className={styles.dropdown}
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 8 }}
-                        transition={{ duration: 0.15 }}
-                      >
-                        {item.label === 'Services' ? (
-                          // Two-column layout for Services with column labels
-                          <div className={styles.dropdownGrid}>
-                            <div className={styles.columnDivider}>
-                              {item.subItems.map((group) => (
-                                <div key={group.label} className={styles.dropdownGroup}>
-                                  <span className={styles.groupLabel}>{group.label}</span>
-                                  <span className={styles.groupDesc}>{group.desc}</span>
-                                  {group.children?.map((child) => (
-                                    <a
-                                      key={child.label}
-                                      href={child.href}
-                                      className={styles.dropdownLink}
-                                      onClick={(e) => handleLink(e, child.href)}
-                                    >
-                                      <span className={styles.linkTitle}>{child.label}</span>
-                                      <span className={styles.linkDesc}>{child.desc}</span>
-                                    </a>
-                                  ))}
-                                </div>
+          {/* Desktop Navigation */}
+          <ul className={styles.links}>
+            {navItems.map((item) => (
+              <li 
+                key={item.label} 
+                className={styles.linkItem}
+                onMouseEnter={() => item.subItems && setActiveDropdown(item.label)}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                {item.subItems ? (
+                  <>
+                    <button 
+                      className={`${styles.link} ${activeDropdown === item.label ? styles.linkActive : ''}`}
+                      onClick={() => toggleDropdown(item.label)}
+                    >
+                      {item.label}
+                      <svg className={styles.chevron} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polyline points="6 9 12 15 18 9" />
+                      </svg>
+                    </button>
+                    <AnimatePresence>
+                      {activeDropdown === item.label && (
+                        <motion.div
+                          className={styles.dropdown}
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 8 }}
+                          transition={{ duration: 0.15 }}
+                        >
+                          {item.label === 'Services' ? (
+                            // Two-column layout for Services with column labels
+                            <div className={styles.dropdownGrid}>
+                              <div className={styles.columnDivider}>
+                                {item.subItems.map((group) => (
+                                  <div key={group.label} className={styles.dropdownGroup}>
+                                    <span className={styles.groupLabel}>{group.label}</span>
+                                    <span className={styles.groupDesc}>{group.desc}</span>
+                                    {group.children?.map((child) => (
+                                      <a
+                                        key={child.label}
+                                        href={child.href}
+                                        className={styles.dropdownLink}
+                                        onClick={(e) => handleLink(e, child.href)}
+                                      >
+                                        <span className={styles.linkTitle}>{child.label}</span>
+                                        <span className={styles.linkDesc}>{child.desc}</span>
+                                      </a>
+                                    ))}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            // Single column for About, Solutions, Resources
+                            <div className={styles.dropdownList}>
+                              {item.subItems.map((subItem) => (
+                                <a
+                                  key={subItem.label}
+                                  href={subItem.href}
+                                  className={styles.dropdownLink}
+                                  onClick={(e) => handleLink(e, subItem.href)}
+                                >
+                                  <span className={styles.linkTitle}>{subItem.label}</span>
+                                  <span className={styles.linkDesc}>{subItem.desc}</span>
+                                </a>
                               ))}
                             </div>
-                          </div>
-                        ) : (
-                          // Single column for About, Solutions, Resources
-                          <div className={styles.dropdownList}>
-                            {item.subItems.map((subItem) => (
-                              <a
-                                key={subItem.label}
-                                href={subItem.href}
-                                className={styles.dropdownLink}
-                                onClick={(e) => handleLink(e, subItem.href)}
-                              >
-                                <span className={styles.linkTitle}>{subItem.label}</span>
-                                <span className={styles.linkDesc}>{subItem.desc}</span>
-                              </a>
-                            ))}
-                          </div>
-                        )}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </>
-              ) : (
-                <a 
-                  href={item.href} 
-                  className={styles.link}
-                  onClick={(e) => handleLink(e, item.href)}
-                >
-                  {item.label}
-                </a>
-              )}
+                          )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </>
+                ) : (
+                  <a 
+                    href={item.href} 
+                    className={styles.link}
+                    onClick={(e) => handleLink(e, item.href)}
+                  >
+                    {/* Hover background fill animation */}
+                    <motion.div 
+                      className={styles.linkHoverBg}
+                      layoutId="navbar-hover"
+                      transition={{ duration: 0.2 }}
+                    />
+                    {item.label}
+                  </a>
+                )}
+              </li>
+            ))}
+            {/* Contact link - no dropdown */}
+            <li>
+              <a 
+                href="#contact" 
+                className={styles.link}
+                onClick={(e) => handleLink(e, '#contact')}
+              >
+                {/* Hover background fill animation */}
+                <motion.div 
+                  className={styles.linkHoverBg}
+                  layoutId="navbar-hover"
+                  transition={{ duration: 0.2 }}
+                />
+                Contact
+              </a>
             </li>
-          ))}
-          {/* Contact link - no dropdown */}
-          <li>
-            <a 
-              href="#contact" 
-              className={styles.link}
-              onClick={(e) => handleLink(e, '#contact')}
-            >
-              Contact
-            </a>
-          </li>
-          {/* CTA Button */}
-          <li>
-            <a
-              href="#contact"
-              className={styles.cta}
-              onClick={(e) => handleLink(e, '#contact')}
-            >
-              Get in touch
-            </a>
-          </li>
-        </ul>
+            {/* CTA Button */}
+            <li>
+              <a
+                href="#contact"
+                className={styles.cta}
+                onClick={(e) => handleLink(e, '#contact')}
+              >
+                Get in touch
+              </a>
+            </li>
+          </ul>
+        </motion.div>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile Hamburger with Lucide icons */}
         <button
-          className={`${styles.toggle} ${open ? styles.toggleOpen : ''}`}
+          className={styles.toggleBtn}
           aria-label="Toggle navigation"
           aria-expanded={open}
           onClick={() => setOpen(o => !o)}
         >
-          <span /><span /><span />
+          {open ? <X size={24} className={styles.toggleIcon} /> : <Menu size={24} className={styles.toggleIcon} />}
         </button>
 
         {/* Mobile Navigation */}
@@ -218,13 +243,19 @@ export default function Navbar() {
           {open && (
             <motion.div
               className={styles.mobileMenu}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
             >
-              {navItems.map((item) => (
-                <div key={item.label} className={styles.mobileItem}>
+              {navItems.map((item, i) => (
+                <motion.div 
+                  key={item.label} 
+                  className={styles.mobileItem}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                >
                   {item.subItems ? (
                     <>
                       <button
@@ -268,19 +299,25 @@ export default function Navbar() {
                       {item.label}
                     </a>
                   )}
-                </div>
+                </motion.div>
               ))}
-              <a
-                href="#contact"
-                className={`${styles.mobileLink} ${styles.mobileCta}`}
-                onClick={(e) => handleLink(e, '#contact')}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navItems.length * 0.1 }}
               >
-                Get in touch
-              </a>
+                <a
+                  href="#contact"
+                  className={`${styles.mobileLink} ${styles.mobileCta}`}
+                  onClick={(e) => handleLink(e, '#contact')}
+                >
+                  Get in touch
+                </a>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-    </nav>
+    </motion.nav>
   )
 }
