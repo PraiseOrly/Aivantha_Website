@@ -19,10 +19,10 @@ export default function Hero() {
             Future
           </h1>
           <p className={styles.sub}>
-            AiVantha Health is an African-led AI and data company transforming how the continent's
-            health systems generate knowledge, make decisions, and deliver care. We combine rigorous
-            research, evidence-based consulting, purpose-built AI solutions, and Africa's best
-            health AI talent — all under one integrated platform.
+            AiVantha Health is an African AI and data-driven healthcare company operating at the
+            intersection of <strong>Research | Consulting | Innovation | Talent</strong>. We design
+            and deliver ethical, scalable, and locally grounded digital health solutions — powered
+            by cutting-edge research and Africa's top AI talent.
           </p>
           <div className={styles.actions}>
             <button className="btn btn-gold" onClick={() => scrollTo('#pillars')}>Explore Our Work</button>
