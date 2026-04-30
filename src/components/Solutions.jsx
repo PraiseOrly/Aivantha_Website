@@ -1,23 +1,42 @@
 import { useEffect, useRef } from 'react'
 import styles from './Solutions.module.css'
 
+const labSolutions = [
+  'Clinical decision support systems',
+  'Predictive analytics for disease surveillance',
+  'Health intelligence dashboards',
+  'AI-powered diagnostics and workflow tools',
+  'Interoperable digital health platforms',
+]
+
 const products = [
   {
-    badge: 'In Development', badgeType: 'dev',
-    title: 'NuruMed', sub: 'Clinical Decision Support',
-    desc: "An AI-powered tool that supports clinicians in diagnosis, triage, and treatment recommendations using patient data and locally validated clinical guidelines. Designed for low-resource settings with limited connectivity. NuruMed brings the equivalent of a specialist second opinion to every consultation — wherever care is being delivered.",
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>,
+    badge: 'Live', badgeType: 'live',
+    title: 'Clinical AI Solutions',
+    sub: 'AiVantha Lab — Active',
+    desc: 'We design and deploy AI-powered tools that address real clinical and operational challenges — from decision support at the point of care to predictive models for population health. Built for low-resource settings, validated in African clinical realities.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    ),
   },
   {
-    badge: 'In Development', badgeType: 'dev',
-    title: 'CardiacTek', sub: 'Cardiac Diagnostics',
-    desc: "AI-enabled biosignal analysis and cardiac diagnostic support for hospitals and clinics across Africa. Addresses one of the fastest-growing disease burdens on the continent — non-communicable cardiovascular disease. CardiacTek makes early detection possible at scale, in settings where cardiologists are scarce.",
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>,
+    badge: 'Live', badgeType: 'live',
+    title: 'Predictive Analytics & Surveillance',
+    sub: 'AiVantha Lab — Active',
+    desc: 'Advanced analytics and machine learning models for disease surveillance, outbreak detection, and population health risk stratification — helping health systems act before crises escalate.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+    ),
   },
   {
     badge: 'Planned 2027', badgeType: 'planned',
-    title: 'AiVantha Data', sub: 'Health Intelligence Platform',
-    desc: "An interoperable health intelligence dashboard and analytics platform for health ministries, hospital networks, and public health agencies. Integrates fragmented data sources into a single decision-making environment — so leaders can see what is happening, where, and why.",
+    title: 'AiVantha Data',
+    sub: 'Health Intelligence Platform',
+    desc: 'An interoperable health intelligence dashboard and analytics platform for health ministries, hospital networks, and public health agencies. Integrates fragmented data sources into a single decision-making environment — so leaders can see what is happening, where, and why.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -28,10 +47,23 @@ const products = [
   },
   {
     badge: 'Planned 2027', badgeType: 'planned',
-    title: 'AiVantha Coach', sub: 'Workforce Augmentation',
-    desc: "An AI-driven platform for health worker training, workflow optimisation, and decision support in resource-limited settings. Built to multiply the impact of every health worker on the continent — because in Africa, every skilled health worker serves ten times more patients than the global average.",
-    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>,
+    title: 'AiVantha Coach',
+    sub: 'Workforce Augmentation',
+    desc: 'An AI-driven platform for health worker training, workflow optimisation, and decision support in resource-limited settings. Built to multiply the impact of every health worker on the continent.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+      </svg>
+    ),
   },
+]
+
+const techStack = [
+  { category: 'AI & ML',              tools: 'TensorFlow · PyTorch · Scikit-learn' },
+  { category: 'Data Systems',          tools: 'SQL · BigQuery · PostgreSQL'         },
+  { category: 'Health Interoperability',tools: 'HL7 FHIR · DHIS2 · OpenHIE'       },
+  { category: 'Cloud & DevOps',        tools: 'AWS · Azure · Docker · Kubernetes'  },
+  { category: 'Product Development',   tools: 'FastAPI · React · Flutter'          },
 ]
 
 export default function Solutions() {
@@ -39,7 +71,7 @@ export default function Solutions() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')),
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     )
     ref.current?.querySelectorAll('.fade-up').forEach(el => observer.observe(el))
     return () => observer.disconnect()
@@ -52,27 +84,44 @@ export default function Solutions() {
           <span className="section-tag">Our Solutions</span>
           <h2>Solutions Built for Africa</h2>
           <p className="section-lead">
-            Every AiVantha product is designed from the ground up for the constraints and realities
-            of African health systems — not adapted from tools built for other contexts. They are
-            research-validated, ethically designed, and deployment-ready.
+            Every AiVantha solution is designed from the ground up for the constraints and realities
+            of African health systems — research-validated, ethically designed, and built to scale.
           </p>
         </div>
+
         <div className={styles.grid}>
           {products.map((p, i) => (
-            <div
-              key={p.title}
-              className={`${styles.card} fade-up`}
-              style={{ transitionDelay: `${i * 0.1}s` }}
-            >
-              <span className={`${styles.badge} ${p.badgeType === 'dev' ? styles.badgeDev : styles.badgePlanned}`}>
+            <div key={p.title} className={`${styles.card} fade-up`} style={{ transitionDelay: `${i * 0.1}s` }}>
+              <span className={`${styles.badge} ${p.badgeType === 'live' ? styles.badgeLive : styles.badgePlanned}`}>
                 {p.badge}
               </span>
               <div className={styles.iconWrap}>{p.icon}</div>
               <h3>{p.title}</h3>
               <p className={styles.sub}>{p.sub}</p>
               <p className={styles.desc}>{p.desc}</p>
+              {i < 2 && (
+                <ul className={styles.labList}>
+                  {labSolutions.slice(i === 0 ? 0 : 2, i === 0 ? 3 : 5).map(s => (
+                    <li key={s}><span className={styles.lbullet} />{s}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
+        </div>
+
+        {/* Tech Ecosystem */}
+        <div className={`${styles.techSection} fade-up`} style={{ transitionDelay: '.4s' }}>
+          <h3>Core Technology Ecosystem</h3>
+          <p>Across our divisions, we leverage industry-leading tools and open health standards.</p>
+          <div className={styles.techGrid}>
+            {techStack.map(t => (
+              <div key={t.category} className={styles.techCard}>
+                <span className={styles.techCat}>{t.category}</span>
+                <span className={styles.techTools}>{t.tools}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
