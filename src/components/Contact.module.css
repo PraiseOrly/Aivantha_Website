@@ -1,10 +1,110 @@
-.grid {
+/* ===== ENGAGE GRID ===== */
+.engageGrid {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.engageCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--r-md);
+  padding: 20px 18px;
+  transition: background var(--t), border-color var(--t);
+}
+.engageCard:hover {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(200,150,12,.4);
+}
+
+.engageIcon {
+  width: 36px; height: 36px;
+  flex-shrink: 0;
+  background: rgba(200,150,12,.15);
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-400);
+}
+.engageIcon svg { width: 18px; height: 18px; }
+
+.engageLabel {
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 3px;
+}
+.engageDesc {
+  font-size: .78rem;
+  color: rgba(255,255,255,.48);
+  line-height: 1.4;
+}
+
+/* ===== MAIN 2-COL GRID ===== */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
   gap: 64px;
 }
 
-.info h3,
+/* ===== INFO / CTA SIDE ===== */
+.info {}
+
+.ctaBlock { display: flex; flex-direction: column; }
+
+.ctaIcon {
+  width: 60px; height: 60px;
+  background: rgba(200,150,12,.15);
+  border: 1px solid rgba(200,150,12,.3);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-400);
+  margin-bottom: 24px;
+}
+.ctaIcon svg { width: 28px; height: 28px; }
+
+.ctaBlock h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 14px;
+  letter-spacing: -.015em;
+}
+.ctaBlock p {
+  color: rgba(255,255,255,.6);
+  font-size: .95rem;
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+
+.emailCta {
+  display: inline-block;
+  color: var(--gold-400);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  transition: color var(--t), transform var(--t);
+  margin-bottom: 24px;
+}
+.emailCta:hover { color: var(--gold-500); transform: translateX(3px); }
+
+.hqTag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.38);
+  font-size: .82rem;
+}
+.hqTag svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ===== FORM SIDE ===== */
 .formWrap h3 {
   font-size: 1.25rem;
   font-weight: 700;
@@ -12,34 +112,21 @@
   margin-bottom: 28px;
 }
 
-.contactList { display: flex; flex-direction: column; gap: 22px; }
-
-.row { display: flex; flex-direction: column; gap: 4px; }
-
-.clabel {
-  font-size: .7rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--gold-400);
+.fRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
-.row a,
-.row span:last-child {
-  color: rgba(255,255,255,.78);
-  font-size: .93rem;
-  transition: color var(--t);
-}
-.row a:hover { color: var(--gold-400); }
 
-/* form */
 .fg { margin-bottom: 18px; }
 
 .fg label {
   display: block;
-  font-size: .82rem;
+  font-size: .8rem;
   font-weight: 600;
-  color: rgba(255,255,255,.75);
+  color: rgba(255,255,255,.7);
   margin-bottom: 7px;
+  letter-spacing: .02em;
 }
 
 .fg input,
@@ -47,7 +134,7 @@
 .fg textarea {
   width: 100%;
   background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.13);
   border-radius: var(--r-sm);
   padding: 11px 15px;
   color: var(--white);
@@ -57,7 +144,7 @@
   resize: vertical;
 }
 .fg input::placeholder,
-.fg textarea::placeholder { color: rgba(255,255,255,.3); }
+.fg textarea::placeholder { color: rgba(255,255,255,.28); }
 .fg input:focus,
 .fg select:focus,
 .fg textarea:focus {
@@ -67,6 +154,14 @@
 }
 .fg select option { background: var(--navy-900); color: var(--white); }
 
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  .engageGrid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 900px) {
-  .grid { grid-template-columns: 1fr; gap: 48px; }
+  .mainGrid { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 560px) {
+  .engageGrid { grid-template-columns: 1fr; }
+  .fRow       { grid-template-columns: 1fr; }
 }
