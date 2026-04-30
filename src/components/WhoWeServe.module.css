@@ -1,6 +1,6 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 22px;
   margin-bottom: 48px;
 }
@@ -36,13 +36,39 @@
   font-size: .98rem;
   font-weight: 700;
   color: var(--navy-800);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   line-height: 1.4;
 }
-.card p {
+
+.value {
+  color: var(--gold-600) !important;
+  font-size: .8rem !important;
+  font-style: italic;
+  margin-bottom: 14px;
+}
+
+.points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   color: var(--gray-600);
-  font-size: .88rem;
-  line-height: 1.65;
+  font-size: .83rem;
+  line-height: 1.45;
+}
+.dot {
+  flex-shrink: 0;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--navy-300, #93c5fd);
+  margin-top: 6px;
+  background: var(--navy-700);
+  opacity: .4;
 }
 
 .closing {
@@ -62,5 +88,5 @@
   font-weight: 500;
 }
 
-@media (max-width: 900px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px)  { .grid { grid-template-columns: 1fr; } .closing { padding: 24px 20px; } }
