@@ -1,11 +1,14 @@
+/* ===== SERVICES SECTION ===== */
+
+/* Division header */
 .division {
-  margin-bottom: 64px;
+  margin-bottom: var(--space-3xl);
 }
 .division:last-child { margin-bottom: 0; }
 
 .divisionHeader {
-  margin-bottom: 28px;
-  padding: 28px 32px;
+  margin-bottom: var(--space-xl);
+  padding: var(--space-xl);
   background: var(--navy-50);
   border-left: 4px solid var(--navy-700);
   border-radius: 0 var(--r-md) var(--r-md) 0;
@@ -34,21 +37,24 @@
   line-height: 1.6;
 }
 
+/* Services grid (replaces pillarsRow) */
 .pillarsRow {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-3xl);
 }
 
 .card {
   background: var(--white);
   border: 1px solid var(--gray-200);
   border-radius: var(--r-lg);
-  padding: 40px 36px;
+  padding: var(--space-xl) var(--space-xl);
   position: relative;
   overflow: hidden;
-  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  transition: all var(--t-base) var(--t-smooth);
 }
+
 .card::before {
   content: '';
   position: absolute;
@@ -56,15 +62,16 @@
   height: 4px;
   background: linear-gradient(90deg, var(--navy-700), var(--navy-600));
 }
+
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-xl);
   border-color: var(--navy-100);
 }
 
 .num {
   position: absolute;
-  top: 18px; right: 24px;
+  top: var(--space-lg); right: var(--space-xl);
   font-size: 3.2rem;
   font-weight: 800;
   color: var(--gray-100);
@@ -80,10 +87,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: var(--space-lg);
   color: var(--navy-700);
-  transition: background var(--t), color var(--t);
+  transition: all var(--t-base) var(--t-smooth);
 }
+
 .iconWrap svg { width: 24px; height: 24px; }
 .card:hover .iconWrap { background: var(--navy-700); color: var(--white); }
 
@@ -94,34 +102,34 @@
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-sm);
 }
 
 .card h4 {
-  font-size: 1.18rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--navy-800);
-  margin-bottom: 6px;
+  margin-bottom: var(--space-xs);
 }
 
 .focus {
-  font-size: .82rem;
+  font-size: .85rem;
   color: var(--gray-500);
   font-style: italic;
-  margin-bottom: 18px;
+  margin-bottom: var(--space-lg);
 }
 
 .itemList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-sm);
 }
 
 .itemList li {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: var(--space-md);
   color: var(--gray-600);
   font-size: .88rem;
   line-height: 1.5;
@@ -135,8 +143,109 @@
   margin-top: 6px;
 }
 
-@media (max-width: 768px) {
+/* ===== IMPACT SECTION ===== */
+.impactSection {
+  padding: var(--space-2xl) 0;
+  border-top: 1px solid var(--gray-100);
+  border-bottom: 1px solid var(--gray-100);
+  margin: var(--space-3xl) 0;
+}
+
+.impactGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.impactCard {
+  padding: var(--space-xl);
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--r-lg);
+  transition: all var(--t-base) var(--t-smooth);
+}
+
+.impactCard:hover {
+  border-color: var(--navy-200);
+  box-shadow: var(--shadow-md);
+}
+
+.impactCard h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  margin-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+
+.impactCard p {
+  font-size: .85rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+/* ===== APPROACH SECTION ===== */
+.approachSection {
+  padding: var(--space-2xl) 0;
+}
+
+.approachGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+.approachCard {
+  padding: var(--space-xl);
+  background: linear-gradient(135deg, var(--navy-50), var(--white));
+  border: 1px solid var(--navy-200);
+  border-radius: var(--r-lg);
+}
+
+.approachCard h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  margin-bottom: var(--space-sm);
+}
+
+.approachCard p {
+  font-size: .85rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+/* Trust anchor */
+.trustAnchor {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: var(--space-xl);
+  background: rgba(200,150,12,.08);
+  border: 1px solid rgba(200,150,12,.25);
+  border-radius: var(--r-lg);
+}
+
+.trustAnchor p {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--navy-800);
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
   .pillarsRow { grid-template-columns: 1fr; }
-  .card { padding: 32px 24px; }
-  .divisionHeader { padding: 22px 20px; }
+  .impactGrid { grid-template-columns: repeat(2, 1fr); }
+  .approachGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .pillarsRow { grid-template-columns: 1fr; }
+  .card { padding: var(--space-xl) var(--space-lg); }
+  .impactGrid { grid-template-columns: 1fr; }
+  .approachGrid { grid-template-columns: 1fr; }
+  .divisionHeader { padding: var(--space-xl) var(--space-lg); }
 }

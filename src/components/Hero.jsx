@@ -2,10 +2,10 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import styles from './Hero.module.css'
 
-const INTERVAL = 5000 // 5 seconds auto-slide
-const SLIDE_OFFSET = 300 // pixels for sideways animation
+const INTERVAL = 6000 // 6 seconds auto-slide
+const SLIDE_OFFSET = 300
 
-// Slide variants for enter, center, exit states with direction-aware animation
+// Slide variants for enter, center, exit states
 const slideVariants = {
   enter: (direction) => ({
     x: direction > 0 ? SLIDE_OFFSET : -SLIDE_OFFSET,
@@ -21,78 +21,50 @@ const slideVariants = {
   }),
 }
 
-// Content fade-in animation variants
 const contentVariants = {
   hidden: { opacity: 0, y: 24 },
   visible: { 
     opacity: 1, 
     y: 0,
     transition: {
-      duration: 0.7,
-      delay: 0.1,
+      duration: 0.8,
+      delay: 0.15,
       ease: [0.4, 0, 0.2, 1],
     }
   },
 }
 
-function parseHeadline(text) {
-  return text.split('||').map((part, i) =>
-    i % 2 === 1
-      ? <em key={i} className={styles.accent}>{part}</em>
-      : part
-  )
-}
-
+// 3 command slides per tone guidelines
 const slides = [
   {
-    tag: 'Healthcare AI · Africa-First',
-    headline: "Building Africa's ||Intelligent Health|| Future",
-    sub: "One platform combining research, consulting, innovation, and talent — transforming health systems across the continent.",
-    cta1: { label: 'Explore Our Work', href: '#pillars' },
-    cta2: { label: 'Partner With Us', href: '#contact' },
-    metric: { num: '4', label: 'Integrated Pillars' },
-    wm: 'health',
-    accentColor: '#c8960c',
-  },
-  {
-    tag: '$16.6B Market Opportunity',
-    headline: "Africa's Health Crisis Is a ||Data Intelligence|| Problem",
-    sub: "Africa bears 25% of global disease burden but receives <1% of health AI investment. The data exists — the intelligence to act on it does not.",
-    cta1: { label: 'See the Challenge', href: '#challenge' },
-    cta2: { label: 'Our Approach', href: '#pillars' },
-    metric: { num: '25%', label: 'global disease burden' },
+    tag: 'Intelligence Gap',
+    headline: "Africa's Health Systems Are Flying Blind",
+    sub: "Africa bears 25% of global disease burden but receives less than 1% of health AI investment. The data exists. The intelligence to act on it does not.",
+    cta1: { label: 'Explore our services', href: '#services' },
+    cta2: { label: 'View the opportunity', href: '#solutions' },
+    stat: '$16.6B',
+    statLabel: 'Africa digital health market by 2030',
     wm: 'globe',
-    accentColor: '#e11d48',
   },
   {
-    tag: 'Invest · Partner · Transform',
-    headline: "The Time to Build ||Africa's Health AI Future|| Is Now",
-    sub: "41 of 54 African countries have digital health strategies. $16.6B addressable market. Be part of the transformation.",
-    cta1: { label: 'Investment Enquiries', href: '#contact' },
-    cta2: { label: 'Partnership Opportunities', href: '#contact' },
-    metric: { num: '41/54', label: 'countries ready' },
+    tag: 'End-to-End AI',
+    headline: "Building Africa's Intelligent Health Future",
+    sub: "Research. Consulting. Innovation. Talent. One platform — transforming health systems across the continent from within.",
+    cta1: { label: 'Explore our services', href: '#services' },
+    cta2: { label: 'View the opportunity', href: '#solutions' },
+    stat: '41/54',
+    statLabel: 'African countries with digital health strategies',
+    wm: 'health',
+  },
+  {
+    tag: 'Transform Now',
+    headline: "The Time to Act Is Now",
+    sub: "41 of 54 African countries have digital health strategies. $16.6B addressable market. Be part of the continental transformation.",
+    cta1: { label: 'Get in touch', href: '#contact' },
+    cta2: { label: 'Partner with us', href: '#contact' },
+    stat: '408M+',
+    statLabel: 'People without adequate healthcare access',
     wm: 'chart',
-    accentColor: '#059669',
-  },
-  {
-    tag: 'Solutions',
-    headline: "||AI Solutions|| Built for African Clinical Reality",
-    sub: "Clinical decision support, predictive surveillance, health intelligence platforms — validated in real African healthcare settings.",
-    cta1: { label: 'View Solutions', href: '#solutions' },
-    cta2: { label: 'Talent Hub', href: '#contact' },
-    metric: { num: '408M+', label: 'people served' },
-    wm: 'circuit',
-    accentColor: '#2563eb',
-  },
-  {
-    tag: 'Impact',
-    headline: "||Built for Africa||. Scaled for the World.",
-    sub: "Improving clinical decisions, strengthening health planning, reducing fragmentation, expanding access, building local capacity.",
-    cta1: { label: 'See Our Impact', href: '#why' },
-    cta2: { label: 'Partner With Us', href: '#contact' },
-    metric: { num: 'Pan-African', label: 'Operations' },
-    wm: 'chart',
-    accentColor: '#c8960c',
   },
 ]
 
@@ -112,27 +84,6 @@ const watermarks = {
       <line x1="10" y1="135" x2="190" y2="135" strokeWidth="2" opacity=".5"/>
     </svg>
   ),
-  research: (
-    <svg className={styles.wm} viewBox="0 0 200 200" fill="none" stroke="currentColor">
-      <rect x="30" y="20" width="140" height="160" rx="8" strokeWidth="4"/>
-      <line x1="60" y1="70" x2="140" y2="70" strokeWidth="4" strokeLinecap="round"/>
-      <line x1="60" y1="100" x2="140" y2="100" strokeWidth="4" strokeLinecap="round"/>
-      <line x1="60" y1="130" x2="110" y2="130" strokeWidth="4" strokeLinecap="round"/>
-    </svg>
-  ),
-  circuit: (
-    <svg className={styles.wm} viewBox="0 0 200 200" fill="none" stroke="currentColor">
-      <circle cx="100" cy="100" r="20" strokeWidth="4"/>
-      <circle cx="40"  cy="40"  r="12" strokeWidth="3"/>
-      <circle cx="160" cy="40"  r="12" strokeWidth="3"/>
-      <circle cx="40"  cy="160" r="12" strokeWidth="3"/>
-      <circle cx="160" cy="160" r="12" strokeWidth="3"/>
-      <line x1="52" y1="52" x2="85" y2="85" strokeWidth="3"/>
-      <line x1="148" y1="52" x2="115" y2="85" strokeWidth="3"/>
-      <line x1="52" y1="148" x2="85" y2="115" strokeWidth="3"/>
-      <line x1="148" y1="148" x2="115" y2="115" strokeWidth="3"/>
-    </svg>
-  ),
   chart: (
     <svg className={styles.wm} viewBox="0 0 200 200" fill="none" stroke="currentColor">
       <polyline points="20,160 60,120 100,80 130,95 170,40" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
@@ -145,7 +96,7 @@ const watermarks = {
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [direction, setDirection] = useState(0) // -1 for previous, +1 for next
+  const [direction, setDirection] = useState(0)
   const [paused, setPaused] = useState(false)
   const [progress, setProgress] = useState(0)
   const intervalRef = useRef(null)
@@ -153,7 +104,6 @@ export default function Hero() {
   const startTimeRef = useRef(Date.now())
 
   const goToSlide = (index) => {
-    // Calculate direction based on whether going forward or backward
     if (index === currentSlide) return
     
     const newDirection = index > currentSlide 
@@ -178,7 +128,6 @@ export default function Hero() {
     goToSlide(prevIndex)
   }
 
-  // Auto-slide with setInterval
   useEffect(() => {
     if (paused) {
       if (intervalRef.current) clearInterval(intervalRef.current)
@@ -197,7 +146,6 @@ export default function Hero() {
     }
   }, [currentSlide, paused])
 
-  // Progress bar animation
   useEffect(() => {
     if (paused) {
       if (progressRef.current) cancelAnimationFrame(progressRef.current)
@@ -235,11 +183,8 @@ export default function Hero() {
       onMouseLeave={() => setPaused(false)}
     >
       <div className={styles.bgGrid} />
-
-      {/* Background overlay */}
       <div className={styles.overlay} />
 
-      {/* Slides with Framer Motion */}
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={currentSlide}
@@ -263,7 +208,7 @@ export default function Hero() {
               animate="visible"
             >
               <span className={styles.tag}>{currentSlideData.tag}</span>
-              <h1 className={styles.headline}>{parseHeadline(currentSlideData.headline)}</h1>
+              <h1 className={styles.headline}>{currentSlideData.headline}</h1>
               <p className={styles.sub}>{currentSlideData.sub}</p>
               <div className={styles.actions}>
                 <button 
@@ -282,20 +227,18 @@ export default function Hero() {
             </motion.div>
           </div>
           <motion.div 
-            className={styles.metric}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
+            className={styles.statBadge}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
           >
-            <span className={styles.metricNum}>{currentSlideData.metric.num}</span>
-            <span className={styles.metricLabel}>{currentSlideData.metric.label}</span>
+            <span className={styles.statNum}>{currentSlideData.stat}</span>
+            <span className={styles.statLabel}>{currentSlideData.statLabel}</span>
           </motion.div>
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Controls */}
       <div className={styles.controls}>
-        {/* Previous Arrow with backdrop blur */}
         <motion.button 
           className={styles.arrow}
           onClick={goToPrev}
@@ -304,12 +247,10 @@ export default function Hero() {
           aria-label="Previous slide"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            {/* ChevronLeftIcon path */}
             <polyline points="15 18 9 12 15 6"/>
           </svg>
         </motion.button>
 
-        {/* Dot Indicators */}
         <div className={styles.dots}>
           {slides.map((_, index) => (
             <motion.button
@@ -325,7 +266,6 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* Next Arrow with backdrop blur */}
         <motion.button 
           className={styles.arrow}
           onClick={goToNext}
@@ -334,13 +274,11 @@ export default function Hero() {
           aria-label="Next slide"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            {/* ChevronRightIcon path */}
             <polyline points="9 18 15 12 9 6"/>
           </svg>
         </motion.button>
       </div>
 
-      {/* Slide Counter */}
       <div className={styles.counter}>
         <span className={styles.counterCurrent}>
           {String(currentSlide + 1).padStart(2, '0')}
@@ -351,7 +289,6 @@ export default function Hero() {
         </span>
       </div>
 
-      {/* Progress Bar */}
       <div className={styles.progressTrack}>
         <motion.div 
           className={styles.progressFill} 

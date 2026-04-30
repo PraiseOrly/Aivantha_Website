@@ -129,14 +129,14 @@
   letter-spacing: .02em;
 }
 
-/* ===== PREMIUM VALUES GRID ===== */
-.valuesGrid {
+/* ===== DIFFERENTIATORS GRID ===== */
+.diffGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-lg);
 }
 
-.valueCard {
+.diffCard {
   background: var(--white);
   border: 1px solid var(--gray-100);
   border-radius: var(--r-lg);
@@ -147,7 +147,7 @@
 }
 
 /* Top accent bar */
-.valueCard::before {
+.diffCard::before {
   content: '';
   position: absolute;
   top: 0;
@@ -160,18 +160,18 @@
   transform-origin: left;
 }
 
-.valueCard:hover {
+.diffCard:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
   border-color: var(--navy-200);
 }
 
-.valueCard:hover::before {
+.diffCard:hover::before {
   transform: scaleX(1);
 }
 
 /* Premium icon styling */
-.valueIcon {
+.diffIcon {
   width: 56px;
   height: 56px;
   background: linear-gradient(135deg, var(--navy-700), var(--navy-800));
@@ -184,23 +184,23 @@
   transition: all var(--t-base) var(--t-smooth);
 }
 
-.valueIcon svg {
+.diffIcon svg {
   width: 24px;
   height: 24px;
 }
 
-.valueCard:hover .valueIcon {
+.diffCard:hover .diffIcon {
   background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
 }
 
-.valueCard h4 {
+.diffCard h4 {
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--navy-800);
   margin-bottom: var(--space-sm);
 }
 
-.valueCard p {
+.diffCard p {
   font-size: .9rem;
   color: var(--gray-600);
   line-height: 1.7;

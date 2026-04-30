@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import styles from './Contact.module.css'
 
+// Partnership tracks per tone guidelines
 const engageTypes = [
   { icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
       </svg>
     ), label: 'Governments & Ministries',  desc: 'Digital health strategy & infrastructure' },
   { icon: (
@@ -22,8 +23,11 @@ const engageTypes = [
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
       </svg>
-    ), label: 'Investors & Partners',       desc: 'Funding, strategic partnership & scale' },
+    ), label: 'Investors & Strategic Partners',       desc: 'Funding, co-development & scale' },
 ]
+
+// Trust line per tone guidelines
+const TRUST_LINE = "Every partnership we build advances the mission — better health outcomes, powered by trusted data and ethical AI, for Africa."
 
 export default function Contact() {
   const [form, setForm]       = useState({ name: '', org: '', email: '', enquiry: '', message: '' })
@@ -53,14 +57,14 @@ export default function Contact() {
   return (
     <section className="section-dark" id="contact" ref={ref}>
       <div className="container">
-<div className={`section-header fade-up`}>
+        <div className={`section-header fade-up`}>
           <h2 className="h2-light">Let's Build Africa's Health Future Together</h2>
-<p className="section-lead lead-light">
-            The opportunity in Africa's health AI transformation is too large for any single organization.
-            We collaborate with governments, institutions, partners, and investors committed to systemic impact.
+          <p className="section-lead lead-light">
+            The transformation is too large for any single organisation. AiVantha is actively seeking governments, development partners, hospitals, and investors aligned to systemic impact.
           </p>
         </div>
 
+        {/* Partnership tracks */}
         <div className={styles.engageGrid}>
           {engageTypes.map((e, i) => (
             <div key={e.label} className={`${styles.engageCard} fade-up`} style={{ transitionDelay: `${i * 0.08 + 0.1}s` }}>
@@ -74,6 +78,7 @@ export default function Contact() {
         </div>
 
         <div className={styles.mainGrid}>
+          {/* Info block */}
           <div className={`${styles.info} fade-up`} style={{ transitionDelay: '.15s' }}>
             <div className={styles.ctaBlock}>
               <div className={styles.ctaIcon}>
@@ -82,10 +87,7 @@ export default function Contact() {
                 </svg>
               </div>
               <h3>Ready to Connect?</h3>
-              <p>
-                Every partnership we build advances the mission — better health outcomes,
-                powered by trusted data and ethical AI, for Africa.
-              </p>
+              <p>{TRUST_LINE}</p>
               <a href="mailto:info@aivantha.site" className={styles.emailCta}>
                 info@aivantha.site
               </a>
@@ -93,11 +95,12 @@ export default function Contact() {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
                 </svg>
-                Nairobi, Kenya · Pan-African Operations
+                Kigali, Rwanda · Pan-African Operations
               </div>
             </div>
           </div>
 
+          {/* Contact form */}
           <div className={`${styles.formWrap} fade-up`} style={{ transitionDelay: '.25s' }}>
             <h3>Send Us a Message</h3>
             <form onSubmit={handleSubmit} noValidate>

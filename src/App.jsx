@@ -1,15 +1,13 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import StatsBand from './components/StatsBand'
-import Challenge from './components/Challenge'
 import About from './components/About'
-import Pillars from './components/Pillars'
-import Solutions from './components/Solutions'
-import WhyUs from './components/WhyUs'
-import WhoWeServe from './components/WhoWeServe'
-import Team from './components/Team'
+import Challenge from './components/Challenge'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Hero from './components/Hero'
+import Navbar from './components/Navbar'
+import Resources from './components/Resources'
+import Services from './components/Services'
+import StatsBand from './components/StatsBand'
+import WhoWeServe from './components/WhoWeServe'
 
 export default function App() {
   return (
@@ -20,11 +18,9 @@ export default function App() {
         <StatsBand />
         <Challenge />
         <About />
-        <Pillars />
-        <Solutions />
-        <WhyUs />
+        <Services />
         <WhoWeServe />
-        <Team />
+        <Resources />
         <Contact />
       </main>
       <Footer />

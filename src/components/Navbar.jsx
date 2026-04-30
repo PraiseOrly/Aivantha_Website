@@ -1,5 +1,5 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import styles from './Navbar.module.css'
 
 const navItems = [
@@ -7,30 +7,32 @@ const navItems = [
     label: 'About Us',
     href: '#about',
     subItems: [
-      { label: 'Company Story', href: '#about' },
-      { label: 'Mission & Vision', href: '#about' },
-      { label: 'Values', href: '#about' },
-      { label: 'Team', href: '#about' },
+      { label: 'Our story', desc: 'Founded 2026 · Nairobi · built to last, not to pilot', href: '#about' },
+      { label: 'Mission & vision', desc: 'Equitable, data-driven health transformation across Africa', href: '#about' },
+      { label: 'Our values', desc: 'Ethical by design · Evidence first · Africa-led · Built to scale', href: '#about' },
+      { label: 'Why we\'re different', desc: 'Africa-first research, consulting, innovation & talent', href: '#about' },
     ],
   },
   {
     label: 'Services',
-    href: '#pillars',
+    href: '#services',
     subItems: [
       { 
-        label: 'Strategy Engine',
-        href: '#pillars',
+        label: 'Strategy',
+        desc: 'Evidence that drives policy, investment, and implementation',
+        href: '#services',
         children: [
-          { label: 'Research Institute', href: '#pillars' },
-          { label: 'Consulting', href: '#pillars' },
+          { label: 'Research & insights', desc: 'Evidence that drives decisions', href: '#services' },
+          { label: 'Strategy & advisory', desc: 'From insight to execution', href: '#services' },
         ],
       },
       { 
-        label: 'Execution Engine',
-        href: '#pillars',
+        label: 'Execution',
+        desc: 'From roadmap to deployed system',
+        href: '#services',
         children: [
-          { label: 'Innovation Lab', href: '#pillars' },
-          { label: 'Talent Marketplace', href: '#pillars' },
+          { label: 'AI solutions & innovation', desc: 'Built for African health system realities', href: '#services' },
+          { label: 'Talent & capacity', desc: 'Africa\'s vetted AI talent network for health', href: '#services' },
         ],
       },
     ],
@@ -39,25 +41,21 @@ const navItems = [
     label: 'Solutions',
     href: '#solutions',
     subItems: [
-      { label: 'Governments', href: '#solutions' },
-      { label: 'Hospitals', href: '#solutions' },
-      { label: 'NGOs', href: '#solutions' },
-      { label: 'Private Sector', href: '#solutions' },
+      { label: 'Governments & ministries', desc: 'National AI strategy and health system transformation', href: '#solutions' },
+      { label: 'Hospitals & clinics', desc: 'Decision support, diagnostics, and workflow AI', href: '#solutions' },
+      { label: 'NGOs & development partners', desc: 'Applied research, MEL, and AI governance', href: '#solutions' },
+      { label: 'Private sector', desc: 'AI tools, vetted talent, and co-development', href: '#solutions' },
     ],
   },
   {
     label: 'Resources',
-    href: '#challenge',
+    href: '#resources',
     subItems: [
-      { label: 'Products & Roadmap', href: '#challenge' },
-      { label: 'Tech Stack', href: '#challenge' },
-      { label: 'Market Context', href: '#challenge' },
-      { label: '$16.6B Opportunity', href: '#challenge' },
+      { label: 'Clinical AI solutions', desc: 'AI tools for point-of-care decision support and population health', href: '#resources' },
+      { label: 'Predictive analytics & surveillance', desc: 'Outbreak detection and risk stratification for health agencies', href: '#resources' },
+      { label: 'AiVantha Data', desc: 'Interoperable health intelligence platform for ministries and networks', href: '#resources' },
+      { label: 'AiVantha Coach', desc: 'AI-driven workforce augmentation for resource-limited settings', href: '#resources' },
     ],
-  },
-  {
-    label: 'Impact',
-    href: '#why',
   },
 ]
 
@@ -127,29 +125,33 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ duration: 0.15 }}
                       >
                         {item.label === 'Services' ? (
-                          // Two-column layout for Services
+                          // Two-column layout for Services with column labels
                           <div className={styles.dropdownGrid}>
-                            {item.subItems.map((group) => (
-                              <div key={group.label} className={styles.dropdownGroup}>
-                                <span className={styles.groupLabel}>{group.label}</span>
-                                {group.children?.map((child) => (
-                                  <a
-                                    key={child.label}
-                                    href={child.href}
-                                    className={styles.dropdownLink}
-                                    onClick={(e) => handleLink(e, child.href)}
-                                  >
-                                    {child.label}
-                                  </a>
-                                ))}
-                              </div>
-                            ))}
+                            <div className={styles.columnDivider}>
+                              {item.subItems.map((group) => (
+                                <div key={group.label} className={styles.dropdownGroup}>
+                                  <span className={styles.groupLabel}>{group.label}</span>
+                                  <span className={styles.groupDesc}>{group.desc}</span>
+                                  {group.children?.map((child) => (
+                                    <a
+                                      key={child.label}
+                                      href={child.href}
+                                      className={styles.dropdownLink}
+                                      onClick={(e) => handleLink(e, child.href)}
+                                    >
+                                      <span className={styles.linkTitle}>{child.label}</span>
+                                      <span className={styles.linkDesc}>{child.desc}</span>
+                                    </a>
+                                  ))}
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         ) : (
-                          // Single column for other dropdowns
+                          // Single column for About, Solutions, Resources
                           <div className={styles.dropdownList}>
                             {item.subItems.map((subItem) => (
                               <a
@@ -158,7 +160,8 @@ export default function Navbar() {
                                 className={styles.dropdownLink}
                                 onClick={(e) => handleLink(e, subItem.href)}
                               >
-                                {subItem.label}
+                                <span className={styles.linkTitle}>{subItem.label}</span>
+                                <span className={styles.linkDesc}>{subItem.desc}</span>
                               </a>
                             ))}
                           </div>
@@ -178,13 +181,24 @@ export default function Navbar() {
               )}
             </li>
           ))}
+          {/* Contact link - no dropdown */}
+          <li>
+            <a 
+              href="#contact" 
+              className={styles.link}
+              onClick={(e) => handleLink(e, '#contact')}
+            >
+              Contact
+            </a>
+          </li>
+          {/* CTA Button */}
           <li>
             <a
               href="#contact"
               className={styles.cta}
               onClick={(e) => handleLink(e, '#contact')}
             >
-              Partner With Us
+              Get in touch
             </a>
           </li>
         </ul>
@@ -261,7 +275,7 @@ export default function Navbar() {
                 className={`${styles.mobileLink} ${styles.mobileCta}`}
                 onClick={(e) => handleLink(e, '#contact')}
               >
-                Partner With Us
+                Get in touch
               </a>
             </motion.div>
           )}

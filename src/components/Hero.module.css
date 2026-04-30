@@ -155,39 +155,32 @@
   flex-wrap: wrap;
 }
 
-/* Slide metric badge - floating UI element */
-.metric {
+/* Slide statBadge - floating UI element for market stats */
+.statBadge {
   position: absolute;
   bottom: 100px;
   right: 5%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   z-index: 2;
-  opacity: 0;
-  transition: opacity 1s ease .5s;
-  padding: var(--space-lg);
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.08);
+  padding: var(--space-lg) var(--space-xl);
+  background: rgba(200,150,12,.12);
+  border: 1px solid rgba(200,150,12,.3);
   border-radius: var(--r-lg);
   backdrop-filter: blur(10px);
 }
 
-.slideActive .metric { 
-  opacity: 1; 
-}
-
-.metricNum {
+.statNum {
   font-size: 3rem;
   font-weight: 700;
-  color: var(--gold-400);
+  color: var(--white);
   line-height: 1;
   letter-spacing: -.02em;
 }
 
-.metricLabel {
-  font-size: .8rem;
-  color: rgba(255,255,255,.5);
+.statLabel {
+  font-size: .85rem;
+  color: rgba(255,255,255,.75);
   text-transform: uppercase;
   letter-spacing: .08em;
   margin-top: var(--space-xs);
