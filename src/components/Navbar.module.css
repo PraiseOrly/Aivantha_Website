@@ -6,13 +6,13 @@
   right: 0;
   z-index: 1000;
   transition: all var(--t-base) var(--t-smooth);
-  background: transparent;
+  background: var(--white);
 }
 
 .scrolled {
-  background: rgba(12, 26, 58, .92);
+  background: var(--white);
   backdrop-filter: blur(16px);
-  box-shadow: 0 1px 0 rgba(255,255,255,.06), var(--shadow-lg);
+  box-shadow: 0 1px 0 rgba(0,0,0,.06), var(--shadow-lg);
 }
 
 .inner {
@@ -64,8 +64,9 @@
   padding: 0;
 }
 
-.links a {
-  color: rgba(255,255,255,.8);
+.links a,
+.links button {
+  color: var(--gray-700);
   font-size: .875rem;
   font-weight: 500;
   padding: var(--space-sm) var(--space-md);
@@ -76,9 +77,10 @@
   position: relative;
 }
 
-.links a:hover {
-  color: var(--white);
-  background: rgba(255,255,255,.08);
+.links a:hover,
+.links button:hover {
+  color: var(--navy-700);
+  background: rgba(0,0,0,.04);
 }
 
 /* Underline effect on hover */
@@ -90,7 +92,7 @@
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: var(--gold-400);
+  background: var(--gold-500);
   border-radius: var(--r-full);
   transition: width var(--t-base) var(--t-smooth);
 }
@@ -139,9 +141,9 @@
   left: 50%;
   transform: translateX(-50%);
   margin-top: var(--space-sm);
-  background: rgba(12, 26, 58, 0.98);
+  background: var(--white);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-2xl);
   overflow: hidden;
@@ -172,17 +174,17 @@
 .groupLabel {
   font-size: .7rem;
   font-weight: 600;
-  color: var(--gold-400);
+  color: var(--gold-600);
   text-transform: uppercase;
   letter-spacing: .08em;
   padding: var(--space-xs) var(--space-sm);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   margin-bottom: var(--space-xs);
 }
 
 .dropdownLink {
   display: block;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--gray-600);
   font-size: .875rem;
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--r-sm);
@@ -190,8 +192,8 @@
 }
 
 .dropdownLink:hover {
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--navy-700);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 /* Mobile menu */
@@ -201,7 +203,7 @@
   top: 72px;
   left: 0;
   right: 0;
-  background: rgba(12, 26, 58, 0.98);
+  background: var(--white);
   backdrop-filter: blur(20px);
   padding: var(--space-lg) var(--space-md) var(--space-xl);
   box-shadow: var(--shadow-xl);
@@ -209,7 +211,7 @@
 }
 
 .mobileItem {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .mobileLink {
@@ -217,7 +219,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--gray-700);
   font-size: 1rem;
   font-weight: 500;
   padding: var(--space-md) var(--space-lg);
@@ -225,8 +227,8 @@
 }
 
 .mobileLink:hover {
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.06);
+  color: var(--navy-700);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .mobileLink .chevron {
@@ -245,15 +247,15 @@
 
 .mobileSubLink {
   display: block;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--gray-500);
   font-size: .9375rem;
   padding: var(--space-sm) var(--space-lg);
   transition: all var(--t-base);
 }
 
 .mobileSubLink:hover {
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.04);
+  color: var(--navy-700);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .mobileCta {
