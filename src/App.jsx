@@ -1,8 +1,8 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import StatsBand from './components/StatsBand'
-import About from './components/About'
 import Challenge from './components/Challenge'
+import About from './components/About'
 import Pillars from './components/Pillars'
 import Solutions from './components/Solutions'
 import WhyUs from './components/WhyUs'
@@ -18,8 +18,8 @@ export default function App() {
       <main>
         <Hero />
         <StatsBand />
-        <About />
         <Challenge />
+        <About />
         <Pillars />
         <Solutions />
         <WhyUs />
