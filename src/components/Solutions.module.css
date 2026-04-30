@@ -1,155 +1,220 @@
+/* ===== PREMIUM SOLUTIONS GRID ===== */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-bottom: 64px;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-3xl);
 }
 
 .card {
   background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--r-md);
-  padding: 38px;
-  transition: transform var(--t), box-shadow var(--t);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--r-lg);
+  padding: var(--space-xl);
+  transition: all var(--t-base) var(--t-smooth);
+  position: relative;
+  overflow: hidden;
 }
-.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-500), var(--gold-400));
+  transform: scaleX(0);
+  transition: transform var(--t-base) var(--t-smooth);
+  transform-origin: left;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--navy-200);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Premium badge styling */
 .badge {
   display: inline-block;
-  font-size: .68rem;
+  font-size: .7rem;
   font-weight: 700;
-  letter-spacing: .08em;
+  letter-spacing: .07em;
   text-transform: uppercase;
-  padding: 4px 13px;
-  border-radius: 100px;
-  margin-bottom: 20px;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--r-full);
+  margin-bottom: var(--space-lg);
 }
-.badgeLive    { background: #dcfce7; color: #15803d; }
-.badgePlanned { background: var(--gold-100); color: var(--gold-600); }
 
+.badgeLive {
+  background: linear-gradient(135deg, var(--emerald-50), #dcfce7);
+  color: var(--emerald-700);
+  border: 1px solid var(--emerald-200);
+}
+
+.badgePlanned {
+  background: linear-gradient(135deg, var(--gold-50), var(--gold-100));
+  color: var(--gold-600);
+  border: 1px solid var(--gold-200);
+}
+
+/* Premium icon styling */
 .iconWrap {
-  width: 54px; height: 54px;
-  background: linear-gradient(135deg, var(--navy-700), var(--navy-600));
-  border-radius: var(--r-md);
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-800));
+  border-radius: var(--r-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: var(--space-md);
   color: var(--white);
 }
-.iconWrap svg { width: 26px; height: 26px; }
+
+.iconWrap svg {
+  width: 26px;
+  height: 26px;
+}
 
 .card h3 {
-  font-size: 1.28rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--navy-800);
-  margin-bottom: 5px;
+  margin-bottom: var(--space-xs);
 }
 
 .sub {
-  font-size: .75rem;
+  font-size: .8rem;
   font-weight: 700;
   color: var(--gold-600);
   text-transform: uppercase;
-  letter-spacing: .08em;
-  margin-bottom: 14px;
+  letter-spacing: .07em;
+  margin-bottom: var(--space-md);
 }
 
 .desc {
   color: var(--gray-600);
-  font-size: .92rem;
-  line-height: 1.72;
-  margin-bottom: 16px;
+  font-size: .95rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
 }
 
+/* Lab list styling */
 .labList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding-top: 12px;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
   border-top: 1px solid var(--gray-100);
 }
+
 .labList li {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: var(--space-sm);
   color: var(--gray-600);
-  font-size: .85rem;
+  font-size: .87rem;
 }
+
 .lbullet {
   flex-shrink: 0;
-  width: 5px; height: 5px;
-  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: var(--r-full);
   background: var(--gold-500);
   margin-top: 7px;
 }
 
-/* Tech Ecosystem */
+/* ===== PREMIUM TECH ECOSYSTEM ===== */
 .techSection {
   background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--r-lg);
-  padding: 48px 44px;
+  border: 1px solid var(--gray-100);
+  border-radius: var(--r-xl);
+  padding: var(--space-2xl) var(--space-2xl);
 }
 
 .techSection h3 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--navy-800);
-  margin-bottom: 8px;
+  margin-bottom: var(--space-sm);
   text-align: center;
 }
 
 .techSection > p {
   text-align: center;
   color: var(--gray-500);
-  font-size: .92rem;
-  margin-bottom: 32px;
+  font-size: .95rem;
+  margin-bottom: var(--space-xl);
 }
 
 .techGrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
+  gap: var(--space-md);
 }
 
 .techCard {
-  background: var(--gray-50);
+  background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
   border: 1px solid var(--gray-200);
   border-radius: var(--r-md);
-  padding: 20px 16px;
+  padding: var(--space-lg) var(--space-md);
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  transition: border-color var(--t), box-shadow var(--t);
+  gap: var(--space-sm);
+  transition: all var(--t-base) var(--t-smooth);
 }
-.techCard:hover { border-color: var(--navy-100); box-shadow: var(--shadow-sm); }
+
+.techCard:hover {
+  border-color: var(--navy-300);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
 
 .techCat {
-  font-size: .72rem;
+  font-size: .75rem;
   font-weight: 700;
   color: var(--navy-700);
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: .06em;
 }
 
 .techTools {
-  font-size: .8rem;
-  color: var(--gray-500);
+  font-size: .82rem;
+  color: var(--gray-600);
   line-height: 1.5;
 }
 
 @media (max-width: 900px) {
-  .techGrid { grid-template-columns: repeat(3, 1fr); }
+  .techGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
+
 @media (max-width: 768px) {
-  .grid { grid-template-columns: 1fr; }
-  .card { padding: 28px 22px; }
-  .techGrid { grid-template-columns: repeat(2, 1fr); }
-  .techSection { padding: 32px 20px; }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    padding: var(--space-xl) var(--space-lg);
+  }
+  .techGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .techSection {
+    padding: var(--space-xl) var(--space-lg);
+  }
 }
+
 @media (max-width: 480px) {
-  .techGrid { grid-template-columns: 1fr; }
+  .techGrid {
+    grid-template-columns: 1fr;
+  }
 }

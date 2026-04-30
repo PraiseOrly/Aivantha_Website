@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Navbar.module.css'
 
 const links = [
-  { label: 'About',        href: '#about'     },
-  { label: 'The Challenge',href: '#challenge'  },
-  { label: 'What We Do',   href: '#pillars'   },
-  { label: 'Solutions',    href: '#solutions'  },
-  { label: 'Why Us',       href: '#why'        },
-  { label: 'Who We Serve', href: '#serve'      },
+  { label: 'About',      href: '#about'     },
+  { label: 'Challenge', href: '#challenge' },
+  { label: 'Approach',   href: '#pillars'  },
+  { label: 'Solutions', href: '#solutions' },
+  { label: 'Impact',    href: '#why'      },
+  { label: 'Partners',  href: '#serve'    },
 ]
 
 export default function Navbar() {
@@ -33,8 +33,8 @@ export default function Navbar() {
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
-        <a href="#home" className={styles.brand} onClick={e => handleLink(e, '#home')}>
-          <img src="/logo.png" alt="AiVantha Health" className={styles.logoImg} />
+<a href="#home" className={styles.brand} onClick={e => handleLink(e, '#home')}>
+          <img src="/AiVantha Logo.png" alt="AiVantha Health" className={styles.logoImg} />
         </a>
 
         <button

@@ -60,12 +60,10 @@ export default function WhoWeServe() {
   return (
     <section className="section-alt" id="serve" ref={ref}>
       <div className="container">
-        <div className="section-header fade-up">
-          <span className="section-tag">Clients &amp; Partners</span>
-          <h2>Who We Serve</h2>
+<div className="section-header fade-up">
+          <h2>Trusted by Health System Stakeholders</h2>
           <p className="section-lead">
-            AiVantha Health works with organisations committed to improving health outcomes across
-            Africa through data, technology, and evidence.
+            We build long-term partnerships that strengthen systems — not dependencies.
           </p>
         </div>
         <div className={styles.grid}>

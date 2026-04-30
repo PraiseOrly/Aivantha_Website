@@ -61,10 +61,12 @@ export default function About() {
     <section className="section" id="about" ref={ref}>
       <div className="container">
 
-        {/* Header */}
+{/* Header */}
         <div className="section-header fade-up">
-          <span className="section-tag">Who We Are</span>
-          <h2>We Built AiVantha to Change This</h2>
+          <h2>Africa's Health AI Transformation Partner</h2>
+          <p className="section-lead">
+            AiVantha Health is an African AI and data-driven healthcare company transforming how health systems generate evidence, make decisions, and deliver care across the continent.
+          </p>
           <div className="divider" />
         </div>
 
@@ -72,29 +74,23 @@ export default function About() {
         <div className={styles.storyGrid}>
           <div className={`${styles.storyText} fade-up`} style={{ transitionDelay: '.1s' }}>
             <p className={styles.lead}>
-              <strong>AiVantha Health</strong> is an African AI and data-driven healthcare company
-              operating at the intersection of{' '}
-              <span className={styles.pillarsInline}>Research · Consulting · Innovation · Talent</span>.
+              <strong>AiVantha Health</strong> is an African AI and data-driven healthcare company transforming how health systems generate evidence, make decisions, and deliver care.
             </p>
             <p>
-              We design and deliver ethical, scalable, and locally grounded digital health solutions —
-              powered by cutting-edge research and Africa's top AI talent. Our integrated platform
-              ensures every solution is evidence-based, strategically aligned, technically robust,
-              and sustainably deployed.
+              We are not a vendor. We are a long-term transformation partner — grounded in local realities, operating across East and West Africa.
             </p>
             <p>
-              Founded in 2026 and headquartered in Nairobi, Kenya, we operate across East and West
-              Africa — serving governments, development partners, hospitals, NGOs, and private
-              healthcare organisations. Built to last. Not built to pilot.
+              Founded in 2026 and headquartered in Nairobi, Kenya — built to last, not built to pilot.
             </p>
             <div className={styles.badges}>
               <span>Founded 2026</span>
               <span>Nairobi, Kenya</span>
               <span>Pan-African Operations</span>
+              <span>Series A Ready</span>
             </div>
           </div>
 
-          <div className={styles.vmStack}>
+<div className={styles.vmStack}>
             <div className={`${styles.vmCard} ${styles.vmBlue} fade-up`} style={{ transitionDelay: '.2s' }}>
               <div className={styles.vmLabel}>Our Vision</div>
               <p>
@@ -103,6 +99,7 @@ export default function About() {
                   ethical AI, and local expertise — driving better health outcomes for all.
                 </em>
               </p>
+              <span className={styles.vmSub}>The foundation for a $16.6B market</span>
             </div>
             <div className={`${styles.vmCard} ${styles.vmGold} fade-up`} style={{ transitionDelay: '.3s' }}>
               <div className={styles.vmLabel}>Our Mission</div>
@@ -110,6 +107,7 @@ export default function About() {
                 To accelerate equitable, data-driven healthcare transformation in Africa through
                 <strong> research, consulting, innovation, and talent deployment</strong>.
               </p>
+              <span className={styles.vmSub}>Delivering measurable impact at scale</span>
             </div>
           </div>
         </div>

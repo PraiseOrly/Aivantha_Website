@@ -4,9 +4,9 @@ import styles from './Pillars.module.css'
 const divisions = [
   {
     id: 'div1',
-    label: 'Division 1',
+label: 'Strategy Engine',
     title: 'Research & Consulting',
-    subtitle: 'The thinking and strategy engine — transforming data and evidence into actionable insights and policies.',
+    subtitle: 'Transforming data and evidence into actionable insights and policies.',
     pillars: [
       {
         num: '01', tag: 'Research', title: 'AiVantha Research Institute',
@@ -45,9 +45,9 @@ const divisions = [
   },
   {
     id: 'div2',
-    label: 'Division 2',
+label: 'Execution Engine',
     title: 'Innovation & Talent',
-    subtitle: 'The execution engine — building solutions and deploying the talent needed to scale them.',
+    subtitle: 'Building solutions and deploying talent to scale impact.',
     pillars: [
       {
         num: '03', tag: 'Innovation', title: 'AiVantha Lab',
@@ -102,12 +102,10 @@ export default function Pillars() {
   return (
     <section className="section" id="pillars" ref={ref}>
       <div className="container">
-        <div className="section-header fade-up">
-          <span className="section-tag">What We Do</span>
-          <h2>Our Operating Model</h2>
+<div className="section-header fade-up">
+          <h2>One Platform. Four Capabilities. End-to-End Impact.</h2>
           <p className="section-lead">
-            AiVantha Health operates through two synergistic divisions that bring our four pillars to
-            life — from insight to strategy to solution to deployment.
+            AiVantha Health operates across two integrated engines that turn fragmented health data into actionable intelligence.
           </p>
         </div>
 

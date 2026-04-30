@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './Contact.module.css'
 
 const engageTypes = [
@@ -53,12 +53,11 @@ export default function Contact() {
   return (
     <section className="section-dark" id="contact" ref={ref}>
       <div className="container">
-        <div className={`section-header fade-up`}>
-          <span className="section-tag gold-tag">Work With Us</span>
+<div className={`section-header fade-up`}>
           <h2 className="h2-light">Let's Build Africa's Health Future Together</h2>
-          <p className="section-lead lead-light">
-            Whether you are a government, development partner, hospital, investor, or researcher —
-            we want to hear from you. One conversation can change the trajectory of a health system.
+<p className="section-lead lead-light">
+            The opportunity in Africa's health AI transformation is too large for any single organization.
+            We collaborate with governments, institutions, partners, and investors committed to systemic impact.
           </p>
         </div>
 

@@ -1,35 +1,89 @@
+/* ===== PREMIUM STATS BAND ===== */
 .band {
-  background: var(--navy-700);
-  padding: 52px 0;
+  background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-900) 100%);
+  padding: var(--space-2xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative line */
+.band::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,150,12,.4), transparent);
+}
+
+.band::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,150,12,.2), transparent);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  gap: var(--space-xl);
+  position: relative;
 }
 
 .item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-sm);
   text-align: center;
+  padding: var(--space-md);
+  position: relative;
 }
 
 .num {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--gold-500);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--gold-400);
   line-height: 1;
+  letter-spacing: -.02em;
 }
 
 .label {
-  font-size: .82rem;
-  color: rgba(255,255,255,.68);
-  line-height: 1.45;
+  font-size: .85rem;
+  color: rgba(255,255,255,.65);
+  line-height: 1.5;
+  max-width: 160px;
 }
 
-@media (max-width: 700px) {
-  .grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+/* Separator lines between items */
+.item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60%;
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,.15), transparent);
+}
+
+@media (max-width: 900px) {
+  .grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: var(--space-lg);
+  }
+  .item:nth-child(2)::after { display: none; }
+  .item:nth-child(1)::after {
+    display: block;
+  }
+}
+
+@media (max-width: 500px) {
+  .band { padding: var(--space-xl) 0; }
+  .num { font-size: 2rem; }
+  .label { font-size: .8rem; }
 }

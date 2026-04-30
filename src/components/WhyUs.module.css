@@ -1,56 +1,98 @@
+/* ===== PREMIUM WHY US GRID ===== */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: var(--space-lg);
 }
 
 .card {
   background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--r-md);
-  padding: 36px 28px;
+  border: 1px solid var(--gray-100);
+  border-radius: var(--r-lg);
+  padding: var(--space-xl) var(--space-lg);
   text-align: center;
-  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--navy-100);
+  transition: all var(--t-base) var(--t-smooth);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Top accent */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-500), var(--gold-400));
+  transform: scaleX(0);
+  transition: transform var(--t-base) var(--t-smooth);
+  transform-origin: left;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--navy-200);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Premium icon styling */
 .iconWrap {
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  background: var(--navy-50);
+  width: 60px;
+  height: 60px;
+  border-radius: var(--r-full);
+  background: linear-gradient(135deg, var(--navy-50), var(--navy-100));
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 18px;
+  margin: 0 auto var(--space-lg);
   color: var(--navy-700);
-  transition: background var(--t), color var(--t);
+  transition: all var(--t-base) var(--t-smooth);
 }
-.iconWrap svg { width: 26px; height: 26px; }
-.card:hover .iconWrap { background: var(--navy-700); color: var(--white); }
+
+.iconWrap svg {
+  width: 26px;
+  height: 26px;
+}
+
+.card:hover .iconWrap {
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  color: var(--white);
+}
 
 .card h3 {
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--navy-800);
-  margin-bottom: 12px;
+  margin-bottom: var(--space-sm);
 }
+
 .card p {
   color: var(--gray-600);
-  font-size: .9rem;
+  font-size: .92rem;
   line-height: 1.7;
 }
 
-/* centre the 5th card on a 3-col row */
+/* Center the 5th card on a 3-col row */
 .cardCenter {
   grid-column: 2;
 }
 
 @media (max-width: 900px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-  .cardCenter { grid-column: auto; }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cardCenter {
+    grid-column: auto;
+  }
 }
-@media (max-width: 540px)  { .grid { grid-template-columns: 1fr; } }
+
+@media (max-width: 540px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

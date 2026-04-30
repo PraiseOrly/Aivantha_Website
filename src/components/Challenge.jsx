@@ -11,8 +11,8 @@ const painPoints = [
         <line x1="10" y1="8" x2="18" y2="8"/><line x1="10" y1="12" x2="18" y2="12"/>
       </svg>
     ),
-    title: 'Fragmented Systems',
-    desc: 'Siloed health information systems that cannot share data — leaving clinicians, planners, and policymakers flying blind.',
+title: 'Fragmented Systems',
+    desc: 'Siloed health data. Clinicians, planners, and policymakers fly blind.',
   },
   {
     icon: (
@@ -20,8 +20,8 @@ const painPoints = [
         <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
       </svg>
     ),
-    title: 'No AI Decision Support',
-    desc: 'High-stakes clinical decisions are made without the benefit of AI tools — tools that already exist, but were never designed for African contexts.',
+title: 'No AI Decision Support',
+    desc: 'High-stakes decisions made without AI tools. They exist — just not for Africa.',
   },
   {
     icon: (
@@ -30,8 +30,8 @@ const painPoints = [
         <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
       </svg>
     ),
-    title: 'Talent Gap',
-    desc: 'A severe shortage of vetted African AI and health data professionals — meaning even when funding arrives, capacity does not exist to execute.',
+title: 'Talent Gap',
+    desc: 'Severe shortage of vetted African AI talent. Funding arrives but capacity does not.',
   },
 ]
 
@@ -74,32 +74,29 @@ export default function Challenge() {
   return (
     <section id="challenge" ref={ref}>
 
-      {/* Emotional hook banner */}
+{/* Emotional hook banner */}
       <div className={styles.hookBanner}>
         <div className="container">
           <div className={`${styles.hookInner} fade-up`}>
-            <div className={styles.hookQuote}>
+<div className={styles.hookQuote}>
               "The data that could save millions of African lives already exists.
               The systems to act on it do not."
             </div>
             <p className={styles.hookSub}>
-              Africa carries <strong>25% of the world's disease burden</strong> but receives less than 1% of
-              global health AI investment. This is not just a resource problem — it is an intelligence problem.
+Africa bears <strong>25% of global disease</strong> but gets {'<1%'} of health AI investment.
+              This is an intelligence problem. And a <strong>$16.6B opportunity</strong>.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Pain points */}
+{/* Pain points */}
       <div className={`${styles.painSection} section`}>
         <div className="container">
-          <div className="section-header fade-up">
-            <span className="section-tag">The Challenge</span>
-            <h2>Africa's Health Data Crisis</h2>
+<div className="section-header fade-up">
+            <h2>Africa's Health Data Crisis — A $16.6B Opportunity</h2>
             <p className="section-lead">
-              Health systems across the continent are generating vast amounts of data.
-              The problem is not a lack of data — it is an inability to turn that data
-              into the intelligence needed to act.
+              Health systems across the continent generate vast amounts of data. The problem is not a lack of data — it is an inability to turn that data into the intelligence needed to act. This gap is both a critical healthcare need and a compelling investment opportunity.
             </p>
           </div>
 
@@ -137,24 +134,7 @@ export default function Challenge() {
         </div>
       </div>
 
-      {/* Market Context */}
-      <div className={styles.marketSection}>
-        <div className="container">
-          <h3 className={`${styles.marketTitle} fade-up`}>The Market Opportunity</h3>
-          <p className={`${styles.marketSub} fade-up`} style={{ transitionDelay: '.1s' }}>
-            The scale of the problem creates the scale of the opportunity.
-          </p>
-          <div className={styles.marketGrid}>
-            {market.map((m, i) => (
-              <div key={m.fig} className={`${styles.mCard} fade-up`} style={{ transitionDelay: `${i * 0.08 + 0.2}s` }}>
-                <div className={styles.mFig}>{m.fig}</div>
-                <div className={styles.mDesc}>{m.desc}</div>
-                <div className={styles.mSrc}>{m.src}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+
     </section>
   )
 }

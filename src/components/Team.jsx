@@ -24,8 +24,7 @@ export default function Team() {
     <section className="section" id="team" ref={ref}>
       <div className="container">
         <div className="section-header fade-up">
-          <span className="section-tag">Our Team</span>
-          <h2>Built by Africans, for Africa</h2>
+<h2>Built by Africans, for Africa</h2>
         </div>
         <div className={styles.grid}>
           <div className={`${styles.text} fade-up`} style={{ transitionDelay: '.1s' }}>

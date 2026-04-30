@@ -78,14 +78,14 @@ export default function Solutions() {
   }, [])
 
   return (
-    <section className="section-alt" id="solutions" ref={ref}>
+<section className="section-alt" id="solutions" ref={ref}>
       <div className="container">
-        <div className="section-header fade-up">
-          <span className="section-tag">Our Solutions</span>
+<div className="section-header fade-up">
           <h2>Solutions Built for Africa</h2>
           <p className="section-lead">
             Every AiVantha solution is designed from the ground up for the constraints and realities
             of African health systems — research-validated, ethically designed, and built to scale.
+            Our products address immediate needs while building long-term infrastructure for continental transformation.
           </p>
         </div>
 
