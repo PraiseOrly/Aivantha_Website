@@ -44,6 +44,22 @@
   --gray-50:  #f8fafc;
   --white:    #ffffff;
 
+  /* ── Brand colors (official palette) ── */
+  --cobalt:       #004aad;
+  --cobalt-dark:  #003d8f;
+  --cobalt-mid:   #0057cc;
+  --cobalt-50:    #eff4ff;
+  --cobalt-100:   #dce8ff;
+  --gold-orange:      #c88e28;
+  --gold-orange-dark: #a87520;
+  --gold-orange-50:   #fdf6e8;
+  --shadow-cobalt:    0 8px 28px rgba(0,74,173,.25);
+
+  /* ── Extended palette ── */
+  --navy-200: #bfdbfe;
+  --gold-200: #fde68a;
+  --green-50: #f0fdf4;
+
   /* Typography */
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   
