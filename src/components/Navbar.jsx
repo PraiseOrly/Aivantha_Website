@@ -16,23 +16,24 @@ const navItems = [
     href: '#about',
     type: 'list',
     subItems: [
-      { label: 'Company Overview',    desc: 'Who we are and what drives us forward',       href: '#about', Icon: Building2 },
-      { label: 'Vision & Mission',    desc: 'Equitable, AI-powered health transformation', href: '#about', Icon: Eye       },
-      { label: 'Our Approach',        desc: 'Research-first, Africa-led methodology',      href: '#about', Icon: Compass   },
-      { label: 'Why AiVantha Health', desc: 'What sets us apart in the ecosystem',         href: '#about', Icon: Star      },
-      { label: 'Partnerships',        desc: 'Building the ecosystem together',             href: '#about', Icon: Users     },
+      { label: 'Company Overview',    desc: 'Who we are and what drives us forward',       href: '#about-overview', Icon: Building2 },
+      { label: 'Vision & Mission',    desc: 'Equitable, AI-powered health transformation', href: '#about-vision', Icon: Eye       },
+      { label: 'Our Approach',        desc: 'Research-first, Africa-led methodology',      href: '#about-approach', Icon: Compass   },
+      { label: 'Why AiVantha Health', desc: 'What sets us apart in the ecosystem',         href: '#about-why', Icon: Star      },
+      { label: 'Partnerships',        desc: 'Building the ecosystem together',             href: '#about-partnerships', Icon: Users     },
     ],
   },
   {
     label: 'Services',
-    href: '#pillars',
+    href: '#services',
     type: 'services',
     subItems: [
-      { label: 'AI & Data Strategy',            desc: 'Evidence-driven roadmaps for health systems', href: '#pillars', Icon: Brain     },
-      { label: 'Digital Health Transformation', desc: 'End-to-end implementation support',          href: '#pillars', Icon: Zap       },
-      { label: 'Health Data Systems',           desc: 'Interoperable infrastructure at scale',      href: '#pillars', Icon: Database  },
-      { label: 'AI Governance & Ethics',        desc: 'Responsible AI frameworks for healthcare',   href: '#pillars', Icon: Shield    },
-      { label: 'Monitoring & Evaluation',       desc: 'MEL systems powered by AI analytics',        href: '#pillars', Icon: BarChart3 },
+      { label: 'AI & Data Strategy',            desc: 'National and institutional AI strategies', href: '#ai-data-strategy', Icon: Brain     },
+      { label: 'Digital Health Transformation', desc: 'Digital health roadmaps',                   href: '#digital-health-transformation', Icon: Zap       },
+      { label: 'Health Data Systems',           desc: 'Health information system design',          href: '#health-data-systems', Icon: Database  },
+      { label: 'AI Governance & Ethics',        desc: 'Responsible AI frameworks',                 href: '#ai-governance-ethics', Icon: Shield    },
+      { label: 'Monitoring & Evaluation',       desc: 'Impact measurement frameworks',             href: '#monitoring-evaluation', Icon: BarChart3 },
+      { label: 'Applied Research',              desc: 'AI in healthcare research',                 href: '#applied-research', Icon: FileText },
     ],
   },
   {
@@ -420,3 +421,4 @@ export default function Navbar() {
     </motion.nav>
   )
 }
+

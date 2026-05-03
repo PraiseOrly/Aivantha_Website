@@ -1,62 +1,85 @@
 import { useEffect, useRef } from 'react'
 import styles from './Solutions.module.css'
 
-const labSolutions = [
-  'Clinical decision support systems',
-  'Predictive analytics for disease surveillance',
-  'Health intelligence dashboards',
-  'AI-powered diagnostics and workflow tools',
-  'Interoperable digital health platforms',
-]
-
 const products = [
   {
-    badge: 'Live', badgeType: 'live',
-    title: 'Clinical AI Solutions',
-    sub: 'AiVantha Lab — Active',
-    desc: 'We design and deploy AI-powered tools that address real clinical and operational challenges — from decision support at the point of care to predictive models for population health. Built for low-resource settings, validated in African clinical realities.',
+    title: 'CardiacTek',
+    desc: 'AI-enabled cardiac diagnostics and biosignal analysis platform.',
+    status: 'In Development',
+    statusType: 'dev',
+    bullets: [
+      'ECG and cardiac signal interpretation',
+      'Early detection support for cardiovascular conditions',
+      'Clinical decision assistance for healthcare providers'
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        <path d="M12 22s8-4 8-10V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v5c0 6 8 10 8 10z"/>
+        <polyline points="16,22 16,18 8,14 8,22"/>
       </svg>
-    ),
+    )
   },
   {
-    badge: 'Live', badgeType: 'live',
-    title: 'Predictive Analytics & Surveillance',
-    sub: 'AiVantha Lab — Active',
-    desc: 'Advanced analytics and machine learning models for disease surveillance, outbreak detection, and population health risk stratification — helping health systems act before crises escalate.',
+    title: 'AiVantha Coach',
+    desc: 'AI-powered training and workflow support system for healthcare workers.',
+    status: 'Planned',
+    statusType: 'planned',
+    bullets: [
+      'Continuous medical education support',
+      'Clinical workflow guidance',
+      'AI-assisted learning and upskilling'
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
       </svg>
-    ),
+    )
   },
   {
-    badge: 'Planned 2027', badgeType: 'planned',
     title: 'AiVantha Data',
-    sub: 'Health Intelligence Platform',
-    desc: 'An interoperable health intelligence dashboard and analytics platform for health ministries, hospital networks, and public health agencies. Integrates fragmented data sources into a single decision-making environment — so leaders can see what is happening, where, and why.',
+    desc: 'Health intelligence and analytics platform for decision-makers.',
+    status: 'Planned',
+    statusType: 'planned',
+    bullets: [
+      'Real-time health dashboards',
+      'Population and system-level analytics',
+      'Predictive health insights'
+    ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <rect x="3" y="3" width="18" height="18" rx="2"/>
         <line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/>
         <line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>
       </svg>
-    ),
-  },
-  {
-    badge: 'Planned 2027', badgeType: 'planned',
-    title: 'AiVantha Coach',
-    sub: 'Workforce Augmentation',
-    desc: 'An AI-driven platform for health worker training, workflow optimisation, and decision support in resource-limited settings. Built to multiply the impact of every health worker on the continent.',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-      </svg>
-    ),
-  },
+    )
+  }
 ]
+
+const talentCategories = [
+  'AI & Machine Learning Engineers',
+  'Health Data Scientists & Analysts',
+  'Biostatisticians & Informaticians',
+  'Digital Health Product Managers',
+  'Monitoring & Evaluation Specialists'
+]
+
+const deploymentModels = [
+  'Project-based teams',
+  'Embedded specialists in organizations',
+  'Long-term talent placements',
+  'Fractional AI leadership roles',
+  'Capacity-building partnerships'
+]
+
+const capabilities = [
+  'Predictive Analytics - Forecast disease trends and health system demand.',
+  'Clinical Decision Support Systems - AI tools that assist clinicians in diagnosis and treatment decisions.',
+  'Interoperable Health Platforms - Systems built on FHIR / HL7 standards for seamless data exchange.',
+  'Health Intelligence Systems - Integrated dashboards for governments and health organizations.',
+  'Workflow Optimization Tools - AI systems that reduce inefficiencies in clinical and administrative workflows.'
+]
+
+
 
 const techStack = [
   { category: 'AI & ML',              tools: 'TensorFlow · PyTorch · Scikit-learn' },
@@ -81,56 +104,77 @@ export default function Solutions() {
   }, [])
 
   return (
-<section className="section-alt" id="solutions" ref={ref}>
+    <section className="solutions-section" id="solutions" ref={ref}>
       <div className="container">
-<div className="section-header fade-up">
-          <h2>Solutions Built for Africa</h2>
+        <div className="section-header fade-up">
+          <h2>Our Solutions</h2>
           <p className="section-lead">
-            Every AiVantha solution is designed from the ground up for the constraints and realities
-            of African health systems — research-validated, ethically designed, and built to scale.
-            Our products address immediate needs while building long-term infrastructure for continental transformation.
+            AI-powered health technologies, talent platforms, and data systems designed to strengthen Africa&apos;s healthcare infrastructure.
           </p>
         </div>
 
-        <div className={styles.grid}>
-          {products.map((p, i) => (
-            <div key={p.title} className={`${styles.card} fade-up`} style={{ transitionDelay: `${i * 0.1}s` }}>
-              <span className={`${styles.badge} ${p.badgeType === 'live' ? styles.badgeLive : styles.badgePlanned}`}>
-                {p.badge}
+        {/* Products */}
+        <div className={`${styles.sectionSubheader} fade-up`} style={{'--delay': '0.1s'}}>
+          <h3>Products</h3>
+          <p>We build AI-driven healthcare products that support clinical decision-making, workforce development, and health system intelligence.</p>
+        </div>
+        <div className={`${styles.productsGrid} fade-up`} style={{'--delay': '0.2s'}}>
+          {products.map((product, i) => (
+            <div key={product.title} className={`${styles.productCard} fade-up`} style={{'--delay': `${0.3 + i * 0.1}s`}}>
+              <span className={`${styles.statusBadge} ${styles[product.statusType]}`}>
+                {product.status}
               </span>
-              <div className={styles.iconWrap}>{p.icon}</div>
-              <h3>{p.title}</h3>
-              <p className={styles.sub}>{p.sub}</p>
-              <p className={styles.desc}>{p.desc}</p>
-              {i < 2 && (
-                <ul className={styles.labList}>
-                  {labSolutions.slice(i === 0 ? 0 : 2, i === 0 ? 3 : 5).map(s => (
-                    <li key={s}><span className={styles.lbullet} />{s}</li>
-                  ))}
-                </ul>
-              )}
+              <div className={styles.iconWrap}>{product.icon}</div>
+              <h4>{product.title}</h4>
+              <p>{product.desc}</p>
+              <ul>
+                {product.bullets.map((bullet, j) => (
+                  <li key={j}>{bullet}</li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
 
-{/* Tech Ecosystem */}
-        <div className={`${styles.techSection} fade-up`} style={{ transitionDelay: '.4s' }}>
-          <h3>Core Technology Ecosystem</h3>
-          <p>Across our divisions, we leverage industry-leading tools and open health standards.</p>
-          <div className={styles.techGrid}>
-            {techStack.map(t => (
-              <div key={t.category} className={styles.techCard}>
-                <span className={styles.techCat}>{t.category}</span>
-                <span className={styles.techTools}>{t.tools}</span>
-              </div>
-            ))}
+        {/* Talent Hub */}
+        <div className={`${styles.sectionSubheader} fade-up`} style={{'--delay': '0.8s'}}>
+          <h3>Talent Hub</h3>
+          <p>Africa&apos;s dedicated AI and data talent ecosystem for healthcare innovation and deployment.</p>
+        </div>
+        <div className={`${styles.talentSection} fade-up`} style={{'--delay': '0.9s'}}>
+          <div className={styles.talentWhat}>
+            <h4>What It Is</h4>
+            <p>A curated platform connecting organizations with <strong>vetted African AI and health data professionals</strong>.</p>
+          </div>
+          <div className={styles.talentLists}>
+            <div>
+              <h5>Talent Categories</h5>
+              <ul>
+                {talentCategories.map((cat, i) => <li key={i}>{cat}</li>)}
+              </ul>
+            </div>
+            <div>
+              <h5>Deployment Models</h5>
+              <ul>
+                {deploymentModels.map((model, i) => <li key={i}>{model}</li>)}
+              </ul>
+            </div>
           </div>
         </div>
 
-        {/* Trust anchor */}
-        <div className={styles.trustAnchor}>
-          <p>{TRUST_ANCHOR}</p>
+        {/* Capabilities */}
+        <div className={`${styles.sectionSubheader} fade-up`} style={{'--delay': '1.4s'}}>
+          <h3>Solution Capabilities</h3>
+          <p>We design and deploy <strong>core AI and data capabilities</strong> that power modern healthcare systems.</p>
         </div>
+        <div className={styles.capabilitiesGrid} style={{'--delay': '1.5s'}}>
+          {capabilities.map((cap, i) => (
+            <div key={i} className={`${styles.capabilityCard} fade-up`} style={{'--delay': `${1.6 + i * 0.05}s`}}>
+              {cap}
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   )

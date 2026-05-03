@@ -1,13 +1,57 @@
-/* ===== SOLUTIONS / RESOURCES GRID ===== */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-lg);
+/* ===== SOLUTIONS SECTION - COBALT BLUE GLASSMORPHISM ===== */
+
+/* Main section */
+.solutions-section {
+  background: var(--cobalt);
+  color: white;
+  position: relative;
+  overflow: hidden;
 }
 
-.card {
-  background: var(--white);
-  border: 1px solid var(--gray-100);
+.solutions-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Subheaders */
+.sectionSubheader {
+  text-align: center;
+  margin: var(--space-3xl) auto var(--space-2xl);
+  max-width: 800px;
+}
+
+.sectionSubheader h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  opacity: 0.95;
+}
+
+.sectionSubheader p {
+  font-size: 1.125rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+}
+
+/* Products Grid */
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-xl);
+  margin-bottom: var(--space-4xl);
+}
+
+.productCard {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: var(--r-lg);
   padding: var(--space-xl);
   transition: all var(--t-base) var(--t-smooth);
@@ -15,96 +59,182 @@
   overflow: hidden;
 }
 
-.card::before {
-  content: '';
+.productCard:hover {
+  transform: scale(1.03);
+  border-color: var(--gold-orange);
+  box-shadow: 0 20px 40px rgba(0,74,173,0.3);
+}
+
+.productCard h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: var(--space-md) 0 var(--space-sm);
+}
+
+.productCard p {
+  color: rgba(255,255,255,0.9);
+  margin-bottom: var(--space-lg);
+  line-height: 1.6;
+}
+
+.productCard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.productCard li {
+  color: rgba(255,255,255,0.75);
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-lg);
+  position: relative;
+}
+
+.productCard li::before {
+  content: '▸';
   position: absolute;
-  top: 0;
   left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--gold-500), var(--gold-400));
-  transform: scaleX(0);
-  transition: transform var(--t-base) var(--t-smooth);
-  transform-origin: left;
+  color: var(--gold-orange);
+  font-weight: 700;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
-  border-color: var(--navy-200);
+/* Status Badges */
+.statusBadge {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--r-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.card:hover::before {
-  transform: scaleX(1);
+.status-dev {
+  background: rgba(59,130,246,0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59,130,246,0.3);
 }
 
-/* Premium icon styling */
+.status-planned {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Icon */
 .iconWrap {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, var(--navy-700), var(--navy-800));
+  width: 64px;
+  height: 64px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: var(--r-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--space-md);
-  color: var(--white);
-}
-
-.iconWrap svg {
-  width: 26px;
-  height: 26px;
-}
-
-.card h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--navy-800);
-  margin-bottom: var(--space-sm);
-}
-
-.sub {
-  font-size: .8rem;
-  font-weight: 700;
-  color: var(--gold-600);
-  text-transform: uppercase;
-  letter-spacing: .07em;
-  margin-bottom: var(--space-md);
-}
-
-.desc {
-  color: var(--gray-600);
-  font-size: .95rem;
-  line-height: 1.7;
   margin-bottom: var(--space-lg);
 }
 
-/* Product meta for Resources (who it's for + outcome) */
-.productMeta {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--gray-100);
+.iconWrap svg {
+  width: 28px;
+  height: 28px;
+  stroke: white;
 }
 
-.who {
-  font-size: .8rem;
-  color: var(--gray-500);
+/* Talent Hub */
+.talentSection {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r-xl);
+  padding: var(--space-2xl);
+  margin-bottom: var(--space-3xl);
 }
 
-.outcome {
-  font-size: .9rem;
-  font-weight: 600;
-  color: var(--navy-700);
+.talentWhat {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.talentWhat h4 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-md);
+}
+
+.talentLists {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+}
+
+.talentLists h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: var(--space-lg);
+  color: white;
+}
+
+.talentLists ul {
+  list-style: none;
+}
+
+.talentLists li {
+  color: rgba(255,255,255,0.8);
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.talentLists li:last-child {
+  border-bottom: none;
+}
+
+/* Capabilities */
+.capabilitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+}
+
+.capabilityCard {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r-lg);
+  padding: var(--space-xl);
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: all var(--t-base) var(--t-smooth);
+}
+
+.capabilityCard:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: var(--gold-orange);
+  transform: translateY(-2px);
+}
+
+/* Animations - leverage global .fade-up */
+.fade-up {
+  animation-fill-mode: both;
+}
+
+.fade-up[style*='--delay'] {
+  animation-delay: var(--delay);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .grid {
+  .productsGrid,
+  .capabilitiesGrid,
+  .talentLists {
     grid-template-columns: 1fr;
   }
-  .card {
-    padding: var(--space-xl) var(--space-lg);
+  
+  .talentSection {
+    padding: var(--space-xl);
+  }
+  
+  .sectionSubheader {
+    margin: var(--space-2xl) auto var(--space-xl);
   }
 }

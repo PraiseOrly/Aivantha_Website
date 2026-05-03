@@ -68,7 +68,7 @@ const clients = [
 ]
 
 // Trust statement per tone guidelines
-const TRUST_STATEMENT = "We are not a vendor. We design every engagement to leave our clients stronger, more capable, and less dependent on external expertise over time."
+
 
 export default function WhoWeServe() {
   const ref = useRef(null)
@@ -104,9 +104,6 @@ export default function WhoWeServe() {
           ))}
         </div>
         
-        <div className={`${styles.closing} fade-up`} style={{ transitionDelay: '.4s' }}>
-          <p>{TRUST_STATEMENT}</p>
-        </div>
       </div>
     </section>
   )

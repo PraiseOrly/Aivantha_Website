@@ -1,246 +1,217 @@
-import {
-  ArrowRight, BookOpen, Building2, Compass, Cpu,
-  Eye, Globe, Heart, Layers, Lightbulb,
-  Shield, Star, Target, Users,
-} from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { BookOpen, Brain, Lightbulb, Users } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './About.module.css'
 
-const navSections = [
-  { id: 'overview',     label: 'Company Overview',    Icon: Building2 },
-  { id: 'vision',       label: 'Vision & Mission',    Icon: Eye       },
-  { id: 'approach',     label: 'Our Approach',        Icon: Compass   },
-  { id: 'why',          label: 'Why AiVantha Health', Icon: Star      },
-  { id: 'partnerships', label: 'Partnerships',        Icon: Users     },
+const stats = [
+  { num: '1.4B+', label: 'People impacted potential' },
+  { num: '25%', label: 'Global disease burden' },
+  { num: '<1%', label: 'Health expenditure' },
 ]
 
-const approachSteps = [
-  { num: '01', label: 'Research',       desc: 'Generating evidence and insights grounded in African health realities',                      Icon: BookOpen,  accent: 'cobalt' },
-  { num: '02', label: 'Consulting',     desc: 'Translating insights into strategies and roadmaps for health system decision-makers',         Icon: Lightbulb, accent: 'gold'   },
-  { num: '03', label: 'Technology',     desc: 'Building and deploying AI solutions designed for the realities of African health systems',    Icon: Cpu,       accent: 'cobalt' },
-  { num: '04', label: 'Talent',         desc: "Enabling execution at scale with Africa's vetted AI and health data specialists",             Icon: Users,     accent: 'gold'   },
-]
-
-const whyItems = [
-  { title: 'African-led, Globally Informed', desc: "Built by Africa's top AI and health talent — designed for African realities, benchmarked against global standards.", Icon: Globe   },
-  { title: 'Research-Driven',               desc: 'Every solution is grounded in evidence generated before deployment, not assumptions imported from other contexts.',    Icon: BookOpen },
-  { title: 'Ethical and Responsible',       desc: 'AI governance and data privacy are core design principles, not compliance add-ons bolted on after the fact.',          Icon: Shield  },
-  { title: 'Integrated Platform',           desc: 'Research, consulting, technology, and talent under one roof — compounding value at every stage of impact.',             Icon: Layers  },
-  { title: 'Impact-Focused',               desc: 'Every project is designed to improve health outcomes at scale — measured in lives touched and systems transformed.',    Icon: Target  },
-]
-
-const partnerTypes = [
-  { label: 'Governments and Ministries of Health',       Icon: Building2 },
-  { label: 'International Development Organizations',    Icon: Globe     },
-  { label: 'Academic and Research Institutions',         Icon: BookOpen  },
-  { label: 'Hospitals and Healthcare Networks',          Icon: Heart     },
-  { label: 'Technology and Innovation Partners',         Icon: Cpu       },
+const platformSteps = [
+  { label: 'Research', desc: 'Evidence generation', Icon: BookOpen, accent: 'cobalt' },
+  { label: 'Consulting', desc: 'Strategy roadmaps', Icon: Lightbulb, accent: 'gold' },
+  { label: 'Technology', desc: 'AI deployment', Icon: Brain, accent: 'cobalt' },
+  { label: 'Talent', desc: 'Scale execution', Icon: Users, accent: 'gold' },
 ]
 
 export default function About() {
-  const [activeSection, setActiveSection] = useState('overview')
+  const ref = useRef(null)
+  const inView = useInView(ref, { margin: '-100px' })
+  const [hoveredStep, setHoveredStep] = useState(null)
 
   useEffect(() => {
-    /* fade-up scroll animations */
-    const fadeObs = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')),
       { threshold: 0.08 }
     )
-    document.querySelectorAll('#about .fade-up').forEach(el => fadeObs.observe(el))
-
-    /* active section tracking for side nav */
-    const sectionObs = new IntersectionObserver(
-      entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) setActiveSection(e.target.dataset.section)
-        })
-      },
-      { rootMargin: '-15% 0px -60% 0px' }
-    )
-    navSections.forEach(({ id }) => {
-      const el = document.getElementById(`about-${id}`)
-      if (el) sectionObs.observe(el)
-    })
-
-    return () => { fadeObs.disconnect(); sectionObs.disconnect() }
+    document.querySelectorAll('#about .fade-up').forEach(el => observer.observe(el))
+    return () => observer.disconnect()
   }, [])
 
-  const scrollToSection = id => {
-    const el = document.getElementById(`about-${id}`)
-    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 108, behavior: 'smooth' })
-  }
-
   return (
-    <section className="section" id="about">
+    <section className="section" id="about" ref={ref}>
       <div className="container">
-
-        {/* ── Page-level header ── */}
-        <div className={`section-header fade-up`}>
+        
+        {/* HEADER */}
+        <motion.div 
+          className="section-header fade-up" 
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
           <span className="section-tag">About AiVantha Health</span>
-          <h2>Africa's Health AI Transformation Partner</h2>
-          <p className="section-lead">
-            At the intersection of research, consulting, and technology — built to transform how Africa's health systems generate evidence, make decisions, and deliver care.
-          </p>
+          <h2>Bridging Africa's health data and intelligent decision-making through ethical AI, research, and innovation.</h2>
           <div className="divider" />
+        </motion.div>
+
+        {/* SPLIT HERO */}
+        <div className={styles.splitHero}>
+          <motion.div 
+            className={styles.splitText} 
+            initial={{ opacity: 0, x: -32 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          >
+            <h3 className={styles.heroHeadline}>Turning Health Data into Actionable Intelligence</h3>
+            <p className={styles.heroBody}>
+              AiVantha Health is an African AI and data-driven healthcare company operating at the intersection of research, consulting, and technology.
+            </p>
+            <p className={styles.heroBody}>
+              We exist to solve a critical challenge across the continent: health systems generate data—but lack the tools to turn it into meaningful, real-time decisions.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className={styles.splitVisual}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          >
+            {/* Africa Map + Data Visualization */}
+            <svg viewBox="0 0 480 320" className={styles.africaViz}>
+              {/* Simplified Africa outline */}
+              <path d="M210 20 L280 15 L340 30 L370 70 L390 120 L410 170 L420 220 L410 260 L390 280 L360 300 L320 320 L280 330 L250 320 L220 300 L190 270 L170 240 L160 200 L150 160 L155 120 L170 80 Z" fill="rgba(10,58,173,0.04)" stroke="rgba(10,58,173,0.15)" strokeWidth="1.5"/>
+              
+              {/* Data nodes */}
+              <g className={styles.dataNode}>
+                <circle cx="265" cy="215" r="10" fill="rgba(200,142,40,0.6)"/>
+                <circle cx="225" cy="250" r="8" fill="rgba(10,58,173,0.6)"/>
+                <circle cx="340" cy="120" r="7" fill="rgba(200,142,40,0.5)"/>
+                <circle cx="310" cy="290" r="9" fill="rgba(10,58,173,0.5)"/>
+                <circle cx="180" cy="220" r="6" fill="rgba(200,142,40,0.4)"/>
+                <circle cx="255" cy="180" r="8" fill="rgba(10,58,173,0.6)"/>
+              </g>
+
+              {/* Data connections */}
+              <g stroke="rgba(200,142,40,0.2)" strokeWidth="1.5" strokeLinecap="round">
+                <path d="M265 215 Q240 235 225 250" strokeDasharray="4 4"/>
+                <path d="M265 215 Q290 200 255 180" strokeDasharray="3 3"/>
+                <path d="M340 120 Q310 170 265 215" strokeDasharray="5 5"/>
+              </g>
+
+              {/* Dashboard overlay */}
+              <rect x="320" y="20" width="140" height="90" rx="12" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" strokeWidth="1"/>
+              <circle cx="340" cy="40" r="8" fill="rgba(16,185,129,0.8)"/>
+              <rect x="370" y="32" width="40" height="12" rx="4" fill="rgba(255,255,255,0.3)"/>
+            </svg>
+          </motion.div>
         </div>
 
-        {/* ── Two-column layout ── */}
-        <div className={styles.layout}>
+        {/* STATS STRIP */}
+        <motion.div 
+          className={styles.statsStrip}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          {stats.map((stat, i) => (
+            <div key={stat.label} className={styles.statItem}>
+              <span className={styles.statNum}>{stat.num}</span>
+              <span className={styles.statLabel}>{stat.label}</span>
+            </div>
+          ))}
+        </motion.div>
 
-          {/* Sticky side nav */}
-          <aside className={styles.sideNav}>
-            {navSections.map(({ id, label, Icon }) => (
-              <button
-                key={id}
-                className={`${styles.sideNavItem} ${activeSection === id ? styles.sideNavActive : ''}`}
-                onClick={() => scrollToSection(id)}
+        {/* VISION MISSION PROMISE */}
+        <div className={styles.promiseGrid}>
+          <motion.div 
+            className={`${styles.promiseCard} ${styles.promiseVision} fade-up`}
+            whileHover={{ y: -4, scale: 1.02 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+          >
+            <div className={styles.quoteMark}>&ldquo;</div>
+            <span className={styles.promiseBadge}>Vision</span>
+            <p>An Africa where healthcare decisions are powered by trusted data, ethical AI, and local expertise.</p>
+          </motion.div>
+
+          <motion.div 
+            className={`${styles.promiseCard} ${styles.promiseMission} fade-up`}
+            whileHover={{ y: -4, scale: 1.02 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+          >
+            <div className={styles.quoteMark}>&ldquo;</div>
+            <span className={styles.promiseBadge}>Mission</span>
+            <p>To accelerate equitable, data-driven healthcare transformation across Africa.</p>
+          </motion.div>
+
+          <motion.div 
+            className={`${styles.promiseCard} ${styles.promisePromise} fade-up`}
+            whileHover={{ y: -4, scale: 1.02 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+          >
+            <span className={styles.promiseBadge}>Promise</span>
+            <p>Every project delivers measurable health outcomes at population scale.</p>
+          </motion.div>
+        </div>
+
+        {/* WHY AIVANTHA */}
+        <div className={styles.whySection}>
+          <motion.h3 
+            className={`${styles.sectionHeading} fade-up`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Why AiVantha Health
+          </motion.h3>
+
+          <div className={styles.whyGrid}>
+            {[
+              { title: 'African-led, Globally Informed', desc: 'Built by Africa\'s talent for African realities', icon: '🌍' },
+              { title: 'Research-Driven', desc: 'Evidence before deployment', icon: '📚' },
+              { title: 'Ethical AI', desc: 'Governance built-in from day one', icon: '🛡️' },
+              { title: 'Integrated Platform', desc: 'End-to-end execution', icon: '🔗' },
+              { title: 'Impact-Focused', desc: 'Population-scale outcomes', icon: '🎯' },
+            ].map((item, i) => (
+              <motion.div 
+                key={item.title}
+                className={styles.whyCard}
+                initial={{ opacity: 0, y: 24 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
+                whileHover={{ y: -6, scale: 1.02 }}
               >
-                <Icon size={14} strokeWidth={1.8} className={styles.sideNavIcon} />
-                <span>{label}</span>
-              </button>
+                <span className={styles.whyIcon}>{item.icon}</span>
+                <h4>{item.title}</h4>
+                <p>{item.desc}</p>
+              </motion.div>
             ))}
-          </aside>
+          </div>
+        </div>
 
-          {/* Scrollable content */}
-          <div className={styles.contentArea}>
+        {/* INTEGRATED PLATFORM DIAGRAM */}
+        <div className={styles.platformSection}>
+          <motion.h3 
+            className={`${styles.sectionHeading} fade-up`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            Our Integrated Platform
+          </motion.h3>
 
-            {/* ── 1. Company Overview ── */}
-            <div id="about-overview" data-section="overview" className={styles.aboutSection}>
-              <span className={styles.sectionTag}>Company Overview</span>
-              <h3 className={`${styles.sectionHeading} fade-up`}>Who We Are</h3>
-              <p className={`${styles.bodyCopy} fade-up`}>
-                AiVantha Health is an African AI and data-driven healthcare company operating at the intersection of <strong>research, consulting, and technology</strong>.
-              </p>
-              <p className={`${styles.bodyCopy} fade-up`} style={{ transitionDelay: '.08s' }}>
-                We bridge the gap between <strong>health data and actionable intelligence</strong>, enabling governments, healthcare providers, and partners to make smarter, faster, and more effective decisions.
-              </p>
-
-              <div className={`${styles.pillars} fade-up`} style={{ transitionDelay: '.14s' }}>
-                {['Research', 'Consulting', 'Technology', 'Talent'].map(p => (
-                  <span key={p} className={styles.pillarChip}>{p}</span>
-                ))}
-              </div>
-
-              <div className={`${styles.foundedStrip} fade-up`} style={{ transitionDelay: '.2s' }}>
-                {[
-                  { num: '2026', label: 'Year Founded' },
-                  { num: 'Kigali', label: 'Headquarters' },
-                  { num: 'Pan-African', label: 'Operations' },
-                ].map((item, i) => (
-                  <>
-                    {i > 0 && <div key={`div-${i}`} className={styles.foundedDivider} />}
-                    <div key={item.num} className={styles.foundedItem}>
-                      <span className={styles.foundedNum}>{item.num}</span>
-                      <span className={styles.foundedLabel}>{item.label}</span>
-                    </div>
-                  </>
-                ))}
-              </div>
+          <div className={styles.platformContainer}>
+            {platformSteps.map((step, i) => (
+              <motion.div
+                key={step.label}
+                className={`${styles.platformNode} ${styles[step.accent]}`}
+                onHoverStart={() => setHoveredStep(i)}
+                onHoverEnd={() => setHoveredStep(null)}
+                animate={hoveredStep === i ? { scale: 1.08, y: -8 } : { scale: 1, y: 0 }}
+                transition={{ type: 'spring', stiffness: 500 }}
+              >
+                <step.Icon size={28} strokeWidth={1.8} className={styles.platformIcon} />
+                <h4>{step.label}</h4>
+                <p>{step.desc}</p>
+              </motion.div>
+            ))}
+            <div className={styles.platformConnections}>
+              <div className={styles.connection1} />
+              <div className={styles.connection2} />
+              <div className={styles.connection3} />
             </div>
-
-            {/* ── 2. Vision & Mission ── */}
-            <div id="about-vision" data-section="vision" className={styles.aboutSection}>
-              <span className={styles.sectionTag}>Vision & Mission</span>
-              <h3 className={`${styles.sectionHeading} fade-up`}>What Drives Us</h3>
-
-              <div className={styles.vmGrid}>
-                <div className={`${styles.vmCard} ${styles.vmVision} fade-up`}>
-                  <div className={styles.vmQuoteMark}>&ldquo;</div>
-                  <div className={styles.vmBadge}>Vision</div>
-                  <p className={styles.vmQuote}>
-                    An Africa where healthcare decisions are powered by trusted data, ethical AI, and local expertise.
-                  </p>
-                </div>
-                <div className={`${styles.vmCard} ${styles.vmMission} fade-up`} style={{ transitionDelay: '.1s' }}>
-                  <div className={styles.vmQuoteMark}>&ldquo;</div>
-                  <div className={styles.vmBadge}>Mission</div>
-                  <p className={styles.vmQuote}>
-                    To accelerate equitable, data-driven healthcare transformation across Africa.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* ── 3. Our Approach ── */}
-            <div id="about-approach" data-section="approach" className={styles.aboutSection}>
-              <span className={styles.sectionTag}>Our Approach</span>
-              <h3 className={`${styles.sectionHeading} fade-up`}>An Integrated Platform</h3>
-              <p className={`${styles.bodyCopy} fade-up`} style={{ transitionDelay: '.06s' }}>
-                We operate as an integrated platform that connects every stage of health system transformation — ensuring every solution is <strong>evidence-based, contextually relevant, and built for real-world impact</strong>.
-              </p>
-
-              <div className={`${styles.approachFlow} fade-up`} style={{ transitionDelay: '.12s' }}>
-                {approachSteps.map((step, i) => (
-                  <div key={step.label} className={styles.approachStepWrap}>
-                    <div className={`${styles.approachStep} ${step.accent === 'cobalt' ? styles.approachStepCobalt : styles.approachStepGold}`}>
-                      <span className={styles.approachNum}>{step.num}</span>
-                      <step.Icon
-                        size={22}
-                        strokeWidth={1.6}
-                        className={step.accent === 'cobalt' ? styles.approachIconCobalt : styles.approachIconGold}
-                      />
-                      <span className={styles.approachLabel}>{step.label}</span>
-                      <span className={styles.approachDesc}>{step.desc}</span>
-                    </div>
-                    {i < approachSteps.length - 1 && (
-                      <ArrowRight size={18} strokeWidth={1.5} className={styles.approachArrow} />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* ── 4. Why AiVantha Health ── */}
-            <div id="about-why" data-section="why" className={styles.aboutSection}>
-              <span className={styles.sectionTag}>Why AiVantha Health</span>
-              <h3 className={`${styles.sectionHeading} fade-up`}>What Sets Us Apart</h3>
-
-              <div className={styles.whyGrid}>
-                {whyItems.map((item, i) => (
-                  <div
-                    key={item.title}
-                    className={`${styles.whyCard} fade-up`}
-                    style={{ transitionDelay: `${i * 0.07}s` }}
-                  >
-                    <div className={styles.whyIcon}>
-                      <item.Icon size={20} strokeWidth={1.7} />
-                    </div>
-                    <h4 className={styles.whyTitle}>{item.title}</h4>
-                    <p className={styles.whyDesc}>{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* ── 5. Partnerships ── */}
-            <div id="about-partnerships" data-section="partnerships" className={styles.aboutSection}>
-              <span className={styles.sectionTag}>Partnerships</span>
-              <h3 className={`${styles.sectionHeading} fade-up`}>Building the Ecosystem</h3>
-              <p className={`${styles.bodyCopy} fade-up`} style={{ transitionDelay: '.06s' }}>
-                We collaborate with a broad ecosystem of partners to drive impact across Africa. Our partnership approach is built on <strong>trust, long-term collaboration, and shared impact</strong>.
-              </p>
-
-              <div className={`${styles.partnerList} fade-up`} style={{ transitionDelay: '.12s' }}>
-                {partnerTypes.map(({ label, Icon }) => (
-                  <div key={label} className={styles.partnerItem}>
-                    <span className={styles.partnerIcon}><Icon size={15} strokeWidth={1.8} /></span>
-                    <span className={styles.partnerLabel}>{label}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className={`${styles.logosWrap} fade-up`} style={{ transitionDelay: '.2s' }}>
-                <p className={styles.logosLabel}>Our Partners</p>
-                <div className={styles.logosStrip}>
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <div key={i} className={styles.logoPlaceholder}>
-                      <span>Partner {i + 1}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
 
