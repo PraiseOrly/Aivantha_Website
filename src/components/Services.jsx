@@ -1,129 +1,162 @@
-import { BarChart3, Brain, Database, FileText, Shield, Zap } from 'lucide-react';
+import { BarChart3, Brain, Briefcase, Building2, Database, FileText, Globe, Heart, Shield, Zap } from 'lucide-react';
 import { useEffect, useRef } from 'react';
-import '../styles/global.css'; // Ensure global styles are available
+import '../styles/global.css';
 import styles from './Services.module.css';
 
-// 6 services matching navbar dropdown + task spec
 const services = [
   {
     title: 'AI & Data Strategy',
-    dropdown: 'AI & Data Strategy',
+    id: 'ai-data-strategy',
     description: 'We design AI and data strategies that help health systems turn fragmented data into actionable intelligence.',
     items: [
       'National & institutional AI strategy design',
       'Health data strategy and governance frameworks',
       'AI readiness & maturity assessments',
-      'Strategic roadmaps for AI adoption in healthcare'
+      'Strategic roadmaps for AI adoption in healthcare',
     ],
-    Icon: Brain
+    Icon: Brain,
   },
   {
     title: 'Digital Health Transformation',
-    dropdown: 'Digital Health Transformation',
+    id: 'digital-health-transformation',
     description: 'We support end-to-end transformation of healthcare systems through digital technologies and AI integration.',
     items: [
       'Digital health transformation roadmaps',
       'System modernization and digitization strategy',
       'Scaling frameworks for health innovations',
-      'Change management and adoption support'
+      'Change management and adoption support',
     ],
-    Icon: Zap
+    Icon: Zap,
   },
   {
     title: 'Health Data Systems & Architecture',
-    dropdown: 'Health Data Systems',
+    id: 'health-data-systems',
     description: 'We build the foundational data infrastructure that enables interoperable, scalable, and real-time health decision-making.',
     items: [
       'Health information system design',
       'Data architecture and system integration',
       'Interoperability frameworks (FHIR / HL7 aligned)',
-      'Data pipelines and analytics infrastructure'
+      'Data pipelines and analytics infrastructure',
     ],
-    Icon: Database
+    Icon: Database,
   },
   {
     title: 'AI Governance & Ethics',
-    dropdown: 'AI Governance & Ethics',
+    id: 'ai-governance-ethics',
     description: 'We ensure AI in healthcare is safe, ethical, and compliant with African and global standards.',
     items: [
       'Responsible AI frameworks',
       'Data privacy & protection strategies',
       'Regulatory compliance advisory',
-      'Ethical risk assessments for AI systems'
+      'Ethical risk assessments for AI systems',
     ],
-    Icon: Shield
+    Icon: Shield,
   },
   {
-    title: 'Monitoring, Evaluation & Learning (MEL)',
-    dropdown: 'Monitoring & Evaluation',
+    title: 'Monitoring, Evaluation & Learning',
+    id: 'monitoring-evaluation',
     description: 'We help organizations measure impact and improve decision-making through data-driven evaluation systems.',
     items: [
       'MEL framework design',
       'Impact evaluation of health programs',
       'AI & digital health performance tracking',
-      'Learning systems for continuous improvement'
+      'Learning systems for continuous improvement',
     ],
-    Icon: BarChart3
+    Icon: BarChart3,
   },
   {
     title: 'Applied Health Research',
-    dropdown: 'Applied Research',
+    id: 'applied-research',
     description: 'We generate high-quality, Africa-relevant evidence to guide health policy, innovation, and investment.',
     items: [
       'AI in healthcare research',
       'Health systems modeling & analytics',
       'Implementation research studies',
-      'Policy briefs & evidence reports'
+      'Policy briefs & evidence reports',
     ],
-    Icon: FileText
-  }
+    Icon: FileText,
+  },
 ]
 
-
+const clients = [
+  {
+    title: 'Governments & Ministries',
+    value: 'National AI strategy and health system transformation',
+    points: [
+      'National AI & data strategy',
+      'Health information system modernisation',
+      'AI readiness assessments',
+      'Policy research & implementation support',
+    ],
+    Icon: Building2,
+  },
+  {
+    title: 'Hospitals & Clinics',
+    value: 'Decision support, diagnostics, and workflow AI',
+    points: [
+      'AI clinical decision support',
+      'Predictive analytics & diagnostics',
+      'Workflow optimisation',
+      'Embedded AI talent deployment',
+    ],
+    Icon: Heart,
+  },
+  {
+    title: 'NGOs & Development Partners',
+    value: 'Applied research, MEL, and AI governance',
+    points: [
+      'Applied research & evidence generation',
+      'MEL frameworks & evaluation',
+      'Pilot deployment support',
+      'AI governance advisory',
+    ],
+    Icon: Globe,
+  },
+  {
+    title: 'Private Sector',
+    value: 'AI tools, vetted talent, and co-development',
+    points: [
+      'Purpose-built AI health solutions',
+      'Vetted AI & data talent',
+      'Digital health product co-development',
+      'Research collaboration & joint publication',
+    ],
+    Icon: Briefcase,
+  },
+]
 
 export default function Services() {
   const ref = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.1 }
+      entries => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible')),
+      { threshold: 0.08 }
     )
-    
-    const cards = ref.current?.querySelectorAll('.serviceCard')
-    cards?.forEach(card => observer.observe(card))
-    
+    ref.current?.querySelectorAll('.fade-up').forEach(el => observer.observe(el))
     return () => observer.disconnect()
   }, [])
 
   return (
     <section className={styles.servicesSection} id="services" ref={ref}>
       <div className="container">
-        {/* Section Header */}
-        <div className={styles.servicesHeader}>
-          <h2>Our Services</h2>
+
+        <div className="section-header fade-up">
+          <span className="section-tag">Our Services</span>
+          <h2>Strengthening Health Systems Through Data and AI</h2>
           <p className="section-lead">
             Evidence-based AI, data, and digital health advisory services designed to strengthen Africa&apos;s health systems.
           </p>
+          <div className="divider" />
         </div>
 
-        {/* 3x2 Services Grid */}
         <div className={styles.servicesGrid}>
           {services.map((service, index) => (
-            <div 
-              id={service.dropdown.toLowerCase().replace(/ & /g, '-').replace(/, /g, '-').replace(/ \(mel\)/i, '').replace(/\s+/g, '-')} 
-              key={service.title} 
-              className={`${styles.serviceCard} serviceCard fade-up`}
-              style={{ 
-                transitionDelay: `${index * 0.1}s`,
-                '--delay': `${index * 0.1}s`
-              }}
+            <div
+              id={service.id}
+              key={service.title}
+              className={`${styles.serviceCard} fade-up`}
+              style={{ transitionDelay: `${index * 0.08}s` }}
             >
               <div className={styles.iconWrap}>
                 <service.Icon size={24} />
@@ -131,16 +164,38 @@ export default function Services() {
               <h3>{service.title}</h3>
               <p>{service.description}</p>
               <ul>
-                {service.items.map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
+                {service.items.map((item, i) => <li key={i}>{item}</li>)}
               </ul>
             </div>
           ))}
+        </div>
+
+        <div className={`${styles.whoWeServe} fade-up`}>
+          <h3>Who We Serve</h3>
+          <p className="section-lead">
+            Trusted by health system stakeholders across the continent. We build partnerships that strengthen systems — not dependencies.
+          </p>
+          <div className={styles.clientsGrid}>
+            {clients.map((client, i) => (
+              <div
+                key={client.title}
+                className={`${styles.clientCard} fade-up`}
+                style={{ transitionDelay: `${i * 0.08}s` }}
+              >
+                <div className={styles.clientIcon}>
+                  <client.Icon size={22} strokeWidth={1.7} />
+                </div>
+                <h4>{client.title}</h4>
+                <p className={styles.clientValue}>{client.value}</p>
+                <ul>
+                  {client.points.map(point => <li key={point}>{point}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
     </section>
   )
 }
-

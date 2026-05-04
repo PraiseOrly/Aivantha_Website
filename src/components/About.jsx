@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion'
-import { BookOpen, Brain, Lightbulb, Users } from 'lucide-react'
+import { ArrowRight, BookOpen, Brain, Globe, Layers, Lightbulb, Shield, Target, Users } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import styles from './About.module.css'
 
@@ -159,13 +159,13 @@ export default function About() {
 
           <div className={styles.whyGrid}>
             {[
-              { title: 'African-led, Globally Informed', desc: 'Built by Africa\'s talent for African realities', icon: '🌍' },
-              { title: 'Research-Driven', desc: 'Evidence before deployment', icon: '📚' },
-              { title: 'Ethical AI', desc: 'Governance built-in from day one', icon: '🛡️' },
-              { title: 'Integrated Platform', desc: 'End-to-end execution', icon: '🔗' },
-              { title: 'Impact-Focused', desc: 'Population-scale outcomes', icon: '🎯' },
+              { title: 'African-led, Globally Informed', desc: 'Built by Africa\'s talent for African realities', Icon: Globe },
+              { title: 'Research-Driven', desc: 'Evidence before deployment', Icon: BookOpen },
+              { title: 'Ethical AI', desc: 'Governance built-in from day one', Icon: Shield },
+              { title: 'Integrated Platform', desc: 'End-to-end execution', Icon: Layers },
+              { title: 'Impact-Focused', desc: 'Population-scale outcomes', Icon: Target },
             ].map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={item.title}
                 className={styles.whyCard}
                 initial={{ opacity: 0, y: 24 }}
@@ -173,7 +173,9 @@ export default function About() {
                 transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
                 whileHover={{ y: -6, scale: 1.02 }}
               >
-                <span className={styles.whyIcon}>{item.icon}</span>
+                <div className={styles.whyIcon}>
+                  <item.Icon size={22} strokeWidth={1.7} />
+                </div>
                 <h4>{item.title}</h4>
                 <p>{item.desc}</p>
               </motion.div>
@@ -192,26 +194,27 @@ export default function About() {
             Our Integrated Platform
           </motion.h3>
 
-          <div className={styles.platformContainer}>
+          <div className={styles.platformFlow}>
             {platformSteps.map((step, i) => (
-              <motion.div
-                key={step.label}
-                className={`${styles.platformNode} ${styles[step.accent]}`}
-                onHoverStart={() => setHoveredStep(i)}
-                onHoverEnd={() => setHoveredStep(null)}
-                animate={hoveredStep === i ? { scale: 1.08, y: -8 } : { scale: 1, y: 0 }}
-                transition={{ type: 'spring', stiffness: 500 }}
-              >
-                <step.Icon size={28} strokeWidth={1.8} className={styles.platformIcon} />
-                <h4>{step.label}</h4>
-                <p>{step.desc}</p>
-              </motion.div>
+              <div key={step.label} className={styles.platformFlowItem}>
+                <motion.div
+                  className={`${styles.platformNode} ${styles[step.accent]}`}
+                  onHoverStart={() => setHoveredStep(i)}
+                  onHoverEnd={() => setHoveredStep(null)}
+                  animate={hoveredStep === i ? { scale: 1.08, y: -8 } : { scale: 1, y: 0 }}
+                  transition={{ type: 'spring', stiffness: 500 }}
+                >
+                  <step.Icon size={28} strokeWidth={1.8} className={styles.platformIcon} />
+                  <h4>{step.label}</h4>
+                  <p>{step.desc}</p>
+                </motion.div>
+                {i < platformSteps.length - 1 && (
+                  <div className={styles.platformArrow}>
+                    <ArrowRight size={20} strokeWidth={1.6} />
+                  </div>
+                )}
+              </div>
             ))}
-            <div className={styles.platformConnections}>
-              <div className={styles.connection1} />
-              <div className={styles.connection2} />
-              <div className={styles.connection3} />
-            </div>
           </div>
         </div>
 

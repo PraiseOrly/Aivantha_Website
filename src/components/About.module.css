@@ -152,8 +152,17 @@
   margin: 0;
 }
 
+/* SECTION HEADINGS */
+.sectionHeading {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--navy-900);
+  letter-spacing: -.02em;
+  margin-bottom: var(--space-2xl);
+}
+
 /* WHY GRID */
-.whySection { margin: var(--space-5xl) 0; }
+.whySection { margin: var(--space-4xl) 0; }
 .whyGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -166,6 +175,8 @@
   background: white;
   transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 .whyCard:hover {
   border-color: var(--gold-orange);
@@ -181,14 +192,27 @@
   height: 3px;
   background: linear-gradient(90deg, var(--cobalt), var(--gold-orange));
   transform: scaleX(0);
+  transform-origin: left;
   transition: transform 0.3s ease;
 }
 .whyCard:hover::before {
   transform: scaleX(1);
 }
 .whyIcon {
-  font-size: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, var(--cobalt-50), var(--cobalt-100));
+  color: var(--cobalt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: var(--space-md);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.whyCard:hover .whyIcon {
+  background: linear-gradient(135deg, rgba(200,142,40,0.1), rgba(200,142,40,0.2));
+  color: var(--gold-orange);
 }
 .whyCard h4 {
   font-size: 1.1rem;
@@ -202,32 +226,44 @@
 }
 
 /* PLATFORM DIAGRAM */
-.platformSection { margin: var(--space-5xl) 0; }
-.platformContainer {
-  position: relative;
-  height: 300px;
+.platformSection { margin: var(--space-4xl) 0; }
+
+.platformFlow {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 60px;
+  gap: 0;
   margin-top: var(--space-xl);
+  flex-wrap: wrap;
 }
+
+.platformFlowItem {
+  display: flex;
+  align-items: center;
+}
+
+.platformArrow {
+  color: var(--gray-300);
+  padding: 0 var(--space-md);
+  flex-shrink: 0;
+}
+
 .platformNode {
   position: relative;
-  padding: var(--space-lg);
+  padding: var(--space-xl) var(--space-lg);
   border-radius: var(--r-lg);
   border: 2px solid;
   background: rgba(255,255,255,0.8);
   backdrop-filter: blur(10px);
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-  min-width: 140px;
+  min-width: 150px;
   text-align: center;
 }
 .platformNode h4 {
   font-size: 1rem;
   font-weight: 700;
-  margin: 8px 0 4px 0;
+  margin: 10px 0 4px 0;
   color: var(--gray-800);
 }
 .platformNode p {
@@ -239,27 +275,12 @@
 }
 .cobalt {
   border-color: var(--cobalt);
-  background: rgba(10,58,173,0.08);
+  background: rgba(10,58,173,0.06);
 }
 .gold {
   border-color: var(--gold-orange);
-  background: rgba(200,142,40,0.08);
+  background: rgba(200,142,40,0.06);
 }
-.platformConnections {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.connection1, .connection2, .connection3 {
-  position: absolute;
-  height: 2px;
-  background: linear-gradient(90deg, var(--cobalt), var(--gold-orange));
-  opacity: 0.3;
-}
-.connection1 { top: 50%; left: 25%; right: 75%; }
-.connection2 { top: 30%; left: 35%; right: 65%; }
-.connection3 { top: 70%; left: 35%; right: 65%; }
-
 .platformNode:hover {
   border-color: var(--gold-orange) !important;
   box-shadow: 0 20px 40px rgba(200,142,40,0.25);
@@ -273,7 +294,8 @@
     gap: var(--space-2xl);
   }
   .splitVisual { order: -1; }
-  .platformContainer { flex-direction: column; gap: 40px; height: auto; }
+  .platformFlow { flex-direction: column; gap: var(--space-md); }
+  .platformArrow { transform: rotate(90deg); }
 }
 
 @media (max-width: 640px) {

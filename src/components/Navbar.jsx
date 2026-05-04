@@ -222,27 +222,16 @@ export default function Navbar() {
                             </div>
                           )}
 
-                          {/* ── Services: 2-column + How We Work card ── */}
+                          {/* ── Services: 2-column (3 left + 3 right) ── */}
                           {item.type === 'services' && (
                             <div className={styles.servicesLayout}>
                               <div className={styles.servicesLeft}>
                                 <p className={styles.colLabel}>Core Services</p>
-                                {item.subItems.map(sub => <DropItem key={sub.label} item={sub} handleLink={handleLink} />)}
+                                {item.subItems.slice(0,3).map(sub => <DropItem key={sub.label} item={sub} handleLink={handleLink} />)}
                               </div>
-                              <div className={styles.howWeWork}>
-                                <p className={styles.howWeWorkTitle}>How We Work</p>
-                                <p className={styles.howWeWorkSub}>Our proven delivery model</p>
-                                <div className={styles.pipeline}>
-                                  {['Research', 'Strategy', 'Implementation', 'Scale'].map((step, i, arr) => (
-                                    <div key={step}>
-                                      <div className={styles.pipelineStep}>
-                                        <span className={styles.pipelineNum}>{i + 1}</span>
-                                        <span className={styles.pipelineText}>{step}</span>
-                                      </div>
-                                      {i < arr.length - 1 && <div className={styles.pipelineArrow} />}
-                                    </div>
-                                  ))}
-                                </div>
+                              <div className={styles.servicesRight}>
+                                <p className={styles.colLabel}>Specialized Services</p>
+                                {item.subItems.slice(3,6).map(sub => <DropItem key={sub.label} item={sub} handleLink={handleLink} />)}
                               </div>
                             </div>
                           )}

@@ -7,7 +7,6 @@ import Navbar from './components/Navbar'
 import Resources from './components/Resources'
 import Services from './components/Services'
 import Solutions from './components/Solutions'
-import WhoWeServe from './components/WhoWeServe'
 
 export default function App() {
   return (
@@ -18,7 +17,6 @@ export default function App() {
         <Challenge />
         <About />
         <Services />
-        <WhoWeServe />
         <Solutions />
         <Resources />
         <Contact />
