@@ -56,14 +56,16 @@
   text-decoration: none;
   flex-shrink: 0;
   overflow: visible;
-  margin-left: -48px;
+  margin-left: -64px;
+  position: relative;
+  top: -8px;
 }
 .logoImg {
-  height: 58px;
+  height: 68px;
   width: auto;
   object-fit: contain;
   display: block;
-  transform: scale(3);
+  transform: scale(3.8);
   transform-origin: left center;
 }
 
@@ -241,13 +243,21 @@
 .servicesLayout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 0;
   min-width: 580px;
   padding: 14px;
 }
-.servicesLeft, .servicesRight { 
-  display: flex; 
-  flex-direction: column; 
+.servicesLeft, .servicesRight {
+  display: flex;
+  flex-direction: column;
+  padding: 0 14px;
+}
+.servicesLeft {
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+  padding-right: 16px;
+}
+.servicesRight {
+  padding-left: 16px;
 }
 
 /* ===== SOLUTIONS — 3-COLUMN MEGA MENU ===== */

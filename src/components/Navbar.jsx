@@ -1,9 +1,9 @@
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import {
-  Activity, BarChart3, BookOpen, Bot, Brain, Briefcase,
-  Building2, Compass, Database, Eye, FileSearch, FileText,
-  Globe, Heart, Layers, LayoutGrid, LineChart, Menu, Network,
-  PenSquare, Search, Shield, Star, Stethoscope, Users, X, Zap,
+  Activity, BookOpen, Bot, Brain, Briefcase,
+  Building2, Compass, Eye, FileSearch, FileText,
+  Globe, Heart, Layers, LineChart, Menu, Network,
+  PenSquare, Shield, Star, Stethoscope, Users, X, Zap,
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import styles from './Navbar.module.css'
@@ -14,7 +14,7 @@ const navItems = [
   {
     label: 'About',
     href: '#about',
-    type: 'list',
+    type: 'products',
     subItems: [
       { label: 'Company Overview',    desc: 'Who we are and what drives us forward',       href: '#about-overview', Icon: Building2 },
       { label: 'Vision & Mission',    desc: 'Equitable, AI-powered health transformation', href: '#about-vision', Icon: Eye       },
@@ -28,45 +28,25 @@ const navItems = [
     href: '#services',
     type: 'services',
     subItems: [
-      { label: 'AI & Data Strategy',            desc: 'National and institutional AI strategies', href: '#ai-data-strategy', Icon: Brain     },
-      { label: 'Digital Health Transformation', desc: 'Digital health roadmaps',                   href: '#digital-health-transformation', Icon: Zap       },
-      { label: 'Health Data Systems',           desc: 'Health information system design',          href: '#health-data-systems', Icon: Database  },
-      { label: 'AI Governance & Ethics',        desc: 'Responsible AI frameworks',                 href: '#ai-governance-ethics', Icon: Shield    },
-      { label: 'Monitoring & Evaluation',       desc: 'Impact measurement frameworks',             href: '#monitoring-evaluation', Icon: BarChart3 },
-      { label: 'Applied Research',              desc: 'AI in healthcare research',                 href: '#applied-research', Icon: FileText },
+      { label: 'AI & Data Strategy',                  desc: 'National and institutional AI strategies',                       href: '#ai-data-strategy',            Icon: Brain       },
+      { label: 'Digital Health Transformation',       desc: 'Digital health roadmaps & system modernisation',                 href: '#digital-health-transformation', Icon: Zap         },
+      { label: 'AI Governance & Ethics',              desc: 'Responsible AI frameworks & compliance',                         href: '#ai-governance-ethics',          Icon: Shield      },
+      { label: 'Clinical Decision Support',           desc: 'Point-of-care AI guidance tools',                                href: '#health-data-systems',           Icon: Stethoscope },
+      { label: 'Predictive Analytics & Intelligence', desc: 'Outbreak detection, risk stratification & population insights',  href: '#ai-data-strategy',              Icon: Activity    },
+      { label: 'Data Systems & Interoperability',     desc: 'Health data architecture & seamless data exchange',              href: '#health-data-systems',           Icon: Network     },
+      { label: 'Applied Research & Evaluation',       desc: 'AI research, MEL frameworks & impact measurement',               href: '#applied-research',              Icon: FileSearch  },
     ],
   },
   {
-    label: 'Solutions',
+    label: 'Products',
     href: '#solutions',
-    type: 'mega',
-    columns: [
-      {
-        label: 'Products',
-        items: [
-          { label: 'CardiacTek',     desc: 'AI cardiac screening for low-resource settings',  href: '#solutions', Icon: Heart,     badge: 'In Development', badgeType: 'dev'    },
-          { label: 'AiVantha Coach', desc: 'AI workforce augmentation for frontline workers', href: '#solutions', Icon: Bot,       badge: 'Beta',           badgeType: 'beta'   },
-          { label: 'AiVantha Data',  desc: 'Interoperable health intelligence platform',      href: '#solutions', Icon: LineChart, badge: 'Active',         badgeType: 'active' },
-        ],
-      },
-      {
-        label: 'Talent Hub',
-        items: [
-          { label: 'Overview',          desc: "Africa's vetted AI talent network",     href: '#solutions', Icon: Users      },
-          { label: 'Hire Talent',       desc: 'Access pre-vetted AI specialists',      href: '#solutions', Icon: Search     },
-          { label: 'Talent Categories', desc: 'Data scientists, ML engineers & more',  href: '#solutions', Icon: LayoutGrid },
-          { label: 'Deployment Models', desc: 'Flexible engagement structures',        href: '#solutions', Icon: Layers     },
-        ],
-      },
-      {
-        label: 'Capabilities',
-        items: [
-          { label: 'Predictive Analytics',      desc: 'Outbreak detection & risk stratification', href: '#solutions', Icon: Activity    },
-          { label: 'Clinical Decision Support',  desc: 'Point-of-care AI guidance tools',         href: '#solutions', Icon: Stethoscope },
-          { label: 'Interoperable Platforms',    desc: 'Seamless health data exchange',            href: '#solutions', Icon: Network     },
-          { label: 'Health Intelligence',        desc: 'Population-level insights & dashboards',   href: '#solutions', Icon: Globe       },
-        ],
-      },
+    type: 'products',
+    subItems: [
+      { label: 'CardiacTek',          desc: 'AI cardiac diagnostics & biosignal analysis',       href: '#solutions', Icon: Heart     },
+      { label: 'Oxylytics',           desc: 'Real-time oxygen & respiratory health analytics',   href: '#solutions', Icon: Activity  },
+      { label: 'AiVantha Coach',      desc: 'AI training & workflow support for health workers', href: '#solutions', Icon: Bot       },
+      { label: 'AiVantha Data',       desc: 'Interoperable health intelligence platform',        href: '#solutions', Icon: LineChart },
+      { label: 'AiVantha Talent Hub', desc: "Africa's vetted AI & health data talent network",  href: '#solutions', Icon: Users     },
     ],
   },
   {
@@ -92,7 +72,7 @@ const navItems = [
 
 const DROPDOWN_POS = {
   Services:  styles.dropdownServices,
-  Solutions: styles.dropdownSolutions,
+  Products:  styles.dropdownServices,
   Resources: styles.dropdownResources,
 }
 
@@ -121,7 +101,12 @@ function DropItem({ item, handleLink }) {
     <a href={item.href} className={styles.dropItem} onClick={e => handleLink(e, item.href)}>
       <IconWrap Icon={item.Icon} />
       <span className={styles.dropItemText}>
-        <span className={styles.dropItemTitle}>{item.label}</span>
+        <span className={styles.dropItemTitle}>
+          {item.label}
+          {item.badge && (
+            <span className={`${styles.badge} ${BADGE_CLASS[item.badgeType]}`}>{item.badge}</span>
+          )}
+        </span>
         <span className={styles.dropItemDesc}>{item.desc}</span>
       </span>
     </a>
@@ -215,6 +200,18 @@ export default function Navbar() {
                           exit={{ opacity: 0, y: 8, scale: 0.97 }}
                           transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                         >
+                          {/* ── Products: 2-column list ── */}
+                          {item.type === 'products' && (
+                            <div className={styles.servicesLayout}>
+                              <div className={styles.servicesLeft}>
+                                {item.subItems.slice(0, 3).map(sub => <DropItem key={sub.label} item={sub} handleLink={handleLink} />)}
+                              </div>
+                              <div className={styles.servicesRight}>
+                                {item.subItems.slice(3).map(sub => <DropItem key={sub.label} item={sub} handleLink={handleLink} />)}
+                              </div>
+                            </div>
+                          )}
+
                           {/* ── About: simple list ── */}
                           {item.type === 'list' && (
                             <div className={styles.dropList}>
@@ -222,16 +219,16 @@ export default function Navbar() {
                             </div>
                           )}
 
-                          {/* ── Services: 2-column (3 left + 3 right) ── */}
+                          {/* ── Services: 2-column (3 left + 4 right) ── */}
                           {item.type === 'services' && (
                             <div className={styles.servicesLayout}>
                               <div className={styles.servicesLeft}>
-                                <p className={styles.colLabel}>Core Services</p>
-                                {item.subItems.slice(0,3).map(sub => <DropItem key={sub.label} item={sub} handleLink={handleLink} />)}
+                                <p className={styles.colLabel}>Advisory & Strategy</p>
+                                {item.subItems.slice(0, 3).map(sub => <DropItem key={sub.label} item={sub} handleLink={handleLink} />)}
                               </div>
                               <div className={styles.servicesRight}>
-                                <p className={styles.colLabel}>Specialized Services</p>
-                                {item.subItems.slice(3,6).map(sub => <DropItem key={sub.label} item={sub} handleLink={handleLink} />)}
+                                <p className={styles.colLabel}>Technology & Research</p>
+                                {item.subItems.slice(3).map(sub => <DropItem key={sub.label} item={sub} handleLink={handleLink} />)}
                               </div>
                             </div>
                           )}
