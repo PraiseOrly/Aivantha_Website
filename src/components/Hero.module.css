@@ -4,12 +4,11 @@
   height: 100vh;
   min-height: 740px;
   overflow: hidden;
-  background: transparent;
   display: flex;
   align-items: center;
 }
 
-/* Slow-zoom gradient background — creates parallax feel */
+/* Slow-zoom gradient background */
 .heroBg {
   position: absolute;
   inset: -8%;
@@ -18,47 +17,46 @@
   will-change: transform;
   z-index: 0;
 }
-
 @keyframes bgZoom {
   from { transform: scale(1); }
   to   { transform: scale(1.1); }
 }
 
-/* Animated data-grid overlay — drifts slowly */
+/* Animated data-grid overlay */
 .bgGrid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px),
-    radial-gradient(rgba(200,150,12,.06) 1.5px, transparent 1.5px);
-  background-size: 52px 52px, 52px 52px, 104px 104px;
-  background-position: 0 0, 0 0, 26px 26px;
-  animation: gridDrift 50s linear infinite;
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
+    radial-gradient(rgba(200,150,12,.05) 1.5px, transparent 1.5px);
+  background-size: 60px 60px, 60px 60px, 120px 120px;
+  background-position: 0 0, 0 0, 30px 30px;
+  animation: gridDrift 60s linear infinite;
   pointer-events: none;
   z-index: 1;
 }
-
 @keyframes gridDrift {
-  0%   { background-position: 0 0,   0 0,   26px 26px; }
-  100% { background-position: 52px 52px, 52px 52px, 78px 78px; }
+  0%   { background-position: 0 0,    0 0,    30px 30px; }
+  100% { background-position: 60px 60px, 60px 60px, 90px 90px; }
 }
 
+/* Radial glow on the right */
 .bgGrid::after {
   content: '';
   position: absolute;
-  top: -30%;
-  right: -15%;
-  width: 65%;
-  height: 160%;
-  background: radial-gradient(ellipse at center, rgba(0,74,173,.18) 0%, transparent 60%);
+  top: -20%;
+  right: -10%;
+  width: 55%;
+  height: 140%;
+  background: radial-gradient(ellipse at center, rgba(0,74,173,.16) 0%, transparent 65%);
   pointer-events: none;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 20, 70, 0.45);
+  background: rgba(0, 18, 60, 0.38);
   z-index: 2;
   pointer-events: none;
 }
@@ -73,25 +71,13 @@
   will-change: transform, opacity;
 }
 
-/* ===== GLASSMORPHIC CONTENT CARD ===== */
-.glassCard {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 24px;
-  padding: 40px 44px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
-              0 1px 0 rgba(255,255,255,0.1) inset;
-}
-
 /* ===== TWO-COLUMN GRID ===== */
 .slideGrid {
   display: grid;
-  grid-template-columns: 52% 1fr;
-  gap: var(--space-2xl);
+  grid-template-columns: 54% 1fr;
+  gap: var(--space-3xl);
   align-items: center;
-  padding-top: 88px; /* clear fixed navbar */
+  padding-top: 80px;
   width: 100%;
 }
 
@@ -102,59 +88,55 @@
   gap: 0;
 }
 
+/* Eyebrow tag */
 .tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--gold-orange);
-  font-size: .75rem;
+  font-size: .72rem;
   font-weight: 700;
-  letter-spacing: .12em;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  padding: 6px 16px;
-  border-radius: var(--r-full);
-  background: rgba(200,142,40,.1);
-  border: 1px solid rgba(200,142,40,.28);
-  margin-bottom: 22px;
+  margin-bottom: 28px;
   width: fit-content;
+  opacity: 0.9;
+}
+.tag::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--gold-orange);
+  opacity: 0.7;
+  flex-shrink: 0;
 }
 
+/* Large bold headline */
 .headline {
-  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-size: clamp(2.6rem, 4.8vw, 4.6rem);
   font-weight: 800;
-  color: var(--white);
-  line-height: 1.1;
-  letter-spacing: -.03em;
-  margin-bottom: 20px;
+  color: #ffffff;
+  line-height: 1.06;
+  letter-spacing: -.035em;
+  margin-bottom: 28px;
 }
 
-.accent {
-  font-style: normal;
-  color: var(--gold-orange);
-}
-
+/* Single concise subtitle */
 .sub {
-  font-size: 1.1rem;
-  color: rgba(255,255,255,.75);
-  line-height: 1.75;
-  margin-bottom: 14px;
-  max-width: 560px;
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.8;
+  margin-bottom: 44px;
+  max-width: 520px;
   font-weight: 400;
 }
 
-.support {
-  font-size: .95rem;
-  color: rgba(255,255,255,.50);
-  line-height: 1.7;
-  margin-bottom: 32px;
-  max-width: 520px;
-  border-left: 2px solid rgba(200,142,40,.35);
-  padding-left: 14px;
-}
-
+/* CTA row */
 .actions {
   display: flex;
   gap: var(--space-md);
   flex-wrap: wrap;
-  margin-bottom: 28px;
 }
 
 .btnPrimary {
@@ -163,37 +145,18 @@
   gap: 8px;
 }
 
-/* Hero primary CTA — Grey Orange per brand spec */
 .ctaPrimary {
   background: #c88e28 !important;
   border-color: #c88e28 !important;
   color: #fff !important;
-  box-shadow: 0 4px 16px rgba(200,142,40,.35) !important;
+  box-shadow: 0 4px 20px rgba(200,142,40,.32) !important;
   transition: background .22s ease, transform .22s ease, box-shadow .22s ease !important;
 }
 .ctaPrimary:hover {
   background: #a87520 !important;
   border-color: #a87520 !important;
-  transform: translateY(-2px) scale(1.05) !important;
-  box-shadow: 0 8px 28px rgba(200,142,40,.45) !important;
-}
-
-/* Trust chips */
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.chip {
-  font-size: .7rem;
-  font-weight: 600;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.45);
-  padding: 5px 12px;
-  border-radius: var(--r-full);
-  border: 1px solid rgba(255,255,255,.1);
-  background: rgba(255,255,255,.04);
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 32px rgba(200,142,40,.42) !important;
 }
 
 /* ===== RIGHT VISUAL ===== */
@@ -206,43 +169,41 @@
 
 .vizSvg {
   width: 100%;
-  max-width: 480px;
+  max-width: 500px;
   height: auto;
-  filter: drop-shadow(0 24px 48px rgba(0,0,0,.4));
+  filter: drop-shadow(0 28px 56px rgba(0,0,0,.45));
 }
 
 /* Floating stat badge */
 .statBadge {
   position: absolute;
-  bottom: -8px;
-  left: -16px;
+  bottom: -12px;
+  left: -20px;
   display: flex;
   flex-direction: column;
-  padding: 16px 22px;
-  background: rgba(200,142,40,.13);
-  border: 1px solid rgba(200,142,40,.35);
+  padding: 18px 24px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(200,142,40,.3);
   border-radius: var(--r-lg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 8px 32px rgba(0,0,0,.3);
 }
-
 .statNum {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 800;
-  color: var(--white);
+  color: #ffffff;
   line-height: 1;
-  letter-spacing: -.02em;
+  letter-spacing: -.03em;
 }
-
 .statLabel {
-  font-size: .75rem;
-  color: rgba(255,255,255,.6);
+  font-size: .72rem;
+  color: rgba(255, 255, 255, 0.55);
   text-transform: uppercase;
-  letter-spacing: .07em;
-  margin-top: 5px;
+  letter-spacing: .08em;
+  margin-top: 6px;
   max-width: 160px;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 /* ===== CONTROLS ===== */
@@ -258,14 +219,14 @@
 }
 
 .arrow {
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--r-full);
-  border: 1px solid rgba(255,255,255,.18);
-  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.06);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: rgba(255,255,255,.55);
+  color: rgba(255,255,255,.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,47 +235,47 @@
   flex-shrink: 0;
 }
 .arrow:hover {
-  background: rgba(255,255,255,.14);
-  border-color: rgba(255,255,255,.38);
-  color: var(--white);
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.35);
+  color: #ffffff;
 }
-.arrow svg { width: 18px; height: 18px; }
+.arrow svg { width: 17px; height: 17px; }
 
 .dots { display: flex; gap: 10px; }
 .dot {
   height: 10px;
   border-radius: var(--r-full);
   border: none;
-  background: rgba(255,255,255,.2);
+  background: rgba(255,255,255,.18);
   cursor: pointer;
   padding: 0;
   transition: background var(--t-base);
 }
-.dot:hover     { background: rgba(255,255,255,.38); }
-.dotActive     { background: var(--gold-orange); }
+.dot:hover  { background: rgba(255,255,255,.36); }
+.dotActive  { background: var(--gold-orange); }
 
 /* Slide counter */
 .counter {
   position: absolute;
-  top: 96px;
+  top: 92px;
   right: 5%;
   z-index: 20;
-  font-size: .82rem;
+  font-size: .8rem;
   font-weight: 600;
   letter-spacing: .04em;
   display: flex;
   align-items: baseline;
 }
-.counterCurrent { color: var(--gold-orange); font-size: 1.05rem; }
+.counterCurrent { color: var(--gold-orange); font-size: 1rem; }
 .counterSep     { color: rgba(255,255,255,.2); margin: 0 4px; }
-.counterTotal   { color: rgba(255,255,255,.3); }
+.counterTotal   { color: rgba(255,255,255,.28); }
 
 /* Progress bar */
 .progressTrack {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: rgba(255,255,255,.07);
+  height: 2px;
+  background: rgba(255,255,255,.06);
   z-index: 20;
 }
 .progressFill {
@@ -325,27 +286,19 @@
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-  .slideGrid { grid-template-columns: 58% 1fr; gap: var(--space-xl); }
-  .vizSvg    { max-width: 380px; }
+  .slideGrid   { grid-template-columns: 58% 1fr; gap: var(--space-2xl); }
+  .vizSvg      { max-width: 380px; }
+  .headline    { font-size: clamp(2.2rem, 4.5vw, 3.6rem); }
 }
 
 @media (max-width: 768px) {
-  .hero      { min-height: 100svh; align-items: flex-start; }
-  .slideGrid {
-    grid-template-columns: 1fr;
-    padding-top: 100px;
-    gap: var(--space-lg);
-  }
-  .visual    { display: none; }
-  .headline  { font-size: clamp(2rem, 7vw, 2.8rem); }
-  .sub       { font-size: 1rem; }
-  .support   { font-size: .88rem; }
-  .actions   { flex-direction: column; }
+  .hero        { min-height: 100svh; align-items: flex-start; }
+  .slideGrid   { grid-template-columns: 1fr; padding-top: 108px; gap: 0; }
+  .visual      { display: none; }
+  .headline    { font-size: clamp(2rem, 8vw, 2.8rem); }
+  .sub         { font-size: 1rem; margin-bottom: 32px; }
+  .actions     { flex-direction: column; }
   .actions .btn { width: 100%; justify-content: center; }
-  .counter   { top: 84px; right: 20px; }
-  .controls  { bottom: 32px; }
-}
-
-@media (max-width: 480px) {
-  .chips { display: none; }
+  .counter     { top: 80px; right: 20px; }
+  .controls    { bottom: 28px; }
 }
