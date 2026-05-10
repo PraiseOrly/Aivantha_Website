@@ -127,10 +127,10 @@ export default function About() {
   )
 
   const reveal = (delay = 0) => ({
-    initial: { opacity: 0, y: 18 },
+    initial: { opacity: 0, y: 22 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: '-80px' },
-    transition: { duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }
+    viewport: { once: true, margin: '-60px' },
+    transition: { duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }
   })
 
   return (
@@ -182,6 +182,7 @@ export default function About() {
               <motion.div className={styles.cineInner} {...reveal(0.03)}>
                 <span className={`${styles.cineTag} section-tag`}>{modules.m2.tag}</span>
                 <h3 className={styles.cineHeadline}>{modules.m2.headline}</h3>
+                <div className={styles.cineDivider} />
                 <p className={styles.cineSub}>{modules.m2.sub}</p>
               </motion.div>
             </div>
@@ -202,11 +203,19 @@ export default function About() {
             </motion.div>
 
             <div className={styles.cardStack}>
-              <motion.div className={`${styles.promiseCard} ${styles.promiseVision}`} {...reveal(0.06)}>
+              <motion.div
+                className={`${styles.promiseCard} ${styles.promiseVision}`}
+                {...reveal(0.06)}
+                whileHover={{ y: -5, transition: { duration: 0.25 } }}
+              >
                 <span className={`${styles.promiseBadge} ${styles.promiseVisionBadge}`}>Vision</span>
                 <p>{modules.m3.vision}</p>
               </motion.div>
-              <motion.div className={`${styles.promiseCard} ${styles.promiseMission}`} {...reveal(0.13)}>
+              <motion.div
+                className={`${styles.promiseCard} ${styles.promiseMission}`}
+                {...reveal(0.12)}
+                whileHover={{ y: -5, transition: { duration: 0.25 } }}
+              >
                 <span className={`${styles.promiseBadge} ${styles.promiseMissionBadge}`}>Mission</span>
                 <p>{modules.m3.mission}</p>
               </motion.div>
@@ -232,13 +241,14 @@ export default function About() {
                 <motion.div
                   key={c.title}
                   className={`${styles.capCard} ${c.variant === 'gold' ? styles.capGold : styles.capCobalt}`}
-                  {...reveal(0.04 + idx * 0.05)}
+                  {...reveal(0.03 + idx * 0.06)}
+                  whileHover={{ y: -6, transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] } }}
                 >
                   <div className={styles.capIcon} aria-hidden>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.6" />
-                      <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.6" />
-                      <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.6" />
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+                      <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+                      <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
                     </svg>
                   </div>
                   <h4>{c.title}</h4>
@@ -275,12 +285,12 @@ export default function About() {
         {/* MODULE 6 — IMPACT, PARTNERSHIPS, CAREERS */}
         <div className={styles.sectionAnchorPad}>
           <motion.div className={styles.sectionHeaderLeft} {...reveal(0.02)}>
-            <span className="section-tag">End Narrative</span>
+            <span className="section-tag">Our Impact</span>
             <h3>Impact, partnerships, and careers</h3>
           </motion.div>
 
           <div className={styles.panelStack}>
-            <motion.div id="about-impact" key="Impact" className={styles.panel} {...reveal(0.04)}>
+            <motion.div id="about-impact" key="Impact" className={styles.panel} {...reveal(0.04)} whileHover={{ y: -5, transition: { duration: 0.28 } }}>
               <img className={`aboutParallax ${styles.panelImg}`} src={modules.m6.img1} alt="" onError={e => (e.currentTarget.style.display = 'none')} />
               <div className={styles.panelOverlay} />
               <div className={styles.panelContent}>
@@ -289,7 +299,7 @@ export default function About() {
               </div>
             </motion.div>
 
-            <motion.div key="Partnerships" className={styles.panel} {...reveal(0.12)}>
+            <motion.div key="Partnerships" className={styles.panel} {...reveal(0.10)} whileHover={{ y: -5, transition: { duration: 0.28 } }}>
               <img className={`aboutParallax ${styles.panelImg}`} src={modules.m6.img2} alt="" onError={e => (e.currentTarget.style.display = 'none')} />
               <div className={styles.panelOverlay} />
               <div className={styles.panelContent}>
@@ -298,7 +308,7 @@ export default function About() {
               </div>
             </motion.div>
 
-            <motion.div id="about-careers" key="Careers" className={styles.panel} {...reveal(0.20)}>
+            <motion.div id="about-careers" key="Careers" className={styles.panel} {...reveal(0.17)} whileHover={{ y: -5, transition: { duration: 0.28 } }}>
               <img className={`aboutParallax ${styles.panelImg}`} src={modules.m6.img3} alt="" onError={e => (e.currentTarget.style.display = 'none')} />
               <div className={styles.panelOverlay} />
               <div className={styles.panelContent}>
