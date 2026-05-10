@@ -1,4 +1,4 @@
-import { motion, useInView } from 'framer-motion'
+﻿import { motion, useInView } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './About.module.css'
 
@@ -72,19 +72,19 @@ export default function About() {
           'Built for enterprise realities, we connect research, consulting, and technology into one integrated ecosystem.',
           'Our teams work with institutions to turn evidence into measurable system performance.'
         ],
-        img: '/about/hero-1.jpg'
+        img: 'https://images.unsplash.com/photo-1758691463203-cce9d415b2b5?auto=format&fit=crop&w=1920&h=1080&q=80'
       },
       m2: {
         tag: 'Why We Exist',
         headline: 'Africa does not lack health data — it lacks health intelligence.',
         sub: 'We close the gap between information and insight through AI, interoperability, and evidence-based system intelligence.',
-        img: '/about/hero-2.jpg'
+        img: 'https://images.unsplash.com/photo-1758691463080-30a990ef61bb?auto=format&fit=crop&w=1920&h=1080&q=80'
       },
       m3: {
         tag: 'Mission & Vision',
         vision: 'An Africa where healthcare systems are powered by trusted data, ethical AI, and local expertise for better outcomes.',
-        mission: 'To accelerate Africa’s shift to intelligent, data-driven healthcare through AI, research, and scalable innovation.' ,
-        img: '/about/hero-3.jpg'
+        mission: "To accelerate Africa's shift to intelligent, data-driven healthcare through AI, research, and scalable innovation.",
+        img: 'https://images.unsplash.com/photo-1622674777904-386b3ef30c4a?auto=format&fit=crop&w=1920&h=1080&q=80'
       },
       m4: {
         tag: 'What We Do',
@@ -101,7 +101,7 @@ export default function About() {
           { title: 'Talent Marketplace', desc: 'African AI & data specialists for mission-ready teams.', variant: 'cobalt' },
           { title: 'Implementation Teams', desc: 'Embedded delivery to operationalize intelligence.', variant: 'gold' }
         ],
-        img: '/about/hero-4.jpg'
+        img: 'https://images.unsplash.com/photo-1707944746058-4da338d0f827?auto=format&fit=crop&w=1920&h=1080&q=80'
       },
       m5: {
         tag: 'Why AiVantha',
@@ -112,15 +112,15 @@ export default function About() {
           'Integrated ecosystem model',
           'Scalable architecture'
         ],
-        img: '/about/hero-5.jpg'
+        img: 'https://images.unsplash.com/photo-1758873269276-9518d0cb4a0b?auto=format&fit=crop&w=1920&h=1080&q=80'
       },
       m6: {
         impact: 'Transforming healthcare systems across Africa through AI and data intelligence.',
         partners: 'Building healthcare ecosystems through collaboration.',
         careers: 'Join us in shaping the future of intelligent healthcare.',
-        img1: '/about/hero-6a.jpg',
-        img2: '/about/hero-6b.jpg',
-        img3: '/about/hero-6c.jpg'
+        img1: 'https://images.unsplash.com/photo-1758873269317-51888e824b28?auto=format&fit=crop&w=1920&h=1080&q=80',
+        img2: 'https://images.unsplash.com/photo-1758691737543-09a1b2b715fa?auto=format&fit=crop&w=1920&h=1080&q=80',
+        img3: 'https://images.unsplash.com/photo-1758691737045-3ece61135061?auto=format&fit=crop&w=1920&h=1080&q=80'
       }
     }),
     []
