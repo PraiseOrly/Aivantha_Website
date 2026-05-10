@@ -83,14 +83,16 @@
 
 /* Hero headline — 48–64px, weight 600 per editorial type system */
 .headline {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(3rem, 5vw, 4rem);
-  font-weight: 600;
+  font-weight: 700;
   color: #ffffff;
   line-height: 1.12;
   letter-spacing: -.024em;
   margin-bottom: 20px;
   max-width: 680px;
 }
+
 
 /* Subtitle — 16–18px, line-height 1.65–1.7 */
 .sub {
