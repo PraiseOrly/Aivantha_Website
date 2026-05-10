@@ -6,7 +6,11 @@
   overflow: hidden;
   display: flex;
   align-items: flex-end;
+
+
+
 }
+
 
 /* Deep-dark static base — prevents flash between slide backgrounds */
 .heroBase {
