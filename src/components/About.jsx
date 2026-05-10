@@ -1,4 +1,4 @@
-import { motion, useInView } from 'framer-motion'
+import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './About.module.css'
 
@@ -33,6 +33,7 @@ export default function About() {
   const rootRef  = useRef(null)
   useInView(rootRef, { margin: '-100px' })
   const [reduceMotion, setReduceMotion] = useState(false)
+  const [m3Slide, setM3Slide] = useState(0)
 
   useEffect(() => {
     const mq = window.matchMedia?.('(prefers-reduced-motion: reduce)')
@@ -45,25 +46,54 @@ export default function About() {
 
   useSectionParallax('#about .aboutParallax', !reduceMotion)
 
+  useEffect(() => {
+    const total = 2
+    // Match Hero slideshow pacing for consistent transition speed
+    const id = setInterval(() => setM3Slide(s => (s + 1) % total), 8000)
+    return () => clearInterval(id)
+  }, [])
+
+
   const modules = useMemo(() => ({
     m1: {
-      title: 'AiVantha Health is an AI-driven healthcare intelligence company',
+      eyebrow: 'At a Glance',
+      headlinePart1: 'Africa does not lack health data',
+      headlinePart2: '— it lacks health intelligence.',
       body: [
-        'We translate fragmented health data into actionable intelligence to strengthen healthcare decisions across Africa.',
-        'Built for enterprise realities, we connect research, consulting, and technology into one integrated ecosystem.',
-        'Our teams work with institutions to turn evidence into measurable system performance.',
+        'AiVantha Health is an African AI and data-driven healthcare company working at the intersection of research, consulting, and technology to turn fragmented health data into actionable intelligence.',
+        'Across a population of 1.4 billion, African health systems remain under-resourced and fragmented — not for lack of data, but for lack of usable insight that governments and clinicians can act on.',
+        'We exist to close that gap, integrating African health research, AI solutions, consulting, and a continent-wide talent network into one unified ecosystem.',
       ],
+      stat: {
+        title: 'Continental Reach',
+        text: 'Serving 1.4 billion people across Africa, AiVantha integrates research, AI, and consulting into one unified health-intelligence ecosystem.',
+      },
       img: 'https://images.unsplash.com/photo-1758691463203-cce9d415b2b5?auto=format&fit=crop&w=1920&h=1080&q=80',
     },
     m2: {
-      headline: 'Africa does not lack health data—it lacks health intelligence.',
-      sub: 'We close the gap between information and insight through AI, interoperability, and evidence-based system intelligence.',
-      img: 'https://images.unsplash.com/photo-1758691463080-30a990ef61bb?auto=format&fit=crop&w=1920&h=1080&q=80',
+      headline: 'Africa does not lack health data — it lacks health intelligence.',
+      body: [
+        'We close the gap between information and insight through AI, interoperability, and evidence-based system intelligence — built for the complexity of African healthcare systems.',
+        'Built for enterprise realities, we connect research, consulting, and technology into one integrated ecosystem, translating fragmented health data into decisions that strengthen outcomes across the continent.',
+        'Our teams work alongside institutions to turn evidence into measurable system performance, building lasting capacity for data-driven transformation at every level of care.',
+      ],
+      img: 'https://images.unsplash.com/photo-1758691463080-30a990ef61bb?auto=format&fit=crop&w=900&h=1100&q=80',
     },
     m3: {
-      vision:  'An Africa where healthcare systems are powered by trusted data, ethical AI, and local expertise for better outcomes.',
-      mission: "To accelerate Africa's shift to intelligent, data-driven healthcare through AI, research, and scalable innovation.",
-      img: 'https://images.unsplash.com/photo-1622674777904-386b3ef30c4a?auto=format&fit=crop&w=1920&h=1080&q=80',
+      slides: [
+        {
+          label: 'Vision',
+          headline: 'An Africa where healthcare systems are powered by trusted data, ethical AI, and local expertise.',
+          body: 'We envision a continent where every healthcare decision — from village clinic to national health ministry — is guided by intelligent, ethical, and locally-grounded data systems.',
+          img: 'https://images.unsplash.com/photo-1622674777904-386b3ef30c4a?auto=format&fit=crop&w=1920&h=1080&q=80',
+        },
+        {
+          label: 'Mission',
+          headline: "Accelerating Africa's shift to intelligent, data-driven healthcare.",
+          body: 'Through AI research, scalable innovation, and a continent-wide talent network, we build the intelligence infrastructure that African health systems need to thrive.',
+          img: 'https://images.unsplash.com/photo-1758873269276-9518d0cb4a0b?auto=format&fit=crop&w=1920&h=1080&q=80',
+        },
+      ],
     },
     m4: {
       title: 'A structured ecosystem for intelligent healthcare',
@@ -110,23 +140,26 @@ export default function About() {
     <section className={`section ${styles.aboutSection}`} id="about" ref={rootRef}>
       <div className="container">
 
-        {/* ── M1  Identity & Purpose ── */}
+        {/* ── M1  Overview ── */}
         <div id="about-overview" className={styles.sectionAnchorPad}>
-          <div className={styles.splitModule}>
+          <div className={styles.overviewGrid}>
 
-            <motion.div className={styles.splitText} {...reveal(0.04)}>
-              <p className={styles.eyebrow}>Healthcare Intelligence</p>
-              <h2 className={styles.m1Headline}>{modules.m1.title}</h2>
-              <div className={styles.m1Divider} />
-              <div className={styles.progText}>
+            {/* Left — cobalt blue panel */}
+            <motion.div className={styles.overviewLeft} {...reveal(0.03)}>
+              <p className={styles.overviewEyebrow}>{modules.m1.eyebrow}</p>
+              <h2 className={styles.overviewHeadline}>
+                {modules.m1.headlinePart1}
+                <em>{modules.m1.headlinePart2}</em>
+              </h2>
+              <div className={styles.overviewBody}>
                 {modules.m1.body.map((p, i) => (
                   <motion.p
                     key={i}
-                    className={`${styles.modParagraph} ${i === 0 ? styles.modLead : ''}`}
+                    className={styles.overviewPara}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-56px' }}
-                    transition={{ duration: 0.62, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.6, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   >
                     {p}
                   </motion.p>
@@ -134,68 +167,87 @@ export default function About() {
               </div>
             </motion.div>
 
-            <motion.div className={styles.splitVisual} {...reveal(0.08)}>
-              <div className={styles.bgImageCard}>
-                <img
-                  className={`aboutParallax ${styles.bgImage}`}
-                  src={modules.m1.img} alt=""
-                  onError={e => (e.currentTarget.style.display = 'none')}
-                />
-                <div className={styles.bgOverlay} />
+            {/* Right — full-bleed image + floating stat card */}
+            <div className={styles.overviewRight}>
+              <img
+                className={styles.overviewImg}
+                src={modules.m1.img} alt="African healthcare professional"
+                onError={e => (e.currentTarget.style.display = 'none')}
+              />
+              <div className={styles.statCard}>
+                <span className={styles.statTitle}>{modules.m1.stat.title}</span>
+                <p className={styles.statText}>{modules.m1.stat.text}</p>
               </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* ── M2  Our Story ── */}
+        <div id="about-vision" className={styles.sectionAnchorPad}>
+          <div className={styles.storyGrid}>
+            <div className={styles.storyImageWrap}>
+              <img
+                className={styles.storyImage}
+                src={modules.m2.img} alt="AiVantha Health team"
+                onError={e => (e.currentTarget.style.display = 'none')}
+              />
+            </div>
+            <motion.div className={styles.storyText} {...reveal(0.05)}>
+              <p className={styles.eyebrow}>Our Story</p>
+              <h2 className={styles.storyHeadline}>{modules.m2.headline}</h2>
+              {modules.m2.body.map((p, i) => (
+                <motion.p
+                  key={i}
+                  className={styles.storyPara}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-56px' }}
+                  transition={{ duration: 0.62, delay: 0.12 + i * 0.09, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {p}
+                </motion.p>
+              ))}
             </motion.div>
           </div>
         </div>
 
-        {/* ── M2  The Problem ── */}
-        <div id="about-vision" className={`${styles.sectionAnchorPad} ${styles.sectionBgBlue}`}>
-          <section className={styles.cineModule} aria-label="Why we exist">
-            <div className={styles.cineBg}>
-              <img
-                className={`aboutParallax ${styles.cineImg}`}
-                src={modules.m2.img} alt=""
-                onError={e => (e.currentTarget.style.display = 'none')}
-              />
-              <div className={styles.cineOverlay} />
-            </div>
-            <div className={styles.cineContent}>
-              <motion.div className={styles.cineInner} {...reveal(0.03)}>
-                <h3 className={styles.cineHeadline}>{modules.m2.headline}</h3>
-                <div className={styles.cineDivider} />
-                <p className={styles.cineSub}>{modules.m2.sub}</p>
-              </motion.div>
-            </div>
-          </section>
-        </div>
-
-        {/* ── M3  Vision & Mission ── */}
+        {/* ── M3  Vision & Mission (slideshow) ── */}
         <div id="about-approach" className={styles.sectionAnchorPad}>
-          <div className={styles.stackModuleBg}>
-            <img
-              className={`aboutParallax ${styles.stackBgImg}`}
-              src={modules.m3.img} alt=""
-              onError={e => (e.currentTarget.style.display = 'none')}
-            />
-            <div className={styles.stackBgOverlay} />
-          </div>
-          <div className={styles.stackModuleContent}>
-            <div className={styles.cardStack}>
-              <motion.div
-                className={`${styles.promiseCard} ${styles.promiseVision}`}
-                {...reveal(0.05)}
-                whileHover={{ y: -5, transition: { duration: 0.24 } }}
-              >
-                <span className={`${styles.promiseBadge} ${styles.promiseVisionBadge}`}>Vision</span>
-                <p>{modules.m3.vision}</p>
-              </motion.div>
-              <motion.div
-                className={`${styles.promiseCard} ${styles.promiseMission}`}
-                {...reveal(0.11)}
-                whileHover={{ y: -5, transition: { duration: 0.24 } }}
-              >
-                <span className={`${styles.promiseBadge} ${styles.promiseMissionBadge}`}>Mission</span>
-                <p>{modules.m3.mission}</p>
-              </motion.div>
+          <div className={styles.slideshow}>
+            {modules.m3.slides.map((slide, i) => (
+              <div
+                key={i}
+                className={`${styles.slideBg} ${m3Slide === i ? styles.slideBgActive : ''}`}
+                style={{ backgroundImage: `url(${slide.img})` }}
+                aria-hidden
+              />
+            ))}
+            <div className={styles.slideshowCard}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={m3Slide}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                >
+
+                  <span className={styles.slideLabel}>{modules.m3.slides[m3Slide].label}</span>
+                  <h3 className={styles.slideHeadline}>{modules.m3.slides[m3Slide].headline}</h3>
+                  <p className={styles.slideBody}>{modules.m3.slides[m3Slide].body}</p>
+                </motion.div>
+              </AnimatePresence>
+              <div className={styles.slideDots}>
+                {modules.m3.slides.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`${styles.slideDot} ${m3Slide === i ? styles.slideDotActive : ''}`}
+                    onClick={() => setM3Slide(i)}
+                    aria-label={`Slide ${i + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
