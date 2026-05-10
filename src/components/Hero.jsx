@@ -6,28 +6,31 @@ const INTERVAL = 8000
 
 const slides = [
   {
-    headline: 'Fragmented healthcare systems across Africa',
-    sub: 'Limited infrastructure, disconnected data, and unequal access continue to slow healthcare progress across the continent.',
-    cta1: { label: 'See the Challenge', href: '#challenge' },
+    headline: 'AI-driven healthcare intelligence systems',
+    sub: 'We design AI systems that transform raw health data into actionable clinical and operational insights.',
+    micro: 'Built for governments, hospitals, and healthcare networks.',
+    cta1: { label: 'Explore Solutions', href: '#solutions' },
     cta2: { label: 'Our Approach', href: '#about' },
-    bgImage: 'https://plus.unsplash.com/premium_photo-1682130171029-49261a5ba80a?w=1920&q=85&auto=format&fit=crop',
-    bgPos: 'center 30%',
-  },
-  {
-    headline: 'AI-powered healthcare intelligence for Africa',
-    sub: 'Ethical, data-driven, and locally grounded AI systems that connect and strengthen healthcare delivery across the continent.',
-    cta1: { label: 'Explore Products', href: '#solutions' },
-    cta2: { label: 'Our Services', href: '#services' },
-    bgImage: 'https://plus.unsplash.com/premium_photo-1682141174396-bb2b02466774?w=1920&q=85&auto=format&fit=crop',
+    bgImage: 'https://images.unsplash.com/photo-1741707039536-113e200f9e0d?auto=format&fit=crop&w=1920&h=1080&q=85',
     bgPos: 'center center',
   },
   {
-    headline: 'Transforming healthcare outcomes across Africa',
-    sub: 'Smarter decisions, stronger systems, and improved access through AI-driven healthcare innovation at continental scale.',
-    cta1: { label: 'Partner With Us', href: '#contact' },
-    cta2: { label: 'View Solutions', href: '#solutions' },
-    bgImage: 'https://plus.unsplash.com/premium_photo-1661636259322-25675b4d9a32?w=1920&q=85&auto=format&fit=crop',
-    bgPos: 'center 40%',
+    headline: 'Digital transformation for healthcare systems',
+    sub: 'We enable institutions to modernize workflows, improve interoperability, and build scalable digital health infrastructure.',
+    micro: 'From fragmented systems to connected healthcare ecosystems.',
+    cta1: { label: 'Explore Services', href: '#services' },
+    cta2: { label: 'Our Approach', href: '#about' },
+    bgImage: 'https://images.unsplash.com/photo-1666886573212-2de95596d509?auto=format&fit=crop&w=1920&h=1080&q=85',
+    bgPos: 'center center',
+  },
+  {
+    headline: 'AI innovation and healthcare capacity building',
+    sub: 'We support healthcare institutions with AI research, advisory services, and training to scale sustainable innovation.',
+    micro: "Empowering Africa's healthcare ecosystem with AI talent and research-driven solutions.",
+    cta1: { label: 'AI Innovation', href: '#solutions' },
+    cta2: { label: 'Partner With Us', href: '#contact' },
+    bgImage: 'https://images.unsplash.com/photo-1536064479547-7ee40b74b807?auto=format&fit=crop&w=1920&h=1080&q=85',
+    bgPos: 'center 30%',
   },
 ]
 
@@ -117,10 +120,10 @@ export default function Hero() {
           key={current}
           className={styles.slide}
           custom={direction}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, x: direction * 32 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: direction * -24 }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="container">
             <div className={styles.slideContent}>
@@ -141,10 +144,20 @@ export default function Hero() {
                 {slide.sub}
               </motion.p>
 
+              {slide.micro && (
+                <motion.p
+                  className={styles.micro}
+                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.38, duration: 0.55, ease: [0.16,1,0.3,1] }}
+                >
+                  {slide.micro}
+                </motion.p>
+              )}
+
               <motion.div
                 className={styles.actions}
                 initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.55, ease: [0.16,1,0.3,1] }}
+                transition={{ delay: 0.5, duration: 0.55, ease: [0.16,1,0.3,1] }}
               >
                 <button className={`btn ${styles.ctaPrimary} ${styles.btnPrimary}`} onClick={() => scrollTo(slide.cta1.href)}>
                   {slide.cta1.label}
@@ -162,35 +175,18 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation controls */}
-      <div className={styles.controls}>
-        <motion.button className={styles.arrow} onClick={goPrev} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.93 }} aria-label="Previous slide">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-        </motion.button>
-
-        <div className={styles.dots}>
-          {slides.map((_, i) => (
-            <motion.button
-              key={i}
-              className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
-              onClick={() => goTo(i)}
-              animate={i === current ? { width: 28 } : { width: 10 }}
-              transition={{ type: 'tween', duration: 0.3 }}
-              aria-label={`Slide ${i + 1}`}
-            />
-          ))}
-        </div>
-
-        <motion.button className={styles.arrow} onClick={goNext} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.93 }} aria-label="Next slide">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-        </motion.button>
-      </div>
-
-      {/* Slide counter */}
-      <div className={styles.counter}>
-        <span className={styles.counterCurrent}>{String(current + 1).padStart(2, '0')}</span>
-        <span className={styles.counterSep}>/</span>
-        <span className={styles.counterTotal}>{String(slides.length).padStart(2, '0')}</span>
+      {/* Dot indicators */}
+      <div className={styles.dots}>
+        {slides.map((_, i) => (
+          <motion.button
+            key={i}
+            className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
+            onClick={() => goTo(i)}
+            animate={i === current ? { width: 28 } : { width: 10 }}
+            transition={{ type: 'tween', duration: 0.3 }}
+            aria-label={`Slide ${i + 1}`}
+          />
+        ))}
       </div>
 
       {/* Progress bar */}

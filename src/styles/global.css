@@ -105,7 +105,8 @@ html { scroll-behavior: smooth; font-size: 16px; -webkit-font-smoothing: antiali
 body {
   font-family: var(--font);
   color: var(--gray-800);
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.65;
   overflow-x: hidden;
   background: var(--white);
 }
@@ -170,10 +171,10 @@ input, textarea, select { font-family: var(--font); }
 }
 
 .section-header h2 {
-  font-size: clamp(2rem, 4vw, 3.25rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-weight: 600;
   color: var(--navy-900);
-  letter-spacing: -.03em;
+  letter-spacing: -.022em;
   margin-bottom: var(--space-md);
   line-height: 1.2;
 }
@@ -183,19 +184,19 @@ input, textarea, select { font-family: var(--font); }
 }
 
 .section-header p {
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 1.2vw, 1.0625rem);
   color: var(--gray-600);
   max-width: 640px;
   margin: 0 auto;
-  line-height: 1.7;
+  line-height: 1.68;
 }
 
 .section-lead {
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 1.2vw, 1.0625rem);
   color: var(--gray-600);
   max-width: 680px;
   margin: 0 auto;
-  line-height: 1.78;
+  line-height: 1.7;
 }
 
 .section-lead.lead-light {
