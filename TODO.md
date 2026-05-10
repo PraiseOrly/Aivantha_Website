@@ -1,15 +1,19 @@
-# Solutions Section Implementation - Approved Plan
+# TODO
 
-## Status: [IN PROGRESS]
+## About section split into smaller sections
+- [ ] Verify current About module structure and existing anchor IDs in `src/components/About.jsx`.
+- [x] Refactor About JSX into 8 distinct sections: Overview, Our story, Mission & Vision, What we do, Why AiVantha Health, Impact, Careers, Partnerships.
+- [x] Add/align anchor ids with navbar expectations:
+  - [x] `#about-overview`
+  - [x] `#about-vision` (Our story)
+  - [x] `#about-approach` (Mission & Vision)
+  - [x] `#about-why` (What we do)
+  - [x] Keep `#about-partnerships` as the anchor for Why AiVantha + Partnerships (per confirmation)
+- [x] Add new anchors for Impact and Careers (for internal scrolling).
 
-### Step 1: [DONE] Gather info - Read Solutions.jsx & .css
-### Step 2: [DONE] Create this TODO.md
-### Step 3: [DONE] Implement CSS updates (backgrounds, layouts, animations, glassmorphism)
-### Step 4: [DONE] Update JSX structure (featured product, talent carousel cards, CTAs, icons)
-### Step 5: [DONE] Test responsiveness, interactions, animations
-### Step 6: Check globals (if vars missing, update global.css)
-### Step 7: Navbar scroll spy (if needed)
-### Step 8: [FINAL] attempt_completion
+- [x] Update `src/components/About.module.css` only if spacing/layout needs adjustment.
 
-*Current: Steps 1-5 complete. Globals ok (existing vars work), no navbar changes needed. Ready for completion.*
+- [x] Run `npm run dev` or `npm run build` to ensure no regressions.
+
+
 

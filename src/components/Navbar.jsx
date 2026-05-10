@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
+
 import {
   Activity, BookOpen, Bot, Brain, Briefcase,
   Building2, Compass, Eye, FileSearch, FileText,
@@ -16,11 +17,13 @@ const navItems = [
     href: '#about',
     type: 'products',
     subItems: [
-      { label: 'Company Overview',    desc: 'Who we are and what drives us forward',       href: '#about-overview',     Icon: Building2 },
-      { label: 'Vision & Mission',    desc: 'Equitable, AI-powered health transformation', href: '#about-vision',       Icon: Eye       },
-      { label: 'Our Approach',        desc: 'Research-first, Africa-led methodology',      href: '#about-approach',     Icon: Compass   },
-      { label: 'Why AiVantha Health', desc: 'What sets us apart in the ecosystem',         href: '#about-why',          Icon: Star      },
-      { label: 'Partnerships',        desc: 'Building the ecosystem together',             href: '#about-partnerships', Icon: Users     },
+      { label: 'Overview', desc: '', href: '#about-overview', Icon: Building2 },
+      { label: 'Our Story', desc: '', href: '#about-vision', Icon: Eye },
+      { label: 'Mission & Vision', desc: '', href: '#about-approach', Icon: Compass },
+      { label: 'What We Do', desc: '', href: '#about-why', Icon: Star },
+      { label: 'Why AiVantha', desc: '', href: '#about-partnerships', Icon: Users },
+      { label: 'Impact & Partnerships', desc: '', href: '#about-partnerships', Icon: Users },
+
     ],
   },
   {
@@ -28,13 +31,13 @@ const navItems = [
     href: '#services',
     type: 'services',
     subItems: [
-      { label: 'AI & Data Strategy',                  desc: 'National and institutional AI strategies',                      href: '#ai-data-strategy',              Icon: Brain       },
-      { label: 'Digital Health Transformation',       desc: 'Digital health roadmaps & system modernisation',                href: '#digital-health-transformation', Icon: Zap         },
-      { label: 'AI Governance & Ethics',              desc: 'Responsible AI frameworks & compliance',                        href: '#ai-governance-ethics',          Icon: Shield      },
-      { label: 'Clinical Decision Support',           desc: 'Point-of-care AI guidance tools',                               href: '#health-data-systems',           Icon: Stethoscope },
-      { label: 'Predictive Analytics & Intelligence', desc: 'Outbreak detection, risk stratification & population insights', href: '#ai-data-strategy',              Icon: Activity    },
-      { label: 'Data Systems & Interoperability',     desc: 'Health data architecture & seamless data exchange',             href: '#health-data-systems',           Icon: Network     },
-      { label: 'Applied Research & Evaluation',       desc: 'AI research, MEL frameworks & impact measurement',              href: '#applied-research',              Icon: FileSearch  },
+      { label: 'AI & Data Strategy',                  desc: '', href: '#ai-data-strategy',              Icon: Brain       },
+      { label: 'Digital Health Transformation',       desc: '', href: '#digital-health-transformation', Icon: Zap         },
+      { label: 'AI Governance & Ethics',              desc: '', href: '#ai-governance-ethics',          Icon: Shield      },
+      { label: 'Clinical Decision Support',           desc: '', href: '#health-data-systems',           Icon: Stethoscope },
+      { label: 'Predictive Analytics & Intelligence', desc: '', href: '#ai-data-strategy',              Icon: Activity    },
+      { label: 'Data Systems & Interoperability',     desc: '', href: '#health-data-systems',           Icon: Network     },
+      { label: 'Applied Research & Evaluation',       desc: '', href: '#applied-research',              Icon: FileSearch  },
     ],
   },
   {
@@ -42,11 +45,11 @@ const navItems = [
     href: '#solutions',
     type: 'products',
     subItems: [
-      { label: 'CardiacTek',          desc: 'AI cardiac diagnostics & biosignal analysis',       href: '#solutions', Icon: Heart     },
-      { label: 'Oxylytics',           desc: 'Real-time oxygen & respiratory health analytics',   href: '#solutions', Icon: Activity  },
-      { label: 'AiVantha Coach',      desc: 'AI training & workflow support for health workers', href: '#solutions', Icon: Bot       },
-      { label: 'AiVantha Data',       desc: 'Interoperable health intelligence platform',        href: '#solutions', Icon: LineChart },
-      { label: 'AiVantha Talent Hub', desc: "Africa's vetted AI & health data talent network",  href: '#solutions', Icon: Users     },
+      { label: 'CardiacTek',          desc: '', href: '#solutions', Icon: Heart     },
+      { label: 'Oxylytics',           desc: '', href: '#solutions', Icon: Activity  },
+      { label: 'AiVantha Coach',      desc: '', href: '#solutions', Icon: Bot       },
+      { label: 'AiVantha Data',       desc: '', href: '#solutions', Icon: LineChart },
+      { label: 'AiVantha Talent Hub', desc: '', href: '#solutions', Icon: Users     },
     ],
   },
   {
@@ -54,11 +57,11 @@ const navItems = [
     href: '#resources',
     type: 'resources',
     subItems: [
-      { label: 'Research & Insights',   desc: 'Original findings from our field work',     href: '#resources', Icon: BookOpen   },
-      { label: 'Publications',          desc: 'Peer-reviewed papers and reports',          href: '#resources', Icon: FileText   },
-      { label: 'Case Studies',          desc: 'Real impact across African health systems', href: '#resources', Icon: Briefcase  },
-      { label: 'Reports & Whitepapers', desc: 'In-depth analysis and frameworks',          href: '#resources', Icon: FileSearch },
-      { label: 'Blog & Articles',       desc: 'Perspectives from the field',               href: '#resources', Icon: PenSquare  },
+      { label: 'Research & Insights',   desc: '', href: '#resources', Icon: BookOpen   },
+      { label: 'Publications',          desc: '', href: '#resources', Icon: FileText   },
+      { label: 'Case Studies',          desc: '', href: '#resources', Icon: Briefcase  },
+      { label: 'Reports & Whitepapers', desc: '', href: '#resources', Icon: FileSearch },
+      { label: 'Blog & Articles',       desc: '', href: '#resources', Icon: PenSquare  },
     ],
     featured: {
       label: 'Latest Report',
@@ -67,7 +70,6 @@ const navItems = [
       href: '#resources',
     },
   },
-  { label: 'Contact', href: '#contact' },
 ]
 
 const DROPDOWN_POS = {
@@ -106,7 +108,7 @@ function DropItem({ item, handleLink }) {
             <span className={`${styles.badge} ${BADGE_CLASS[item.badgeType]}`}>{item.badge}</span>
           )}
         </span>
-        <span className={styles.dropItemDesc}>{item.desc}</span>
+        {item.desc ? <span className={styles.dropItemDesc}>{item.desc}</span> : null}
       </span>
     </a>
   )
@@ -249,8 +251,11 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Right: CTA */}
+        {/* Right: CTAs */}
         <div className={styles.navActions}>
+          <a href="#contact" className={styles.ctaBtnSecondary} onClick={e => handleLink(e, '#contact')}>
+            Book a Demo
+          </a>
           <a href="#contact" className={styles.ctaBtn} onClick={e => handleLink(e, '#contact')}>
             Partner With Us
           </a>
@@ -328,12 +333,16 @@ export default function Navbar() {
             ))}
 
             <motion.div
+              className={styles.mobileCtas}
               initial={{ opacity: 0, x: -16 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: navItems.length * 0.05 }}
             >
               <a href="#contact" className={`${styles.mobileLink} ${styles.mobileCta}`} onClick={e => handleLink(e, '#contact')}>
                 Partner With Us
+              </a>
+              <a href="#contact" className={`${styles.mobileLink} ${styles.mobileCtraSecondary}`} onClick={e => handleLink(e, '#contact')}>
+                Book a Demo
               </a>
             </motion.div>
           </motion.div>
