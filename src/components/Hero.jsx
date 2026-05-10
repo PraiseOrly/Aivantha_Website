@@ -6,40 +6,28 @@ const INTERVAL = 8000
 
 const slides = [
   {
-    tag: 'Challenge · Africa Healthcare',
     headline: 'Fragmented healthcare systems across Africa',
     sub: 'Limited infrastructure, disconnected data, and unequal access continue to slow healthcare progress across the continent.',
     cta1: { label: 'See the Challenge', href: '#challenge' },
     cta2: { label: 'Our Approach', href: '#about' },
-    bg: [
-      'radial-gradient(ellipse 70% 75% at 68% 38%, rgba(100,45,8,.55) 0%, transparent 65%)',
-      'radial-gradient(ellipse 40% 50% at 25% 75%, rgba(60,20,4,.35) 0%, transparent 55%)',
-      'linear-gradient(162deg, #060301 0%, #120703 45%, #080504 100%)',
-    ].join(','),
+    bgImage: 'https://plus.unsplash.com/premium_photo-1682130171029-49261a5ba80a?w=1920&q=85&auto=format&fit=crop',
+    bgPos: 'center 30%',
   },
   {
-    tag: 'Solution · AI Health Intelligence',
     headline: 'AI-powered healthcare intelligence for Africa',
     sub: 'Ethical, data-driven, and locally grounded AI systems that connect and strengthen healthcare delivery across the continent.',
     cta1: { label: 'Explore Products', href: '#solutions' },
     cta2: { label: 'Our Services', href: '#services' },
-    bg: [
-      'radial-gradient(ellipse 70% 70% at 72% 34%, rgba(0,58,168,.52) 0%, transparent 65%)',
-      'radial-gradient(ellipse 45% 55% at 20% 72%, rgba(0,30,90,.3) 0%, transparent 55%)',
-      'linear-gradient(148deg, #01050f 0%, #020a1d 48%, #01060f 100%)',
-    ].join(','),
+    bgImage: 'https://plus.unsplash.com/premium_photo-1682141174396-bb2b02466774?w=1920&q=85&auto=format&fit=crop',
+    bgPos: 'center center',
   },
   {
-    tag: 'Impact · Continental Transformation',
     headline: 'Transforming healthcare outcomes across Africa',
     sub: 'Smarter decisions, stronger systems, and improved access through AI-driven healthcare innovation at continental scale.',
     cta1: { label: 'Partner With Us', href: '#contact' },
     cta2: { label: 'View Solutions', href: '#solutions' },
-    bg: [
-      'radial-gradient(ellipse 68% 70% at 62% 32%, rgba(6,88,50,.5) 0%, transparent 65%)',
-      'radial-gradient(ellipse 45% 50% at 22% 74%, rgba(3,50,28,.3) 0%, transparent 55%)',
-      'linear-gradient(148deg, #020b05 0%, #031208 48%, #020b05 100%)',
-    ].join(','),
+    bgImage: 'https://plus.unsplash.com/premium_photo-1661636259322-25675b4d9a32?w=1920&q=85&auto=format&fit=crop',
+    bgPos: 'center 40%',
   },
 ]
 
@@ -104,12 +92,15 @@ export default function Hero() {
       {/* Subtle grid texture */}
       <div className={styles.bgGrid} />
 
-      {/* Per-slide ambient background — cross-fades independently */}
+      {/* Per-slide background photo — cross-fades independently */}
       <AnimatePresence mode="sync">
         <motion.div
           key={`bg-${current}`}
           className={styles.slideBg}
-          style={{ background: slide.bg }}
+          style={{
+            backgroundImage: `url(${slide.bgImage})`,
+            backgroundPosition: slide.bgPos,
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -134,18 +125,10 @@ export default function Hero() {
           <div className="container">
             <div className={styles.slideContent}>
 
-              <motion.span
-                className={styles.tag}
-                initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.14, duration: 0.55, ease: [0.16,1,0.3,1] }}
-              >
-                {slide.tag}
-              </motion.span>
-
               <motion.h1
                 className={styles.headline}
                 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.24, duration: 0.7, ease: [0.16,1,0.3,1] }}
+                transition={{ delay: 0.14, duration: 0.7, ease: [0.16,1,0.3,1] }}
               >
                 {slide.headline}
               </motion.h1>
@@ -153,7 +136,7 @@ export default function Hero() {
               <motion.p
                 className={styles.sub}
                 initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.38, duration: 0.65, ease: [0.16,1,0.3,1] }}
+                transition={{ delay: 0.28, duration: 0.65, ease: [0.16,1,0.3,1] }}
               >
                 {slide.sub}
               </motion.p>
@@ -161,7 +144,7 @@ export default function Hero() {
               <motion.div
                 className={styles.actions}
                 initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.55, ease: [0.16,1,0.3,1] }}
+                transition={{ delay: 0.4, duration: 0.55, ease: [0.16,1,0.3,1] }}
               >
                 <button className={`btn ${styles.ctaPrimary} ${styles.btnPrimary}`} onClick={() => scrollTo(slide.cta1.href)}>
                   {slide.cta1.label}

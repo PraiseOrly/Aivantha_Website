@@ -16,11 +16,13 @@
   z-index: 0;
 }
 
-/* Per-slide ambient gradient — fades independently of text content */
+/* Per-slide background photo — fades independently of text content */
 .slideBg {
   position: absolute;
   inset: 0;
   z-index: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
   will-change: opacity;
 }
 
@@ -41,21 +43,23 @@
   100% { background-position: 72px 72px, 72px 72px; }
 }
 
-/* Cinematic overlay — strong dark well at bottom for text, fades to transparent at top */
+/* Cinematic overlay — strong dark well at bottom for text, fades up over the photo */
 .overlay {
   position: absolute;
   inset: 0;
   background:
     linear-gradient(to top,
-      rgba(2,5,14,.95) 0%,
-      rgba(2,5,14,.70) 22%,
-      rgba(2,5,14,.38) 45%,
-      rgba(2,5,14,.12) 65%,
-      transparent 82%
+      rgba(2,5,14,.97) 0%,
+      rgba(2,5,14,.86) 18%,
+      rgba(2,5,14,.60) 38%,
+      rgba(2,5,14,.28) 56%,
+      rgba(2,5,14,.08) 72%,
+      transparent 85%
     ),
     linear-gradient(to right,
-      rgba(0,0,0,.22) 0%,
-      transparent 60%
+      rgba(0,0,0,.32) 0%,
+      rgba(0,0,0,.12) 40%,
+      transparent 70%
     );
   z-index: 3;
   pointer-events: none;
@@ -76,30 +80,6 @@
 .slideContent {
   max-width: 720px;
   width: 100%;
-}
-
-/* Editorial eyebrow tag */
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--gold-orange);
-  font-size: .68rem;
-  font-weight: 700;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  margin-bottom: 22px;
-  width: fit-content;
-  opacity: 0.88;
-}
-.tag::before {
-  content: '';
-  display: inline-block;
-  width: 24px;
-  height: 1.5px;
-  background: currentColor;
-  opacity: 0.62;
-  flex-shrink: 0;
 }
 
 /* Hero headline — large, cinematic, bold */
