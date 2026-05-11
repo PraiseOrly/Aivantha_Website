@@ -84,98 +84,84 @@ export default function Hero() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Slide — text + image side by side */}
-      <AnimatePresence mode="wait" custom={direction}>
-        <motion.div
-          key={current}
-          className={styles.slide}
-          custom={direction}
-          initial={{ opacity: 0, x: direction * 24 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: direction * -18 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className={styles.heroContainer}>
-            <div className={styles.slideInner}>
+      {/* Inset image card — blue frame visible on all 4 sides */}
+      <div className={styles.imageCard}>
 
-              {/* Text column */}
-              <div className={styles.slideContent}>
-                <motion.h1
-                  className={styles.headline}
-                  initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1, duration: 0.65, ease: [0.16,1,0.3,1] }}
-                >
-                  {slide.headlineParts[0]}
-                  <em className={styles.headlineEmphasis}>{slide.headlineParts[1]}</em>
-                  {slide.headlineParts[2]}
-                </motion.h1>
+        {/* Crossfading background photo */}
+        <AnimatePresence mode="sync">
+          <motion.div
+            key={`bg-${current}`}
+            className={styles.slideBg}
+            style={{
+              backgroundImage: `url(${slide.bgImage})`,
+              backgroundPosition: slide.bgPos,
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
+          />
+        </AnimatePresence>
 
-                <motion.p
-                  className={styles.sub}
-                  initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.22, duration: 0.6, ease: [0.16,1,0.3,1] }}
-                >
-                  {slide.sub}
-                </motion.p>
+        {/* Gradient — darkens left zone for text readability */}
+        <div className={styles.imageOverlay} />
 
-                <motion.div
-                  className={styles.actions}
-                  initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.36, duration: 0.5, ease: [0.16,1,0.3,1] }}
-                >
-                  <button className={styles.ctaPrimary} onClick={() => scrollTo(slide.cta1.href)}>
-                    {slide.cta1.label}
-                    <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15" aria-hidden="true">
-                      <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd"/>
-                    </svg>
-                  </button>
-                  <button className={styles.ctaSecondary} onClick={() => scrollTo(slide.cta2.href)}>
-                    {slide.cta2.label}
-                  </button>
-                </motion.div>
-              </div>
+        {/* Slide text — transitions on each slide change */}
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={current}
+            className={styles.textOverlay}
+            custom={direction}
+            initial={{ opacity: 0, x: direction * 28 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: direction * -22 }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className={styles.slideContent}>
 
-              {/* Image column — framed by blue on all sides */}
-              <div className={styles.imageWrap}>
-                <div className={styles.imageFrame}>
-                  <AnimatePresence mode="sync">
-                    <motion.img
-                      key={`img-${current}`}
-                      src={slide.bgImage}
-                      alt=""
-                      className={styles.slideImage}
-                      style={{ objectPosition: slide.bgPos }}
-                      initial={{ opacity: 0, scale: 1.04 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 1.0, ease: 'easeInOut' }}
-                    />
-                  </AnimatePresence>
-                </div>
-              </div>
+              <motion.h1
+                className={styles.headline}
+                initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.65, ease: [0.16,1,0.3,1] }}
+              >
+                {slide.headlineParts[0]}
+                <em className={styles.headlineEmphasis}>{slide.headlineParts[1]}</em>
+                {slide.headlineParts[2]}
+              </motion.h1>
+
+              <motion.p
+                className={styles.sub}
+                initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.22, duration: 0.6, ease: [0.16,1,0.3,1] }}
+              >
+                {slide.sub}
+              </motion.p>
+
+              <motion.div
+                className={styles.actions}
+                initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.36, duration: 0.5, ease: [0.16,1,0.3,1] }}
+              >
+                <button className={styles.ctaPrimary} onClick={() => scrollTo(slide.cta1.href)}>
+                  {slide.cta1.label}
+                  <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15" aria-hidden="true">
+                    <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd"/>
+                  </svg>
+                </button>
+                <button className={styles.ctaSecondary} onClick={() => scrollTo(slide.cta2.href)}>
+                  {slide.cta2.label}
+                </button>
+              </motion.div>
 
             </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+          </motion.div>
+        </AnimatePresence>
 
-      {/* Dot indicators */}
-      <div className={styles.dots}>
-        {slides.map((_, i) => (
-          <motion.button
-            key={i}
-            className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
-            onClick={() => goTo(i)}
-            animate={i === current ? { width: 28 } : { width: 8 }}
-            transition={{ type: 'tween', duration: 0.3 }}
-            aria-label={`Slide ${i + 1}`}
-          />
-        ))}
-      </div>
+        {/* Progress bar — sits on the bottom edge of the card */}
+        <div className={styles.progressTrack}>
+          <div className={styles.progressFill} style={{ width: `${progress}%` }} />
+        </div>
 
-      {/* Progress bar */}
-      <div className={styles.progressTrack}>
-        <div className={styles.progressFill} style={{ width: `${progress}%` }} />
       </div>
     </section>
   )

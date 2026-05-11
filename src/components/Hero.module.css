@@ -1,18 +1,22 @@
-/* ===== HERO ===== */
+/* ===== HERO — blue matte frame ===== */
 .hero {
   position: relative;
-  background: linear-gradient(140deg, #003d8f 0%, #004aad 55%, #0057cc 100%);
-  min-height: 90vh;
+  background: #10357a;
+  /* 36px on all sides = the visible blue border around the image card */
+  padding: 36px;
+  height: 100vh;
+  min-height: 560px;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
-/* Subtle grid texture */
+/* Grid texture sits on the blue frame, not the photo */
 .bgGrid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
   background-size: 72px 72px;
   animation: gridDrift 70s linear infinite;
   pointer-events: none;
@@ -23,42 +27,69 @@
   100% { background-position: 72px 72px, 72px 72px; }
 }
 
-/* ===== SLIDE ===== */
-.slide {
+/* ===== IMAGE CARD ===== */
+/* Fills the padded interior — hero is exact 100vh, card fills remaining space */
+.imageCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Full-bleed photo — crossfades on slide change */
+.slideBg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  will-change: opacity;
+  z-index: 0;
+}
+
+/* Left-panel gradient — solid dark left for text, clear right for photo */
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to right,
+      rgba(0, 8, 24, 0.78) 0%,
+      rgba(0, 8, 24, 0.58) 30%,
+      rgba(0, 8, 24, 0.22) 58%,
+      transparent          78%
+    ),
+    linear-gradient(
+      to top,
+      rgba(0, 8, 24, 0.36) 0%,
+      transparent          28%
+    );
+}
+
+/* ===== TEXT OVERLAY ===== */
+/* Above gradient, confined to left half so the photo shows on the right */
+.textOverlay {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
-  /* Top/bottom padding = blue visible above and below the image */
-  padding: 80px 0;
+  /* top clears fixed navbar (~80px) + card's position inside 24px hero padding */
+  padding: 104px 52% 72px 5%;
   z-index: 2;
   will-change: opacity, transform;
 }
 
-/* Container — matches navbar's left: 5% / right: 5% footprint */
-.heroContainer {
-  width: 100%;
-  padding: 0 5%;
-}
-
-/* Two-column row */
-.slideInner {
-  display: flex;
-  align-items: center;
-  /* Gap = visible blue between text column and image left edge */
-  gap: 72px;
-}
-
-/* ===== TEXT COLUMN ===== */
 .slideContent {
-  flex: 1;
-  min-width: 0;
+  width: 100%;
 }
 
-/* Headline — Inter base, reduced from previous 5rem */
+/* Headline — Inter semibold */
 .headline {
   font-family: var(--font);
-  font-size: clamp(1.9rem, 3vw, 3.2rem);
+  font-size: clamp(1.85rem, 2.8vw, 3.05rem);
   font-weight: 600;
   color: #ffffff;
   line-height: 1.1;
@@ -66,7 +97,7 @@
   margin-bottom: 22px;
 }
 
-/* Playfair Display italic for the emphasis word */
+/* Playfair Display italic emphasis word */
 .headlineEmphasis {
   font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
@@ -75,11 +106,10 @@
 }
 
 .sub {
-  font-size: clamp(.85rem, 1vw, .975rem);
-  color: rgba(255, 255, 255, 0.76);
+  font-size: clamp(.82rem, .98vw, .95rem);
+  color: rgba(255, 255, 255, 0.78);
   line-height: 1.7;
   margin-bottom: 38px;
-  max-width: 460px;
   font-weight: 400;
 }
 
@@ -135,107 +165,70 @@
   transform: translateY(-2px);
 }
 
-/* ===== IMAGE PANEL ===== */
-/*
-  imageWrap is a flex column — its width determines the image size.
-  imageFrame is the rounded, clipped box that holds the photo.
-  Blue background shows through the slide padding (top/bottom) and
-  the heroContainer padding (left/right), creating the visible frame.
-*/
-.imageWrap {
-  flex: 0 0 52%;
-  position: relative;
-}
-
-.imageFrame {
-  position: relative;
-  width: 100%;
-  border-radius: 22px;
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  box-shadow:
-    0 40px 96px rgba(0, 0, 0, 0.50),
-    0 0 0 1px rgba(255, 255, 255, 0.10),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-}
-
-.slideImage {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 /* ===== DOT INDICATORS ===== */
 .dots {
   position: absolute;
-  bottom: 22px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
-  z-index: 20;
+  z-index: 10;
 }
 .dot {
   height: 8px;
   border-radius: var(--r-full);
   border: none;
-  background: rgba(255,255,255,.25);
+  background: rgba(255,255,255,.28);
   cursor: pointer;
   padding: 0;
   transition: background var(--t-base);
 }
-.dot:hover  { background: rgba(255,255,255,.5); }
+.dot:hover  { background: rgba(255,255,255,.55); }
 .dotActive  { background: var(--gold-orange); }
 
-/* Progress bar */
+/* Progress bar — bottom edge of the image card */
 .progressTrack {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 2px;
+  height: 3px;
   background: rgba(255,255,255,.07);
-  z-index: 20;
+  z-index: 10;
 }
 .progressFill {
   height: 100%;
-  background: linear-gradient(90deg, rgba(168,197,240,.55), var(--gold-orange));
+  background: linear-gradient(90deg, rgba(168,197,240,.6), var(--gold-orange));
   transition: width .14s linear;
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1280px) {
-  .headline   { font-size: clamp(1.8rem, 3.2vw, 2.9rem); }
-  .imageWrap  { flex: 0 0 50%; }
-  .slideInner { gap: 56px; }
-}
-
 @media (max-width: 1024px) {
-  .headline   { font-size: clamp(1.7rem, 3.8vw, 2.5rem); }
-  .imageWrap  { flex: 0 0 48%; }
-  .slideInner { gap: 44px; }
-  .sub        { max-width: 420px; }
+  .textOverlay { padding: 96px 45% 64px 5%; }
+  .headline    { font-size: clamp(1.7rem, 3.2vw, 2.6rem); }
 }
 
 @media (max-width: 768px) {
-  .hero          { min-height: 100svh; }
-  .slide         { padding: 88px 0 68px; align-items: flex-start; }
-  .slideInner    { flex-direction: column; gap: 28px; }
-  .imageWrap     { flex: none; width: 100%; }
-  .imageFrame    { aspect-ratio: 100 / 60; border-radius: 10px; }
-  .headline      { font-size: clamp(1.7rem, 6vw, 2.3rem); margin-bottom: 16px; }
-  .sub           { font-size: .9rem; margin-bottom: 28px; max-width: 100%; }
+  .hero        { padding: 16px; height: 100svh; min-height: 520px; }
+  .imageCard   { border-radius: 12px; }
+  .textOverlay { padding: 96px 6% 72px 6%; align-items: flex-end; }
+  .headline    { font-size: clamp(1.7rem, 6vw, 2.3rem); margin-bottom: 16px; }
+  .sub         { font-size: .9rem; margin-bottom: 28px; }
+  .imageOverlay {
+    background:
+      rgba(0, 8, 24, 0.52),
+      linear-gradient(to top, rgba(0,8,24,.65) 0%, transparent 55%);
+  }
   .actions       { flex-direction: column; }
   .ctaPrimary,
   .ctaSecondary  { width: 100%; justify-content: center; }
-  .dots          { bottom: 16px; }
 }
 
 @media (max-width: 480px) {
-  .slide        { padding: 80px 0 60px; }
-  .headline     { font-size: clamp(1.55rem, 7vw, 1.95rem); letter-spacing: -.016em; }
-  .sub          { font-size: .85rem; }
-  .imageFrame   { border-radius: 12px; aspect-ratio: 3 / 2; }
+  .hero        { padding: 12px; }
+  .imageCard   { border-radius: 10px; }
+  .textOverlay { padding: 88px 5% 64px 5%; }
+  .headline    { font-size: clamp(1.55rem, 7vw, 1.95rem); letter-spacing: -.016em; }
+  .sub         { font-size: .85rem; }
   .ctaPrimary,
   .ctaSecondary { height: 46px; font-size: .875rem; }
 }
