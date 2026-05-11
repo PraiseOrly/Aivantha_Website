@@ -42,9 +42,9 @@
 ══════════════════════════════════════ */
 .overviewGrid {
   display: grid;
-  grid-template-columns: 58fr 42fr;
+  grid-template-columns: 50fr 50fr;
   align-items: stretch;
-  min-height: 520px;
+  min-height: 560px;
   overflow: hidden;
   margin: 0;
   width: 100vw;
@@ -102,9 +102,18 @@
   margin: 0;
 }
 
-/* Right — full-bleed photo */
+/* Right — padded photo column */
 .overviewRight {
   position: relative;
+  background: #fff;
+  padding: 24px;
+}
+
+/* Inner wrap fills the padded area; statCard positions against this */
+.overviewImgWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 

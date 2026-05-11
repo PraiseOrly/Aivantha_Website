@@ -1,71 +1,26 @@
 /* ===== HERO ===== */
 .hero {
   position: relative;
-  height: 100vh;
-  min-height: 680px;
+  background: linear-gradient(140deg, #003d8f 0%, #004aad 55%, #0057cc 100%);
+  min-height: 90vh;
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-
-
-
 }
 
-
-/* Deep-dark static base — prevents flash between slide backgrounds */
-.heroBase {
-  position: absolute;
-  inset: 0;
-  background: #020509;
-  z-index: 0;
-}
-
-/* Per-slide background photo — fades independently of text content */
-.slideBg {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background-size: cover;
-  background-repeat: no-repeat;
-  will-change: opacity;
-}
-
-/* Subtle grid texture — very faint, cinematic depth */
+/* Subtle grid texture */
 .bgGrid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
   background-size: 72px 72px;
   animation: gridDrift 70s linear infinite;
   pointer-events: none;
-  z-index: 2;
+  z-index: 0;
 }
 @keyframes gridDrift {
   0%   { background-position: 0 0, 0 0; }
   100% { background-position: 72px 72px, 72px 72px; }
-}
-
-/* Cinematic overlay — strong left panel for text, fades to image on the right */
-.overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to right,
-      rgba(2,5,14,.75) 0%,
-      rgba(2,5,14,.52) 28%,
-      rgba(2,5,14,.20) 52%,
-      rgba(2,5,14,.05) 72%,
-      transparent 90%
-    ),
-    linear-gradient(to top,
-      rgba(2,5,14,.45) 0%,
-      rgba(2,5,14,.12) 30%,
-      transparent 58%
-    );
-  z-index: 3;
-  pointer-events: none;
 }
 
 /* ===== SLIDE ===== */
@@ -73,99 +28,165 @@
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: flex-end;
-  padding-bottom: 132px;
-  z-index: 4;
+  align-items: center;
+  /* Top/bottom padding = blue visible above and below the image */
+  padding: 80px 0;
+  z-index: 2;
   will-change: opacity, transform;
 }
 
-/* ===== TEXT BLOCK ===== */
-.slideContent {
-  max-width: 720px;
+/* Container — matches navbar's left: 5% / right: 5% footprint */
+.heroContainer {
   width: 100%;
+  padding: 0 5%;
 }
 
-/* Hero headline — 48–64px, weight 600 per editorial type system */
+/* Two-column row */
+.slideInner {
+  display: flex;
+  align-items: center;
+  /* Gap = visible blue between text column and image left edge */
+  gap: 72px;
+}
+
+/* ===== TEXT COLUMN ===== */
+.slideContent {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Headline — Inter base, reduced from previous 5rem */
 .headline {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(3rem, 5vw, 4rem);
-  font-weight: 700;
+  font-family: var(--font);
+  font-size: clamp(1.9rem, 3vw, 3.2rem);
+  font-weight: 600;
   color: #ffffff;
-  line-height: 1.12;
-  letter-spacing: -.024em;
-  margin-bottom: 20px;
-  max-width: 680px;
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+  margin-bottom: 22px;
 }
 
-
-/* Subtitle — 16–18px, line-height 1.65–1.7 */
-.sub {
-  font-size: clamp(1rem, 1.35vw, 1.125rem);
-  color: rgba(255, 255, 255, 0.64);
-  line-height: 1.68;
-  margin-bottom: 14px;
-  max-width: 520px;
+/* Playfair Display italic for the emphasis word */
+.headlineEmphasis {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
   font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
-/* Optional micro credibility line */
-.micro {
-  font-size: .875rem;
-  color: rgba(255, 255, 255, 0.42);
-  line-height: 1.5;
-  margin-bottom: 28px;
+.sub {
+  font-size: clamp(.85rem, 1vw, .975rem);
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.7;
+  margin-bottom: 38px;
   max-width: 460px;
   font-weight: 400;
-  letter-spacing: .005em;
 }
 
-/* CTA row */
+/* ===== CTA BUTTONS ===== */
 .actions {
   display: flex;
-  gap: var(--space-md);
+  gap: 12px;
   flex-wrap: wrap;
 }
 
-.btnPrimary {
+/* Primary — light cobalt fill, dark cobalt text, pill */
+.ctaPrimary {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-}
-
-.ctaPrimary {
-  background: #c88e28 !important;
-  border-color: #c88e28 !important;
-  color: #fff !important;
-  box-shadow: none !important;
-  transition: background .22s ease, transform .22s ease, box-shadow .22s ease !important;
+  height: 50px;
+  padding: 0 24px;
+  border-radius: 9999px;
+  border: none;
+  background: #a8c5f0;
+  color: #0a1f4a;
+  font-size: .9rem;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: background .22s ease, transform .2s ease, box-shadow .2s ease;
 }
 .ctaPrimary:hover {
-  background: #a87520 !important;
-  border-color: #a87520 !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 32px rgba(200,142,40,.42) !important;
+  background: #c2d8f7;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(168,197,240,.38);
+}
+
+/* Secondary — outline pill */
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 24px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(168,197,240,.5);
+  background: transparent;
+  color: #ffffff;
+  font-size: .9rem;
+  font-weight: 500;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: border-color .22s ease, background .22s ease, transform .2s ease;
+}
+.ctaSecondary:hover {
+  border-color: rgba(168,197,240,.88);
+  background: rgba(168,197,240,.09);
+  transform: translateY(-2px);
+}
+
+/* ===== IMAGE PANEL ===== */
+/*
+  imageWrap is a flex column — its width determines the image size.
+  imageFrame is the rounded, clipped box that holds the photo.
+  Blue background shows through the slide padding (top/bottom) and
+  the heroContainer padding (left/right), creating the visible frame.
+*/
+.imageWrap {
+  flex: 0 0 52%;
+  position: relative;
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  box-shadow:
+    0 40px 96px rgba(0, 0, 0, 0.50),
+    0 0 0 1px rgba(255, 255, 255, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.slideImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ===== DOT INDICATORS ===== */
 .dots {
   position: absolute;
-  bottom: 36px;
+  bottom: 22px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px;
+  gap: 8px;
   z-index: 20;
 }
 .dot {
-  height: 10px;
+  height: 8px;
   border-radius: var(--r-full);
   border: none;
-  background: rgba(255,255,255,.22);
+  background: rgba(255,255,255,.25);
   cursor: pointer;
   padding: 0;
   transition: background var(--t-base);
 }
-.dot:hover  { background: rgba(255,255,255,.42); }
+.dot:hover  { background: rgba(255,255,255,.5); }
 .dotActive  { background: var(--gold-orange); }
 
 /* Progress bar */
@@ -173,33 +194,48 @@
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 2px;
-  background: rgba(255,255,255,.06);
+  background: rgba(255,255,255,.07);
   z-index: 20;
 }
 .progressFill {
   height: 100%;
-  background: linear-gradient(90deg, var(--cobalt), var(--gold-orange));
+  background: linear-gradient(90deg, rgba(168,197,240,.55), var(--gold-orange));
   transition: width .14s linear;
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 1280px) {
+  .headline   { font-size: clamp(1.8rem, 3.2vw, 2.9rem); }
+  .imageWrap  { flex: 0 0 50%; }
+  .slideInner { gap: 56px; }
+}
+
 @media (max-width: 1024px) {
-  .headline { font-size: clamp(2.3rem, 4.5vw, 3.8rem); }
-  .slideContent { max-width: 580px; }
+  .headline   { font-size: clamp(1.7rem, 3.8vw, 2.5rem); }
+  .imageWrap  { flex: 0 0 48%; }
+  .slideInner { gap: 44px; }
+  .sub        { max-width: 420px; }
 }
 
 @media (max-width: 768px) {
-  .hero        { min-height: 100svh; }
-  .slide       { padding-bottom: 96px; }
-  .headline    { font-size: clamp(2rem, 7vw, 2.8rem); letter-spacing: -.018em; }
-  .sub         { font-size: 1rem; margin-bottom: 28px; }
-  .actions     { flex-direction: column; }
-  .actions .btn { width: 100%; justify-content: center; }
-  .dots        { bottom: 24px; }
+  .hero          { min-height: 100svh; }
+  .slide         { padding: 88px 0 68px; align-items: flex-start; }
+  .slideInner    { flex-direction: column; gap: 28px; }
+  .imageWrap     { flex: none; width: 100%; }
+  .imageFrame    { aspect-ratio: 100 / 60; border-radius: 10px; }
+  .headline      { font-size: clamp(1.7rem, 6vw, 2.3rem); margin-bottom: 16px; }
+  .sub           { font-size: .9rem; margin-bottom: 28px; max-width: 100%; }
+  .actions       { flex-direction: column; }
+  .ctaPrimary,
+  .ctaSecondary  { width: 100%; justify-content: center; }
+  .dots          { bottom: 16px; }
 }
 
 @media (max-width: 480px) {
-  .slideContent { max-width: 100%; }
-  .headline     { font-size: clamp(1.85rem, 8vw, 2.4rem); }
-  .sub          { font-size: .94rem; }
+  .slide        { padding: 80px 0 60px; }
+  .headline     { font-size: clamp(1.55rem, 7vw, 1.95rem); letter-spacing: -.016em; }
+  .sub          { font-size: .85rem; }
+  .imageFrame   { border-radius: 12px; aspect-ratio: 3 / 2; }
+  .ctaPrimary,
+  .ctaSecondary { height: 46px; font-size: .875rem; }
 }

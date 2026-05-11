@@ -167,16 +167,18 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* Right — full-bleed image + floating stat card */}
+            {/* Right — padded image + floating stat card */}
             <div className={styles.overviewRight}>
-              <img
-                className={styles.overviewImg}
-                src={modules.m1.img} alt="African healthcare professional"
-                onError={e => (e.currentTarget.style.display = 'none')}
-              />
-              <div className={styles.statCard}>
-                <span className={styles.statTitle}>{modules.m1.stat.title}</span>
-                <p className={styles.statText}>{modules.m1.stat.text}</p>
+              <div className={styles.overviewImgWrap}>
+                <img
+                  className={styles.overviewImg}
+                  src={modules.m1.img} alt="African healthcare professional"
+                  onError={e => (e.currentTarget.style.display = 'none')}
+                />
+                <div className={styles.statCard}>
+                  <span className={styles.statTitle}>{modules.m1.stat.title}</span>
+                  <p className={styles.statText}>{modules.m1.stat.text}</p>
+                </div>
               </div>
             </div>
 

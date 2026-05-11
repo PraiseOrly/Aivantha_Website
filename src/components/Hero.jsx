@@ -6,27 +6,24 @@ const INTERVAL = 8000
 
 const slides = [
   {
-    headline: 'AI-driven healthcare intelligence systems',
-    sub: 'We design AI systems that transform raw health data into actionable clinical and operational insights.',
-    micro: 'Built for governments, hospitals, and healthcare networks.',
+    headlineParts: ['AI-driven ', 'healthcare', ' intelligence systems'],
+    sub: 'We design AI systems that transform raw health data into actionable clinical and operational insights for governments, hospitals, and healthcare networks.',
     cta1: { label: 'Explore Solutions', href: '#solutions' },
     cta2: { label: 'Our Approach', href: '#about' },
     bgImage: 'https://images.unsplash.com/photo-1741707039536-113e200f9e0d?auto=format&fit=crop&w=1920&h=1080&q=85',
     bgPos: 'center center',
   },
   {
-    headline: 'Digital transformation for healthcare systems',
+    headlineParts: ['Transforming ', 'healthcare', ' through digital systems'],
     sub: 'We enable institutions to modernize workflows, improve interoperability, and build scalable digital health infrastructure.',
-    micro: 'From fragmented systems to connected healthcare ecosystems.',
     cta1: { label: 'Explore Services', href: '#services' },
     cta2: { label: 'Our Approach', href: '#about' },
     bgImage: 'https://images.unsplash.com/photo-1666886573212-2de95596d509?auto=format&fit=crop&w=1920&h=1080&q=85',
     bgPos: 'center center',
   },
   {
-    headline: 'AI innovation and healthcare capacity building',
-    sub: 'We support healthcare institutions with AI research, advisory services, and training to scale sustainable innovation.',
-    micro: "Empowering Africa's healthcare ecosystem with AI talent and research-driven solutions.",
+    headlineParts: ['Building ', 'healthcare', ' capacity with AI innovation'],
+    sub: "We support institutions with AI research, advisory services, and training to scale sustainable innovation across Africa's healthcare ecosystem.",
     cta1: { label: 'AI Innovation', href: '#solutions' },
     cta2: { label: 'Partner With Us', href: '#contact' },
     bgImage: 'https://images.unsplash.com/photo-1536064479547-7ee40b74b807?auto=format&fit=crop&w=1920&h=1080&q=85',
@@ -50,8 +47,6 @@ export default function Hero() {
     setProgress(0)
     startTimeRef.current = Date.now()
   }
-  const goNext = () => goTo((current + 1) % slides.length)
-  const goPrev = () => goTo((current - 1 + slides.length) % slides.length)
 
   useEffect(() => {
     if (paused) { clearInterval(intervalRef.current); return }
@@ -89,86 +84,75 @@ export default function Hero() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Static deep-dark base */}
-      <div className={styles.heroBase} />
-
-      {/* Subtle grid texture */}
-      <div className={styles.bgGrid} />
-
-      {/* Per-slide background photo — cross-fades independently */}
-      <AnimatePresence mode="sync">
-        <motion.div
-          key={`bg-${current}`}
-          className={styles.slideBg}
-          style={{
-            backgroundImage: `url(${slide.bgImage})`,
-            backgroundPosition: slide.bgPos,
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.1, ease: 'easeInOut' }}
-        />
-      </AnimatePresence>
-
-      {/* Cinematic readability gradient — darkens bottom for text */}
-      <div className={styles.overlay} />
-
-      {/* Slide content — text only, bottom-anchored */}
+      {/* Slide — text + image side by side */}
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={current}
           className={styles.slide}
           custom={direction}
-          initial={{ opacity: 0, x: direction * 32 }}
+          initial={{ opacity: 0, x: direction * 24 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: direction * -24 }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          exit={{ opacity: 0, x: direction * -18 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="container">
-            <div className={styles.slideContent}>
+          <div className={styles.heroContainer}>
+            <div className={styles.slideInner}>
 
-              <motion.h1
-                className={styles.headline}
-                initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.14, duration: 0.7, ease: [0.16,1,0.3,1] }}
-              >
-                {slide.headline}
-              </motion.h1>
-
-              <motion.p
-                className={styles.sub}
-                initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.28, duration: 0.65, ease: [0.16,1,0.3,1] }}
-              >
-                {slide.sub}
-              </motion.p>
-
-              {slide.micro && (
-                <motion.p
-                  className={styles.micro}
-                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.38, duration: 0.55, ease: [0.16,1,0.3,1] }}
+              {/* Text column */}
+              <div className={styles.slideContent}>
+                <motion.h1
+                  className={styles.headline}
+                  initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1, duration: 0.65, ease: [0.16,1,0.3,1] }}
                 >
-                  {slide.micro}
-                </motion.p>
-              )}
+                  {slide.headlineParts[0]}
+                  <em className={styles.headlineEmphasis}>{slide.headlineParts[1]}</em>
+                  {slide.headlineParts[2]}
+                </motion.h1>
 
-              <motion.div
-                className={styles.actions}
-                initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.55, ease: [0.16,1,0.3,1] }}
-              >
-                <button className={`btn ${styles.ctaPrimary} ${styles.btnPrimary}`} onClick={() => scrollTo(slide.cta1.href)}>
-                  {slide.cta1.label}
-                  <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                    <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd"/>
-                  </svg>
-                </button>
-                <button className="btn btn-outline-white" onClick={() => scrollTo(slide.cta2.href)}>
-                  {slide.cta2.label}
-                </button>
-              </motion.div>
+                <motion.p
+                  className={styles.sub}
+                  initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.22, duration: 0.6, ease: [0.16,1,0.3,1] }}
+                >
+                  {slide.sub}
+                </motion.p>
+
+                <motion.div
+                  className={styles.actions}
+                  initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.36, duration: 0.5, ease: [0.16,1,0.3,1] }}
+                >
+                  <button className={styles.ctaPrimary} onClick={() => scrollTo(slide.cta1.href)}>
+                    {slide.cta1.label}
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15" aria-hidden="true">
+                      <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd"/>
+                    </svg>
+                  </button>
+                  <button className={styles.ctaSecondary} onClick={() => scrollTo(slide.cta2.href)}>
+                    {slide.cta2.label}
+                  </button>
+                </motion.div>
+              </div>
+
+              {/* Image column — framed by blue on all sides */}
+              <div className={styles.imageWrap}>
+                <div className={styles.imageFrame}>
+                  <AnimatePresence mode="sync">
+                    <motion.img
+                      key={`img-${current}`}
+                      src={slide.bgImage}
+                      alt=""
+                      className={styles.slideImage}
+                      style={{ objectPosition: slide.bgPos }}
+                      initial={{ opacity: 0, scale: 1.04 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 1.0, ease: 'easeInOut' }}
+                    />
+                  </AnimatePresence>
+                </div>
+              </div>
 
             </div>
           </div>
@@ -182,7 +166,7 @@ export default function Hero() {
             key={i}
             className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
             onClick={() => goTo(i)}
-            animate={i === current ? { width: 28 } : { width: 10 }}
+            animate={i === current ? { width: 28 } : { width: 8 }}
             transition={{ type: 'tween', duration: 0.3 }}
             aria-label={`Slide ${i + 1}`}
           />
