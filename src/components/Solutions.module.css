@@ -4,6 +4,8 @@
   padding: var(--space-4xl) 0;
   background: linear-gradient(180deg, #001e60 0%, #000f38 100%);
   overflow: hidden;
+  border-radius: 20px;
+  margin: 0 24px 24px;
 }
 
 /* Ambient glow */
@@ -322,6 +324,10 @@
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .solutionsSection { margin: 0 12px 12px; border-radius: 16px; }
+}
+
 @media (max-width: 1024px) {
   .productsGrid { grid-template-columns: 1fr 1fr; }
   .capGrid { grid-template-columns: repeat(2, 1fr); }

@@ -1,13 +1,14 @@
 /* ===== HERO — blue matte frame ===== */
 .hero {
   position: relative;
-  background: #10357a;
+  background: #001e60;
   /* 36px on all sides = the visible blue border around the image card */
   padding: 36px;
   height: 100vh;
   min-height: 560px;
   box-sizing: border-box;
   overflow: hidden;
+  margin-bottom: 24px;
 }
 
 /* Grid texture sits on the blue frame, not the photo */
@@ -208,7 +209,7 @@
 }
 
 @media (max-width: 768px) {
-  .hero        { padding: 16px; height: 100svh; min-height: 520px; }
+  .hero        { padding: 16px; height: 100svh; min-height: 520px; margin-bottom: 12px; }
   .imageCard   { border-radius: 12px; }
   .textOverlay { padding: 96px 6% 72px 6%; align-items: flex-end; }
   .headline    { font-size: clamp(1.7rem, 6vw, 2.3rem); margin-bottom: 16px; }

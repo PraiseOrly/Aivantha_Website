@@ -2,6 +2,9 @@
 .resourcesSection {
   background: #ffffff;
   padding: var(--space-4xl) 0;
+  border-radius: 20px;
+  margin: 0 24px 24px;
+  overflow: hidden;
 }
 
 /* ===== FEATURED BLOCK ===== */
@@ -272,6 +275,10 @@
 .cardCta:hover { gap: 9px; border-color: var(--cobalt); }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .resourcesSection { margin: 0 12px 12px; border-radius: 16px; }
+}
+
 @media (max-width: 1024px) {
   .featuredBlock { grid-template-columns: 260px 1fr; }
   .categoryGrid { grid-template-columns: repeat(2, 1fr); }

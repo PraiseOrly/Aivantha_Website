@@ -1,6 +1,9 @@
 .servicesSection {
   background: var(--gray-50);
   padding: var(--space-4xl) 0;
+  border-radius: 20px;
+  margin: 0 24px 24px;
+  overflow: hidden;
 }
 
 /* ===== SERVICES GRID ===== */
@@ -230,6 +233,10 @@
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .servicesSection { margin: 0 12px 12px; border-radius: 16px; }
+}
+
 @media (max-width: 1200px) {
   .clientsGrid { grid-template-columns: repeat(2, 1fr); }
 }

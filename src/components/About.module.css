@@ -6,16 +6,14 @@
 .sectionAnchorPad { scroll-margin-top: 110px; }
 
 .sectionBgBlue {
-  background: var(--cobalt-50);
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  padding-left: calc(50vw - 50%);
-  padding-right: calc(50vw - 50%);
+  background: #001e60;
 }
 
 .aboutSection {
-  overflow-x: clip;
+  overflow: hidden;
   padding-top: 0 !important;
+  border-radius: 20px;
+  margin: 0 24px 24px;
 }
 
 .aboutParallax {
@@ -51,9 +49,8 @@
   margin-left: calc(50% - 50vw);
 }
 
-/* Left — deep cobalt blue panel */
+/* Left — no background, content sits on section background */
 .overviewLeft {
-  background: #10357a;
   padding: var(--space-2xl) var(--space-3xl) var(--space-4xl);
   display: flex;
   flex-direction: column;
@@ -168,21 +165,20 @@
    MODULE 2 — Our Story (hero-style card)
 ══════════════════════════════════════ */
 
-/* Outer card — same blue as hero, same padding concept */
+/* Outer card — no background, content sits on section background */
 .storyCard {
-  background: #10357a;
   border-radius: 20px;
   padding: 36px;
   overflow: hidden;
-  margin: var(--space-4xl) 0;
+  margin: var(--space-xl) 0;
 }
 
 /* Two-column grid inside the card */
 .storyGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 3fr;
   align-items: stretch;
-  min-height: 480px;
+  min-height: 320px;
   gap: 32px;
 }
 
@@ -191,7 +187,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  min-height: 420px;
+  min-height: 280px;
 }
 
 .storyImage {
@@ -238,10 +234,10 @@
 }
 
 .storyPara {
-  font-size: 0.97rem;
+  font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.76);
-  line-height: 1.88;
-  margin-bottom: var(--space-lg);
+  line-height: 1.75;
+  margin-bottom: var(--space-md);
   max-width: 52ch;
   text-align: left;
 }
@@ -785,6 +781,10 @@
 ══════════════════════════════════════ */
 @media (max-width: 1180px) {
   .capGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  .aboutSection { margin: 0 12px 12px; border-radius: 16px; }
 }
 
 @media (max-width: 1024px) {

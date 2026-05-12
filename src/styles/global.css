@@ -108,7 +108,7 @@ body {
   font-size: 1rem;
   line-height: 1.65;
   overflow-x: hidden;
-  background: var(--white);
+  background: #001e60;
 }
 img  { max-width: 100%; display: block; height: auto; }
 a    { text-decoration: none; color: inherit; cursor: pointer; }
@@ -139,6 +139,9 @@ input, textarea, select { font-family: var(--font); }
   padding: var(--space-4xl) 0;
   background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-950) 100%);
   color: var(--white);
+  border-radius: 20px;
+  margin: 0 24px 24px;
+  overflow: hidden;
 }
 
 /* ===== SECTION HEADER ===== */
@@ -369,7 +372,7 @@ input, textarea, select { font-family: var(--font); }
 @media (max-width: 768px) {
   .section { padding: var(--space-3xl) 0; }
   .section-alt { padding: var(--space-3xl) 0; }
-  .section-dark { padding: var(--space-3xl) 0; }
+  .section-dark { padding: var(--space-3xl) 0; margin: 0 12px 12px; border-radius: 16px; }
   .container { padding: 0 var(--space-lg); }
   .section-header { margin-bottom: var(--space-2xl); }
 }
