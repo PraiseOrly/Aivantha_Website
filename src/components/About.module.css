@@ -51,7 +51,7 @@
 
 /* Left — no background, content sits on section background */
 .overviewLeft {
-  padding: var(--space-2xl) var(--space-3xl) var(--space-4xl);
+  padding: var(--space-2xl) var(--space-3xl) var(--space-lg);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -170,7 +170,7 @@
   border-radius: 20px;
   padding: 36px;
   overflow: hidden;
-  margin: var(--space-xl) 0;
+  margin: var(--space-sm) 0;
 }
 
 /* Two-column grid inside the card */
@@ -178,16 +178,14 @@
   display: grid;
   grid-template-columns: 2fr 3fr;
   align-items: stretch;
-  min-height: 320px;
   gap: 32px;
 }
 
-/* Left — image fills its cell with rounded corners */
+/* Left — image stretches to match text column height */
 .storyImageWrap {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  min-height: 280px;
 }
 
 .storyImage {
@@ -817,16 +815,16 @@
   .overviewHeadline { font-size: clamp(1.6rem, 6vw, 2.4rem); }
   .statCard       { left: var(--space-lg); right: var(--space-lg); bottom: var(--space-lg); }
 
-  .storyCard          { padding: 24px; border-radius: 16px; margin: var(--space-3xl) 0; }
-  .storyGrid          { grid-template-columns: 1fr; min-height: unset; gap: 24px; }
-  .storyImageWrap     { min-height: 340px; }
+  .storyCard          { padding: 24px; border-radius: 16px; margin: var(--space-sm) 0; }
+  .storyGrid          { grid-template-columns: 1fr; gap: 24px; }
+  .storyImageWrap     { min-height: 280px; }
   .storyText          { padding: var(--space-xl); }
   .storyHeadline      { max-width: none; }
 }
 
 @media (max-width: 640px) {
   .storyCard      { padding: 16px; border-radius: 12px; }
-  .storyImageWrap { min-height: 260px; border-radius: 8px; }
+  .storyImageWrap { min-height: 220px; border-radius: 8px; }
   .storyText      { padding: var(--space-xl) var(--space-lg); }
   .storyHeadline  { font-size: clamp(1.4rem, 6vw, 1.8rem); }
   .storyPara      { font-size: 0.95rem; }
