@@ -49,7 +49,7 @@ const navItems = [
       { label: 'Oxylytics',           desc: '', href: '#solutions', Icon: Activity  },
       { label: 'AiVantha Coach',      desc: '', href: '#solutions', Icon: Bot       },
       { label: 'AiVantha Data',       desc: '', href: '#solutions', Icon: LineChart },
-      { label: 'AiVantha Talent Hub', desc: '', href: '#solutions', Icon: Users     },
+      { label: 'AiVantha Talent Marketplace', desc: '', href: '#solutions', Icon: Users     },
     ],
   },
   {

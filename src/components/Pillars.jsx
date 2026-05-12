@@ -67,7 +67,7 @@ label: 'Execution Engine',
       },
       {
         num: '04', tag: 'Talent', title: 'AiVantha Talent Marketplace',
-        focus: "Africa's AI Talent Hub for Healthcare",
+        focus: "Africa's AI Talent Marketplace for Healthcare",
         items: [
           'AI/ML engineers & health data scientists',
           'Biostatisticians & digital health specialists',

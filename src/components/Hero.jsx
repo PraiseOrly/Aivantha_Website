@@ -10,7 +10,7 @@ const slides = [
     sub: 'We design AI systems that transform raw health data into actionable clinical and operational insights for governments, hospitals, and healthcare networks.',
     cta1: { label: 'Explore Solutions', href: '#solutions' },
     cta2: { label: 'Our Approach', href: '#about' },
-    bgImage: 'https://images.unsplash.com/photo-1741707039536-113e200f9e0d?auto=format&fit=crop&w=1920&h=1080&q=85',
+    bgImage: '/hero-1.jpg',
     bgPos: 'center center',
   },
   {
@@ -18,7 +18,7 @@ const slides = [
     sub: 'We enable institutions to modernize workflows, improve interoperability, and build scalable digital health infrastructure.',
     cta1: { label: 'Explore Services', href: '#services' },
     cta2: { label: 'Our Approach', href: '#about' },
-    bgImage: 'https://images.unsplash.com/photo-1666886573212-2de95596d509?auto=format&fit=crop&w=1920&h=1080&q=85',
+    bgImage: '/hero-2.jpg',
     bgPos: 'center center',
   },
   {
@@ -26,8 +26,8 @@ const slides = [
     sub: "We support institutions with AI research, advisory services, and training to scale sustainable innovation across Africa's healthcare ecosystem.",
     cta1: { label: 'AI Innovation', href: '#solutions' },
     cta2: { label: 'Partner With Us', href: '#contact' },
-    bgImage: 'https://images.unsplash.com/photo-1536064479547-7ee40b74b807?auto=format&fit=crop&w=1920&h=1080&q=85',
-    bgPos: 'center 30%',
+    bgImage: '/hero-3.jpg',
+    bgPos: 'center top',
   },
 ]
 

@@ -60,9 +60,7 @@ export default function About() {
       headlinePart1: 'Africa does not lack health data',
       headlinePart2: '— it lacks health intelligence.',
       body: [
-        'AiVantha Health is an African AI and data-driven healthcare company working at the intersection of research, consulting, and technology to turn fragmented health data into actionable intelligence.',
-        'Across a population of 1.4 billion, African health systems remain under-resourced and fragmented — not for lack of data, but for lack of usable insight that governments and clinicians can act on.',
-        'We exist to close that gap, integrating African health research, AI solutions, consulting, and a continent-wide talent network into one unified ecosystem.',
+        'AiVantha Health is an African AI and data-driven healthcare company transforming fragmented health data into actionable intelligence through research, consulting, technology, and a continent-wide talent ecosystem.',
       ],
       stat: {
         title: 'Continental Reach',
@@ -71,11 +69,11 @@ export default function About() {
       img: 'https://images.unsplash.com/photo-1758691463203-cce9d415b2b5?auto=format&fit=crop&w=1920&h=1080&q=80',
     },
     m2: {
-      headline: 'Africa does not lack health data — it lacks health intelligence.',
+      headline: 'Built at the intersection of African healthcare and global AI innovation.',
       body: [
-        'We close the gap between information and insight through AI, interoperability, and evidence-based system intelligence — built for the complexity of African healthcare systems.',
-        'Built for enterprise realities, we connect research, consulting, and technology into one integrated ecosystem, translating fragmented health data into decisions that strengthen outcomes across the continent.',
-        'Our teams work alongside institutions to turn evidence into measurable system performance, building lasting capacity for data-driven transformation at every level of care.',
+        'AiVantha was founded on a simple but urgent observation: African healthcare systems generate enormous volumes of data, yet most of it never becomes actionable insight. The infrastructure needed to turn raw data into clinical and operational decisions — trusted, timely, and locally relevant — does not exist at scale.',
+        'We set out to build it. Starting with research and consulting, AiVantha has grown into an integrated ecosystem spanning AI solution development, digital health platforms, and a continent-wide network of health data professionals and implementation teams.',
+        'Today, we work with governments, hospital networks, and international health organisations across Africa, delivering intelligence that drives real outcomes — designed for the complexity of African health systems, built to scale.',
       ],
       img: 'https://images.unsplash.com/photo-1758691463080-30a990ef61bb?auto=format&fit=crop&w=900&h=1100&q=80',
     },
@@ -104,7 +102,7 @@ export default function About() {
         { title: 'Governance & MEL',               desc: 'Measurement, learning, and responsible AI operations.',        variant: 'gold'   },
         { title: 'AI Health Solutions',            desc: 'Applied AI for real-world healthcare intelligence.',            variant: 'cobalt' },
         { title: 'Digital Health Platforms',       desc: 'Platforms that support analytics and interoperability.',       variant: 'gold'   },
-        { title: 'Talent Marketplace',             desc: 'African AI & data specialists for mission-ready teams.',       variant: 'cobalt' },
+        { title: 'AiVantha Talent Marketplace',             desc: 'African AI & data specialists for mission-ready teams.',       variant: 'cobalt' },
         { title: 'Implementation Teams',           desc: 'Embedded delivery to operationalize intelligence.',            variant: 'gold'   },
       ],
       img: 'https://images.unsplash.com/photo-1707944746058-4da338d0f827?auto=format&fit=crop&w=1920&h=1080&q=80',
@@ -137,7 +135,7 @@ export default function About() {
   })
 
   return (
-    <section className={`section ${styles.aboutSection}`} id="about" ref={rootRef}>
+    <section className={`section ${styles.aboutSection} ${styles.sectionBgBlue}`} id="about" ref={rootRef}>
       <div className="container">
 
         {/* ── M1  Overview ── */}
@@ -146,7 +144,6 @@ export default function About() {
 
             {/* Left — cobalt blue panel */}
             <motion.div className={styles.overviewLeft} {...reveal(0.03)}>
-              <p className={styles.overviewEyebrow}>{modules.m1.eyebrow}</p>
               <h2 className={styles.overviewHeadline}>
                 {modules.m1.headlinePart1}
                 <em>{modules.m1.headlinePart2}</em>
@@ -165,36 +162,36 @@ export default function About() {
                   </motion.p>
                 ))}
               </div>
-            </motion.div>
-
-            {/* Right — padded image + floating stat card */}
-            <div className={styles.overviewRight}>
-              <div className={styles.overviewImgWrap}>
-                <img
-                  className={styles.overviewImg}
-                  src={modules.m1.img} alt="African healthcare professional"
-                  onError={e => (e.currentTarget.style.display = 'none')}
-                />
-                <div className={styles.statCard}>
-                  <span className={styles.statTitle}>{modules.m1.stat.title}</span>
-                  <p className={styles.statText}>{modules.m1.stat.text}</p>
-                </div>
+              <div className={styles.aboutCtas}>
+                <a className={[styles.ctaBtn, styles.ctaPrimary].join(' ')} href={'#contact'}>
+                  Partner With Us
+                </a>
+                <a className={[styles.ctaBtn, styles.ctaSecondary].join(' ')} href={'#services'}>
+                  See Our Services
+                </a>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
 
+
         {/* ── M2  Our Story ── */}
-        <div id="about-vision" className={styles.sectionAnchorPad}>
+        <div id="about-story" className={styles.sectionAnchorPad}>
           <div className={styles.storyGrid}>
+
+            {/* Image column — blue-toned */}
             <div className={styles.storyImageWrap}>
               <img
                 className={styles.storyImage}
-                src={modules.m2.img} alt="AiVantha Health team"
+                src={modules.m2.img}
+                alt="AiVantha Health research team"
                 onError={e => (e.currentTarget.style.display = 'none')}
               />
+              <div className={styles.storyImageOverlay} />
             </div>
+
+            {/* Text column */}
             <motion.div className={styles.storyText} {...reveal(0.05)}>
               <p className={styles.eyebrow}>Our Story</p>
               <h2 className={styles.storyHeadline}>{modules.m2.headline}</h2>
@@ -205,58 +202,20 @@ export default function About() {
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-56px' }}
-                  transition={{ duration: 0.62, delay: 0.12 + i * 0.09, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.6, delay: 0.08 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 >
                   {p}
                 </motion.p>
               ))}
             </motion.div>
+
           </div>
         </div>
 
-        {/* ── M3  Vision & Mission (slideshow) ── */}
-        <div id="about-approach" className={styles.sectionAnchorPad}>
-          <div className={styles.slideshow}>
-            {modules.m3.slides.map((slide, i) => (
-              <div
-                key={i}
-                className={`${styles.slideBg} ${m3Slide === i ? styles.slideBgActive : ''}`}
-                style={{ backgroundImage: `url(${slide.img})` }}
-                aria-hidden
-              />
-            ))}
-            <div className={styles.slideshowCard}>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={m3Slide}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                >
-
-                  <span className={styles.slideLabel}>{modules.m3.slides[m3Slide].label}</span>
-                  <h3 className={styles.slideHeadline}>{modules.m3.slides[m3Slide].headline}</h3>
-                  <p className={styles.slideBody}>{modules.m3.slides[m3Slide].body}</p>
-                </motion.div>
-              </AnimatePresence>
-              <div className={styles.slideDots}>
-                {modules.m3.slides.map((_, i) => (
-                  <button
-                    key={i}
-                    className={`${styles.slideDot} ${m3Slide === i ? styles.slideDotActive : ''}`}
-                    onClick={() => setM3Slide(i)}
-                    aria-label={`Slide ${i + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ── M4  Capabilities ── */}
-        <div id="about-why" className={`${styles.sectionAnchorPad} ${styles.sectionBgBlue}`}>
+        {/* ── M4  What We Do ── */}
+        <div id="about-why" className={`${styles.sectionAnchorPad}`}>
           <motion.div className={styles.capHeader} {...reveal(0.02)}>
+            <p className={styles.eyebrow}>What We Do</p>
             <h3>{modules.m4.title}</h3>
             <p className={styles.capIntro}>Eight integrated capabilities spanning research, technology, and implementation.</p>
           </motion.div>
@@ -311,6 +270,7 @@ export default function About() {
 
           <div className={styles.diffContent}>
             <motion.div className={styles.diffText} {...reveal(0.02)}>
+              <p className={styles.overviewEyebrow}>Why AiVantha</p>
               <h3 className={styles.diffHeadline}>
                 {modules.m5.headline.split('\n').map((line, i) => (
                   <span key={i}>{line}{i === 0 && <br />}</span>
@@ -332,10 +292,11 @@ export default function About() {
           </div>
         </div>
 
-        {/* ── M6  Impact Narrative ── */}
-        <div className={`${styles.sectionAnchorPad} ${styles.sectionBgBlue}`}>
+        {/* ── M6  Impact & Partnerships ── */}
+        <div id="about-impact" className={`${styles.sectionAnchorPad}`}>
           <motion.div className={styles.capHeader} {...reveal(0.02)}>
-            <h3>Impact, partnerships, and careers</h3>
+            <p className={styles.eyebrow}>Impact &amp; Partnerships</p>
+            <h3>Where we create lasting value</h3>
           </motion.div>
           <div className={styles.panelStack}>
             {modules.m6.panels.map((p, i) => (
@@ -358,6 +319,44 @@ export default function About() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+
+        {/* ── M3 Vision & Mission ── */}
+        <div id="about-mission" className={styles.sectionAnchorPad}>
+          <div className={styles.slideshow}>
+            {modules.m3.slides.map((slide, i) => (
+              <div
+                key={i}
+                className={`${styles.slideBg} ${m3Slide === i ? styles.slideBgActive : ''}`}
+                style={{ backgroundImage: `url(${slide.img})` }}
+                aria-hidden
+              />
+            ))}
+            <div className={styles.slideshowCard}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={m3Slide}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.38 }}
+                >
+                  <span className={styles.slideLabel}>{modules.m3.slides[m3Slide].label}</span>
+                  <h3 className={styles.slideHeadline}>{modules.m3.slides[m3Slide].headline}</h3>
+                  <p className={styles.slideBody}>{modules.m3.slides[m3Slide].body}</p>
+                </motion.div>
+              </AnimatePresence>
+              <div className={styles.slideDots}>
+                {modules.m3.slides.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`${styles.slideDot} ${m3Slide === i ? styles.slideDotActive : ''}`}
+                    onClick={() => setM3Slide(i)}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

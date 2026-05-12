@@ -175,7 +175,7 @@ export default function Solutions() {
         {/* ════════════════════════ 02 · TALENT HUB ════════════════════════ */}
         <div className={`${styles.sectionBlock} ${styles.sectionBlockBorder}`}>
           <div className={`${styles.sectionMeta} fade-up`}>
-            <span className={styles.sectionNum}>02 · Talent Hub</span>
+            <span className={styles.sectionNum}>02 · AiVantha Talent Marketplace</span>
             <h3 className={styles.sectionTitle}>Africa's AI & Health Data Talent Ecosystem</h3>
             <p className={styles.sectionDesc}>
               A curated platform connecting organizations with vetted African AI and health data professionals to accelerate digital transformation.
@@ -212,7 +212,7 @@ export default function Solutions() {
 
           <div className={`fade-up`} style={{ transitionDelay: '.26s' }}>
             <a href="#contact" className={styles.talentCta}>
-              Explore Talent Hub <ArrowRight size={15} strokeWidth={2} />
+              Explore AiVantha Talent Marketplace <ArrowRight size={15} strokeWidth={2} />
             </a>
           </div>
         </div>
