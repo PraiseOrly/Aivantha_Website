@@ -181,15 +181,14 @@ export default function About() {
           <motion.div className={styles.storyCard} {...reveal(0.03)}>
             <div className={styles.storyGrid}>
 
-              {/* Image column */}
+              {/* 2×2 photo frame */}
               <div className={styles.storyImageWrap}>
-                <img
-                  className={styles.storyImage}
-                  src={modules.m2.img}
-                  alt="AiVantha Health research team"
-                  onError={e => (e.currentTarget.style.display = 'none')}
-                />
-                <div className={styles.storyImageOverlay} />
+                <div className={styles.storyPhotoGrid}>
+                  <img className={styles.storyPhoto} src="/Cumi.jfif"    alt="Cumi"    />
+                  <img className={styles.storyPhoto} src="/Gilbert.jfif" alt="Gilbert" />
+                  <img className={styles.storyPhoto} src="/lincoln.jpeg" alt="Lincoln" />
+                  <img className={styles.storyPhoto} src="/Praise.jpeg"  alt="Praise"  />
+                </div>
               </div>
 
               {/* Text column */}

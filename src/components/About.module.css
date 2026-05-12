@@ -177,15 +177,32 @@
 .storyGrid {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  align-items: stretch;
+  align-items: center;
   gap: 32px;
 }
 
-/* Left — image stretches to match text column height */
+/* Left — square 2×2 photo frame */
 .storyImageWrap {
-  position: relative;
   overflow: hidden;
   border-radius: 12px;
+  aspect-ratio: 1 / 1;
+}
+
+.storyPhotoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 3px;
+  width: 100%;
+  height: 100%;
+}
+
+.storyPhoto {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .storyImage {
@@ -817,14 +834,14 @@
 
   .storyCard          { padding: 24px; border-radius: 16px; margin: var(--space-sm) 0; }
   .storyGrid          { grid-template-columns: 1fr; gap: 24px; }
-  .storyImageWrap     { min-height: 280px; }
+  .storyImageWrap     { aspect-ratio: 1 / 1; max-width: 360px; }
   .storyText          { padding: var(--space-xl); }
   .storyHeadline      { max-width: none; }
 }
 
 @media (max-width: 640px) {
   .storyCard      { padding: 16px; border-radius: 12px; }
-  .storyImageWrap { min-height: 220px; border-radius: 8px; }
+  .storyImageWrap { aspect-ratio: 1 / 1; border-radius: 8px; max-width: 300px; }
   .storyText      { padding: var(--space-xl) var(--space-lg); }
   .storyHeadline  { font-size: clamp(1.4rem, 6vw, 1.8rem); }
   .storyPara      { font-size: 0.95rem; }
