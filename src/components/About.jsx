@@ -134,8 +134,6 @@ export default function About() {
   const goCapNext = () => { setCapDir(1);  setCapSlide(s => (s + 1) % CAP_TOTAL) }
   const goCapPrev = () => { setCapDir(-1); setCapSlide(s => (s - 1 + CAP_TOTAL) % CAP_TOTAL) }
 
-  const capTotal = modules.m4.cards.length
-
 
   const reveal = (delay = 0) => ({
     initial:     { opacity: 0, y: 24 },
@@ -310,37 +308,24 @@ export default function About() {
                   </svg>
                 </button>
 
-                {/* Slide area */}
+                {/* Slide area — 4 services per slide */}
                 <div className={styles.capSlideWrap}>
-                  <div className={styles.capProgress} aria-hidden>
-                    <span className={styles.capProgressText}>Service</span>
-                    <span className={styles.capProgressNum}>{String(capSlide + 1).padStart(2, '0')}</span>
-                    <span className={styles.capProgressSlash}>/</span>
-                    <span className={styles.capProgressTotal}>{String(capTotal).padStart(2, '0')}</span>
-                  </div>
-
                   <AnimatePresence mode="wait" custom={capDir}>
                     <motion.div
                       key={capSlide}
-                      className={`${styles.capSlide} ${modules.m4.cards[capSlide].variant === 'gold' ? styles.capSlideGold : styles.capSlideCobalt}`}
+                      className={styles.capSlide}
                       custom={capDir}
-                      initial={d => ({ opacity: 0, x: d * 34 })}
+                      initial={d => ({ opacity: 0, x: d * 52 })}
                       animate={{ opacity: 1, x: 0 }}
-                      exit={d => ({ opacity: 0, x: d * -34 })}
-                      transition={{ duration: 0.36, ease: [0.16, 1, 0.3, 1] }}
+                      exit={d => ({ opacity: 0, x: d * -52 })}
+                      transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className={styles.capSlideTop}>
-                        <div className={styles.capSlideIcon} aria-hidden>
-                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
-                            <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
-                            <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
-                          </svg>
+                      {modules.m4.cards.slice(capSlide * 4, capSlide * 4 + 4).map(card => (
+                        <div key={card.title} className={styles.capServiceItem}>
+                          <h4 className={styles.capSlideTitle}>{card.title}</h4>
+                          <p className={styles.capSlideDesc}>{card.desc}</p>
                         </div>
-                      </div>
-
-                      <h4 className={styles.capSlideTitle}>{modules.m4.cards[capSlide].title}</h4>
-                      <p className={styles.capSlideDesc}>{modules.m4.cards[capSlide].desc}</p>
+                      ))}
                     </motion.div>
                   </AnimatePresence>
                 </div>
@@ -353,15 +338,14 @@ export default function About() {
                 </button>
               </div>
 
-              {/* Dot indicators */}
-              <div className={styles.capDots} aria-label="Service navigation">
-                {modules.m4.cards.map((_, i) => (
+              {/* 2 dot indicators */}
+              <div className={styles.capDots}>
+                {Array.from({ length: CAP_TOTAL }, (_, i) => (
                   <button
                     key={i}
                     className={`${styles.capDot} ${capSlide === i ? styles.capDotActive : ''}`}
                     onClick={() => goCapTo(i)}
-                    aria-label={`Go to service ${i + 1}`}
-                    aria-current={capSlide === i ? 'true' : 'false'}
+                    aria-label={`Go to services ${i * 4 + 1}–${i * 4 + 4}`}
                   />
                 ))}
               </div>
