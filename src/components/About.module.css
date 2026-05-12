@@ -204,6 +204,11 @@
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  transition: transform 0.7s ease;
+}
+
+.storyImageWrap:hover .storyPhoto {
+  transform: scale(1.06);
 }
 
 .storyImage {

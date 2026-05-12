@@ -142,34 +142,43 @@ export default function About() {
         <div id="about-overview" className={styles.sectionAnchorPad}>
           <div className={styles.overviewGrid}>
 
-            {/* Left — cobalt blue panel */}
-            <motion.div className={styles.overviewLeft} {...reveal(0.03)}>
-              <h2 className={styles.overviewHeadline}>
+            {/* Left — staggered reveal: headline → body → CTAs */}
+            <motion.div
+              className={styles.overviewLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-56px' }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.15, delayChildren: 0.05 } } }}
+            >
+              <motion.h2
+                className={styles.overviewHeadline}
+                variants={{ hidden: { opacity: 0, y: 36, scale: 0.98 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
+              >
                 {modules.m1.headlinePart1}
                 <em>{modules.m1.headlinePart2}</em>
-              </h2>
+              </motion.h2>
               <div className={styles.overviewBody}>
                 {modules.m1.body.map((p, i) => (
                   <motion.p
                     key={i}
                     className={styles.overviewPara}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-56px' }}
-                    transition={{ duration: 0.6, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                    variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] } } }}
                   >
                     {p}
                   </motion.p>
                 ))}
               </div>
-              <div className={styles.aboutCtas}>
+              <motion.div
+                className={styles.aboutCtas}
+                variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } } }}
+              >
                 <a className={[styles.ctaBtn, styles.ctaPrimary].join(' ')} href={'#contact'}>
                   Partner With Us
                 </a>
                 <a className={[styles.ctaBtn, styles.ctaSecondary].join(' ')} href={'#services'}>
                   See Our Services
                 </a>
-              </div>
+              </motion.div>
             </motion.div>
 
           </div>
@@ -178,31 +187,43 @@ export default function About() {
 
         {/* ── M2  Our Story ── */}
         <div id="about-story" className={styles.sectionAnchorPad}>
-          <motion.div className={styles.storyCard} {...reveal(0.03)}>
+          <div className={styles.storyCard}>
             <div className={styles.storyGrid}>
 
-              {/* 2×2 photo frame */}
-              <div className={styles.storyImageWrap}>
+              {/* 2×2 photo frame — slides in from left with subtle zoom */}
+              <motion.div
+                className={styles.storyImageWrap}
+                initial={{ opacity: 0, x: -40, scale: 0.97 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <div className={styles.storyPhotoGrid}>
                   <img className={styles.storyPhoto} src="/Cumi.jfif"    alt="Cumi"    />
                   <img className={styles.storyPhoto} src="/Gilbert.jfif" alt="Gilbert" />
                   <img className={styles.storyPhoto} src="/lincoln.jpeg" alt="Lincoln" />
                   <img className={styles.storyPhoto} src="/Praise.jpeg"  alt="Praise"  />
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Text column */}
-              <motion.div className={styles.storyText} {...reveal(0.08)}>
+              {/* Text column — slides in from right, paragraphs stagger */}
+              <motion.div
+                className={styles.storyText}
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 1.0, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <p className={styles.overviewEyebrow}>Our Story</p>
                 <h2 className={styles.storyHeadline}>{modules.m2.headline}</h2>
                 {modules.m2.body.map((p, i) => (
                   <motion.p
                     key={i}
                     className={styles.storyPara}
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 14 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-56px' }}
-                    transition={{ duration: 0.6, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.65, delay: 0.28 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   >
                     {p}
                   </motion.p>
@@ -210,7 +231,7 @@ export default function About() {
               </motion.div>
 
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* ── M3 Vision & Mission ── */}
