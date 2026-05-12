@@ -456,12 +456,14 @@
   margin-right: auto;
 }
 
-.capHeader h3 {
-  font-size: clamp(1.6rem, 3.4vw, 2.25rem);
-  font-weight: 780;
-  letter-spacing: -.024em;
-  color: var(--navy-900);
-  line-height: 1.17;
+.capHeaderTitle {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--gray-900);
+  line-height: 1.28;
+  margin: 0 0 var(--space-sm);
 }
 
 .capIntro {
@@ -600,6 +602,200 @@
   line-height: 1.75;
   font-size: 0.97rem;
   margin: 0;
+}
+
+/* ── Carousel ── */
+.capCarousel {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: var(--space-lg) 0 var(--space-2xl);
+}
+
+.capSlideRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.capSlideWrap {
+  flex: 1;
+  min-height: 240px;
+  display: flex;
+  align-items: stretch;
+}
+
+.capSlide {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: var(--r-2xl);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: var(--space-2xl) var(--space-3xl);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.07), 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+
+.capSlideTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: var(--space-xs);
+}
+
+.capProgress {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: var(--space-sm);
+  padding: 0 var(--space-sm);
+}
+
+.capProgressText {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(0, 74, 173, 0.65);
+}
+
+.capProgressNum {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--cobalt);
+}
+
+.capProgressSlash {
+  color: rgba(0, 74, 173, 0.45);
+  font-weight: 800;
+}
+
+.capProgressTotal {
+  font-size: 0.95rem;
+  color: rgba(0, 74, 173, 0.55);
+  font-weight: 800;
+}
+
+.capSlideIcon {
+
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.capSlideCobalt .capSlideIcon {
+  color: var(--cobalt);
+  background: rgba(0, 74, 173, 0.07);
+  border: 1px solid rgba(0, 74, 173, 0.12);
+}
+
+.capSlideGold .capSlideIcon {
+  color: var(--gold-orange);
+  background: rgba(200, 142, 40, 0.07);
+  border: 1px solid rgba(200, 142, 40, 0.14);
+}
+
+/* legacy numbering removed in favor of .capProgress */
+.capSlideNum {
+  display: none;
+}
+
+.capSlideGold .capSlideNum {
+  display: none;
+}
+
+
+.capSlideTitle {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  color: var(--gray-900);
+  margin: 0;
+}
+
+.capSlideDesc {
+  font-size: 1rem;
+  color: var(--gray-500);
+  line-height: 1.72;
+  margin: 0;
+  max-width: 54ch;
+}
+
+.capArrow {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-full);
+  border: 1.5px solid rgba(0, 74, 173, 0.18);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--cobalt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.capArrow:hover {
+  background: #fff;
+  border-color: rgba(0, 74, 173, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 74, 173, 0.14);
+  transform: translateY(-2px);
+}
+
+.capDots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--space-xl);
+}
+
+.capDot:focus-visible {
+  outline: 2px solid rgba(0, 74, 173, 0.55);
+  outline-offset: 3px;
+}
+
+
+.capDot {
+  height: 7px;
+  width: 7px;
+  border-radius: var(--r-full);
+  background: rgba(0, 74, 173, 0.2);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.capDotActive {
+  width: 22px;
+  background: var(--cobalt);
+}
+
+@media (max-width: 640px) {
+  .capCarousel  { padding: var(--space-md) 0 var(--space-xl); }
+  .capSlideRow  { gap: var(--space-md); }
+  .capSlide     { padding: var(--space-xl) var(--space-2xl); gap: var(--space-sm); }
+  .capProgress  { padding: 0; margin-bottom: var(--space-xs); }
+  .capSlideTitle { font-size: clamp(1.2rem, 5.5vw, 1.5rem); }
+  .capArrow     { width: 40px; height: 40px; }
+}
+
+
+@media (max-width: 400px) {
+  .capSlideRow  { gap: 8px; }
+  .capArrow     { width: 36px; height: 36px; }
+  .capSlide     { padding: var(--space-lg); }
 }
 
 /* ══════════════════════════════════════

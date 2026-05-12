@@ -34,6 +34,8 @@ export default function About() {
   useInView(rootRef, { margin: '-100px' })
   const [reduceMotion, setReduceMotion] = useState(false)
   const [m3Slide, setM3Slide] = useState(0)
+  const [capSlide, setCapSlide] = useState(0)
+  const [capDir,   setCapDir]   = useState(1)
 
   useEffect(() => {
     const mq = window.matchMedia?.('(prefers-reduced-motion: reduce)')
@@ -126,6 +128,13 @@ export default function About() {
       ],
     },
   }), [])
+
+  const goCapTo   = (i) => { if (i === capSlide) return; setCapDir(i > capSlide ? 1 : -1); setCapSlide(i) }
+  const goCapNext = () => { setCapDir(1);  setCapSlide(s => (s + 1) % modules.m4.cards.length) }
+  const goCapPrev = () => { setCapDir(-1); setCapSlide(s => (s - 1 + modules.m4.cards.length) % modules.m4.cards.length) }
+
+  const capTotal = modules.m4.cards.length
+
 
   const reveal = (delay = 0) => ({
     initial:     { opacity: 0, y: 24 },
@@ -283,7 +292,7 @@ export default function About() {
         <div id="about-why" className={`${styles.sectionAnchorPad}`}>
           <motion.div className={styles.capHeader} {...reveal(0.02)}>
             <p className={styles.eyebrow}>What We Do</p>
-            <h3>{modules.m4.title}</h3>
+            <h3 className={styles.capHeaderTitle}>{modules.m4.title}</h3>
             <p className={styles.capIntro}>Eight integrated capabilities spanning research, technology, and implementation.</p>
           </motion.div>
 
@@ -296,31 +305,76 @@ export default function About() {
               />
               <div className={styles.capBgOverlay} />
             </div>
-            <div className={styles.capGrid}>
-              {modules.m4.cards.map((c, i) => (
-                <motion.div
-                  key={c.title}
-                  className={`${styles.capCard} ${c.variant === 'gold' ? styles.capGold : styles.capCobalt}`}
-                  {...reveal(0.03 + i * 0.05)}
-                  whileHover={{ y: -4, transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] } }}
-                >
-                  <div className={styles.capCardMeta}>
-                    <div className={styles.capIcon} aria-hidden>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
-                        <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
-                        <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
-                      </svg>
-                    </div>
-                    <span className={styles.capNum}>0{i + 1}</span>
+
+            {/* ── Carousel ── */}
+            <motion.div className={styles.capCarousel} {...reveal(0.06)}>
+              <div className={styles.capSlideRow}>
+
+                {/* Prev arrow */}
+                <button className={styles.capArrow} onClick={goCapPrev} aria-label="Previous service">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M15 18l-6-6 6-6"/>
+                  </svg>
+                </button>
+
+                {/* Slide area */}
+                <div className={styles.capSlideWrap}>
+                  <div className={styles.capProgress} aria-hidden>
+                    <span className={styles.capProgressText}>Service</span>
+                    <span className={styles.capProgressNum}>{String(capSlide + 1).padStart(2, '0')}</span>
+                    <span className={styles.capProgressSlash}>/</span>
+                    <span className={styles.capProgressTotal}>{String(capTotal).padStart(2, '0')}</span>
                   </div>
-                  <div className={styles.capCardBody}>
-                    <h4>{c.title}</h4>
-                    <p>{c.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+
+                  <AnimatePresence mode="wait" custom={capDir}>
+                    <motion.div
+                      key={capSlide}
+                      className={`${styles.capSlide} ${modules.m4.cards[capSlide].variant === 'gold' ? styles.capSlideGold : styles.capSlideCobalt}`}
+                      custom={capDir}
+                      initial={d => ({ opacity: 0, x: d * 34 })}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={d => ({ opacity: 0, x: d * -34 })}
+                      transition={{ duration: 0.36, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      <div className={styles.capSlideTop}>
+                        <div className={styles.capSlideIcon} aria-hidden>
+                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                      </div>
+
+                      <h4 className={styles.capSlideTitle}>{modules.m4.cards[capSlide].title}</h4>
+                      <p className={styles.capSlideDesc}>{modules.m4.cards[capSlide].desc}</p>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Next arrow */}
+                <button className={styles.capArrow} onClick={goCapNext} aria-label="Next service">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M9 18l6-6-6-6"/>
+                  </svg>
+                </button>
+              </div>
+
+              {/* Dot indicators */}
+              <div className={styles.capDots} aria-label="Service navigation">
+                {modules.m4.cards.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`${styles.capDot} ${capSlide === i ? styles.capDotActive : ''}`}
+                    onClick={() => goCapTo(i)}
+                    aria-label={`Go to service ${i + 1}`}
+                    aria-current={capSlide === i ? 'true' : 'false'}
+                  />
+                ))}
+              </div>
+            </motion.div>
+
+
           </div>
         </div>
 
