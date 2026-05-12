@@ -81,15 +81,15 @@ export default function About() {
       slides: [
         {
           label: 'Vision',
-          headline: 'An Africa where healthcare systems are powered by trusted data, ethical AI, and local expertise.',
-          body: 'We envision a continent where every healthcare decision — from village clinic to national health ministry — is guided by intelligent, ethical, and locally-grounded data systems.',
-          img: 'https://images.unsplash.com/photo-1622674777904-386b3ef30c4a?auto=format&fit=crop&w=1920&h=1080&q=80',
+          headline: 'An Africa where healthcare is powered by trusted data, ethical AI, and local expertise.',
+          body: 'We envision a continent where every healthcare decision, from clinics to ministries, is guided by intelligent, ethical, local data systems.',
+          img: 'https://images.unsplash.com/photo-1666214280250-41f16ba24a26?auto=format&fit=crop&w=1920&h=1080&q=80',
         },
         {
           label: 'Mission',
           headline: "Accelerating Africa's shift to intelligent, data-driven healthcare.",
           body: 'Through AI research, scalable innovation, and a continent-wide talent network, we build the intelligence infrastructure that African health systems need to thrive.',
-          img: 'https://images.unsplash.com/photo-1758873269276-9518d0cb4a0b?auto=format&fit=crop&w=1920&h=1080&q=80',
+          img: 'https://images.unsplash.com/photo-1666214280577-5f90bc36be92?auto=format&fit=crop&w=1920&h=1080&q=80',
         },
       ],
     },
