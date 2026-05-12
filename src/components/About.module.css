@@ -42,7 +42,7 @@
   display: grid;
   grid-template-columns: 1fr;
   align-items: stretch;
-  min-height: 560px;
+  min-height: 380px;
   overflow: hidden;
   margin: 0;
   width: 100vw;
@@ -51,7 +51,7 @@
 
 /* Left — no background, content sits on section background */
 .overviewLeft {
-  padding: var(--space-2xl) var(--space-3xl) var(--space-lg);
+  padding: var(--space-2xl) var(--space-3xl) var(--space-sm);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,12 +60,12 @@
 }
 
 .overviewEyebrow {
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: rgba(255, 255, 255, 0.48);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-sm);
 }
 
 /* Mixed serif: upright then italic for the rhetorical turn */
@@ -170,22 +170,23 @@
   border-radius: 20px;
   padding: 36px;
   overflow: hidden;
-  margin: var(--space-sm) 0;
+  margin: 0;
 }
 
 /* Two-column grid inside the card */
 .storyGrid {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  align-items: center;
+  align-items: start;
   gap: 32px;
 }
 
-/* Left — square 2×2 photo frame */
+/* Left — square 2×2 photo frame, offset down to align top with heading */
 .storyImageWrap {
   overflow: hidden;
   border-radius: 12px;
   aspect-ratio: 1 / 1;
+  margin-top: calc(var(--space-2xl) + 2 * var(--space-lg) + 1.125rem);
 }
 
 .storyPhotoGrid {
@@ -243,7 +244,7 @@
   letter-spacing: -0.015em;
   color: #fff;
   line-height: 1.28;
-  margin: var(--space-lg) 0 var(--space-2xl);
+  margin: var(--space-xs) 0 var(--space-2xl);
   max-width: 26ch;
   text-align: left;
 }
@@ -408,6 +409,32 @@
 .slideDotActive {
   width: 22px;
   background: #fff;
+}
+
+/* ── M3 two-column layout (replaces full-viewport slideshow) ── */
+.missionRow {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+/* Left: cobalt text card — in normal flow, not absolute */
+.missionText {
+  background: var(--cobalt);
+  border-radius: 20px;
+  padding: var(--space-2xl) var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Right: image panel — crossfading slides fill it via position: absolute inset: 0 */
+.missionImageWrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 320px;
 }
 
 /* ══════════════════════════════════════
@@ -837,6 +864,10 @@
   .storyImageWrap     { aspect-ratio: 1 / 1; max-width: 360px; }
   .storyText          { padding: var(--space-xl); }
   .storyHeadline      { max-width: none; }
+
+  .missionRow         { grid-template-columns: 1fr; }
+  .missionImageWrap   { height: 260px; border-radius: 14px; }
+  .missionText        { border-radius: 14px; }
 }
 
 @media (max-width: 640px) {

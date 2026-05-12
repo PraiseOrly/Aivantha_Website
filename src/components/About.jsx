@@ -71,9 +71,9 @@ export default function About() {
     m2: {
       headline: 'Built at the intersection of African healthcare and global AI innovation.',
       body: [
-        'AiVantha was founded on a simple but urgent observation: African healthcare systems generate enormous volumes of data, yet most of it never becomes actionable insight. The infrastructure needed to turn raw data into clinical and operational decisions — trusted, timely, and locally relevant — does not exist at scale.',
+        'AiVantha was founded on a simple but urgent observation: African healthcare systems generate enormous volumes of data, yet most of it never becomes actionable insight. The infrastructure needed to turn raw data into clinical and operational decisions that are trusted, timely, and locally relevant does not exist at scale.',
         'We set out to build it. Starting with research and consulting, AiVantha has grown into an integrated ecosystem spanning AI solution development, digital health platforms, and a continent-wide network of health data professionals and implementation teams.',
-        'Today, we work with governments, hospital networks, and international health organisations across Africa, delivering intelligence that drives real outcomes — designed for the complexity of African health systems, built to scale.',
+        'Today, we work with governments, hospital networks, and international health organisations across Africa, delivering intelligence that drives real outcomes designed for the complexity of African health systems and built to scale.',
       ],
       img: 'https://images.unsplash.com/photo-1758691463080-30a990ef61bb?auto=format&fit=crop&w=900&h=1100&q=80',
     },
@@ -213,6 +213,51 @@ export default function About() {
           </motion.div>
         </div>
 
+        {/* ── M3 Vision & Mission ── */}
+        <div id="about-mission" className={styles.sectionAnchorPad}>
+          <div className={styles.missionRow}>
+
+            {/* Left column — cobalt text card, same transitions as before */}
+            <div className={styles.missionText}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={m3Slide}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.38 }}
+                >
+                  <span className={styles.slideLabel}>{modules.m3.slides[m3Slide].label}</span>
+                  <h3 className={styles.slideHeadline}>{modules.m3.slides[m3Slide].headline}</h3>
+                  <p className={styles.slideBody}>{modules.m3.slides[m3Slide].body}</p>
+                </motion.div>
+              </AnimatePresence>
+              <div className={styles.slideDots}>
+                {modules.m3.slides.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`${styles.slideDot} ${m3Slide === i ? styles.slideDotActive : ''}`}
+                    onClick={() => setM3Slide(i)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Right column — crossfading image, contained at half the previous size */}
+            <div className={styles.missionImageWrap}>
+              {modules.m3.slides.map((slide, i) => (
+                <div
+                  key={i}
+                  className={`${styles.slideBg} ${m3Slide === i ? styles.slideBgActive : ''}`}
+                  style={{ backgroundImage: `url(${slide.img})` }}
+                  aria-hidden
+                />
+              ))}
+            </div>
+
+          </div>
+        </div>
+
         {/* ── M4  What We Do ── */}
         <div id="about-why" className={`${styles.sectionAnchorPad}`}>
           <motion.div className={styles.capHeader} {...reveal(0.02)}>
@@ -320,44 +365,6 @@ export default function About() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-
-        {/* ── M3 Vision & Mission ── */}
-        <div id="about-mission" className={styles.sectionAnchorPad}>
-          <div className={styles.slideshow}>
-            {modules.m3.slides.map((slide, i) => (
-              <div
-                key={i}
-                className={`${styles.slideBg} ${m3Slide === i ? styles.slideBgActive : ''}`}
-                style={{ backgroundImage: `url(${slide.img})` }}
-                aria-hidden
-              />
-            ))}
-            <div className={styles.slideshowCard}>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={m3Slide}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.38 }}
-                >
-                  <span className={styles.slideLabel}>{modules.m3.slides[m3Slide].label}</span>
-                  <h3 className={styles.slideHeadline}>{modules.m3.slides[m3Slide].headline}</h3>
-                  <p className={styles.slideBody}>{modules.m3.slides[m3Slide].body}</p>
-                </motion.div>
-              </AnimatePresence>
-              <div className={styles.slideDots}>
-                {modules.m3.slides.map((_, i) => (
-                  <button
-                    key={i}
-                    className={`${styles.slideDot} ${m3Slide === i ? styles.slideDotActive : ''}`}
-                    onClick={() => setM3Slide(i)}
-                  />
-                ))}
-              </div>
-            </div>
           </div>
         </div>
 
