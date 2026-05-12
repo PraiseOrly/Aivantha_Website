@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useInView } from 'framer-motion'
+import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './About.module.css'
 
@@ -29,6 +29,15 @@ function useSectionParallax(selector, enabled = true) {
   }, [selector, enabled])
 }
 
+const CAP_PARTICLES = Array.from({ length: 16 }, (_, i) => ({
+  id:       i,
+  top:      `${8  + ((i * 37 + 13) % 84)}%`,
+  left:     `${5  + ((i * 53 +  7) % 90)}%`,
+  size:     2 + (i % 3),
+  duration: 36 + (i % 8) * 1.5,
+  delay:    -(i * 2.5),
+}))
+
 export default function About() {
   const rootRef  = useRef(null)
   useInView(rootRef, { margin: '-100px' })
@@ -36,6 +45,7 @@ export default function About() {
   const [m3Slide, setM3Slide] = useState(0)
   const [capSlide, setCapSlide] = useState(0)
   const [capDir,   setCapDir]   = useState(1)
+  const prefersReducedMotion = useReducedMotion() ?? false
 
   useEffect(() => {
     const mq = window.matchMedia?.('(prefers-reduced-motion: reduce)')
@@ -288,25 +298,78 @@ export default function About() {
         </div>
 
         {/* ── M4  What We Do ── */}
-        <div id="about-why" className={`${styles.sectionAnchorPad}`}>
-          <motion.div className={styles.capHeader} {...reveal(0.02)}>
-            <p className={styles.eyebrow}>What We Do</p>
-            <h3 className={styles.capHeaderTitle}>{modules.m4.title}</h3>
-            <p className={styles.capIntro}>Eight integrated capabilities spanning research, technology, and implementation.</p>
+        <div id="about-why" className={`${styles.sectionAnchorPad} ${styles.capSection}`}>
+
+          {/* Ambient background layer */}
+          <div className={styles.capBgLayer} aria-hidden="true">
+            <div className={styles.capGradientPulse} />
+            <div className={styles.capGridLines}>
+              {Array.from({ length: 5 }, (_, i) => <div key={i} className={styles.capGridLine} />)}
+            </div>
+            {!prefersReducedMotion && CAP_PARTICLES.map(p => (
+              <div
+                key={p.id}
+                className={styles.capParticle}
+                style={{
+                  top:               p.top,
+                  left:              p.left,
+                  width:             `${p.size}px`,
+                  height:            `${p.size}px`,
+                  animationDuration: `${p.duration}s`,
+                  animationDelay:    `${p.delay}s`,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Header — word-by-word stagger */}
+          <motion.div
+            className={styles.capHeader}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-56px' }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
+          >
+            <motion.p
+              className={styles.eyebrow}
+              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
+            >What We Do</motion.p>
+            <h3 className={styles.capHeadlineWrap}>
+              {modules.m4.title.split(' ').map((word, i, arr) => (
+                <motion.span
+                  key={i}
+                  className={styles.capWord}
+                  variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } } }}
+                >{word}{i < arr.length - 1 && ' '}</motion.span>
+              ))}
+            </h3>
+            <motion.div
+              className={styles.capUnderline}
+              variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { duration: 0.65, delay: 0.3, ease: [0.16, 1, 0.3, 1] } } }}
+            />
+            <motion.p
+              className={styles.capIntro}
+              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.6, delay: 0.4 } } }}
+            >Eight integrated capabilities spanning research, technology, and implementation.</motion.p>
           </motion.div>
 
           <div className={styles.capabilityWrap}>
-
-            {/* ── Carousel ── */}
-            <motion.div className={styles.capCarousel} {...reveal(0.06)}>
+            <div className={styles.capCarousel}>
               <div className={styles.capSlideRow}>
 
                 {/* Prev arrow */}
-                <button className={styles.capArrow} onClick={goCapPrev} aria-label="Previous service">
+                <motion.button
+                  className={styles.capArrow}
+                  onClick={goCapPrev}
+                  aria-label="Previous service"
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
+                  transition={{ duration: 0.18 }}
+                >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M15 18l-6-6 6-6"/>
                   </svg>
-                </button>
+                </motion.button>
 
                 {/* Slide area — 4 services per slide */}
                 <div className={styles.capSlideWrap}>
@@ -315,30 +378,49 @@ export default function About() {
                       key={capSlide}
                       className={styles.capSlide}
                       custom={capDir}
-                      initial={d => ({ opacity: 0, x: d * 52 })}
+                      initial={d => ({ opacity: 0, x: prefersReducedMotion ? 0 : d * 40 })}
                       animate={{ opacity: 1, x: 0 }}
-                      exit={d => ({ opacity: 0, x: d * -52 })}
+                      exit={d => ({ opacity: 0, x: prefersReducedMotion ? 0 : d * -40 })}
                       transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      {modules.m4.cards.slice(capSlide * 4, capSlide * 4 + 4).map(card => (
-                        <div key={card.title} className={styles.capServiceItem}>
-                          <h4 className={styles.capSlideTitle}>{card.title}</h4>
+                      {modules.m4.cards.slice(capSlide * 4, capSlide * 4 + 4).map((card, i) => (
+                        <motion.div
+                          key={card.title}
+                          className={styles.capServiceItem}
+                          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.45, delay: 0.06 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                          whileHover={{ y: prefersReducedMotion ? 0 : -8, transition: { duration: 0.28 } }}
+                        >
+                          <div className={styles.capTitleRow}>
+                            <h4 className={styles.capSlideTitle}>{card.title}</h4>
+                            <span className={styles.capChevron} aria-hidden="true">→</span>
+                          </div>
+                          <div className={styles.capTitleUnderline} />
                           <p className={styles.capSlideDesc}>{card.desc}</p>
-                        </div>
+                        </motion.div>
                       ))}
                     </motion.div>
                   </AnimatePresence>
                 </div>
 
                 {/* Next arrow */}
-                <button className={styles.capArrow} onClick={goCapNext} aria-label="Next service">
+                <motion.button
+                  className={styles.capArrow}
+                  onClick={goCapNext}
+                  aria-label="Next service"
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
+                  transition={{ duration: 0.18 }}
+                >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M9 18l6-6-6-6"/>
                   </svg>
-                </button>
+                </motion.button>
+
               </div>
 
-              {/* 2 dot indicators */}
+              {/* Slide indicators */}
               <div className={styles.capDots}>
                 {Array.from({ length: CAP_TOTAL }, (_, i) => (
                   <button
@@ -349,9 +431,7 @@ export default function About() {
                   />
                 ))}
               </div>
-            </motion.div>
-
-
+            </div>
           </div>
         </div>
 
