@@ -178,38 +178,40 @@ export default function About() {
 
         {/* ── M2  Our Story ── */}
         <div id="about-story" className={styles.sectionAnchorPad}>
-          <div className={styles.storyGrid}>
+          <motion.div className={styles.storyCard} {...reveal(0.03)}>
+            <div className={styles.storyGrid}>
 
-            {/* Image column — blue-toned */}
-            <div className={styles.storyImageWrap}>
-              <img
-                className={styles.storyImage}
-                src={modules.m2.img}
-                alt="AiVantha Health research team"
-                onError={e => (e.currentTarget.style.display = 'none')}
-              />
-              <div className={styles.storyImageOverlay} />
+              {/* Image column */}
+              <div className={styles.storyImageWrap}>
+                <img
+                  className={styles.storyImage}
+                  src={modules.m2.img}
+                  alt="AiVantha Health research team"
+                  onError={e => (e.currentTarget.style.display = 'none')}
+                />
+                <div className={styles.storyImageOverlay} />
+              </div>
+
+              {/* Text column */}
+              <motion.div className={styles.storyText} {...reveal(0.08)}>
+                <p className={styles.overviewEyebrow}>Our Story</p>
+                <h2 className={styles.storyHeadline}>{modules.m2.headline}</h2>
+                {modules.m2.body.map((p, i) => (
+                  <motion.p
+                    key={i}
+                    className={styles.storyPara}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-56px' }}
+                    transition={{ duration: 0.6, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    {p}
+                  </motion.p>
+                ))}
+              </motion.div>
+
             </div>
-
-            {/* Text column */}
-            <motion.div className={styles.storyText} {...reveal(0.05)}>
-              <p className={styles.eyebrow}>Our Story</p>
-              <h2 className={styles.storyHeadline}>{modules.m2.headline}</h2>
-              {modules.m2.body.map((p, i) => (
-                <motion.p
-                  key={i}
-                  className={styles.storyPara}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-56px' }}
-                  transition={{ duration: 0.6, delay: 0.08 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  {p}
-                </motion.p>
-              ))}
-            </motion.div>
-
-          </div>
+          </motion.div>
         </div>
 
         {/* ── M4  What We Do ── */}
