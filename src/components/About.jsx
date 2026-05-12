@@ -331,7 +331,7 @@ export default function About() {
             variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
           >
             <motion.p
-              className={styles.eyebrow}
+              className={styles.overviewEyebrow}
               variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
             >What We Do</motion.p>
             <h3 className={styles.capHeadlineWrap}>

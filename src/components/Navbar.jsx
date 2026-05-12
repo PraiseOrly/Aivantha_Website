@@ -19,7 +19,7 @@ const navItems = [
     subItems: [
       { label: 'Overview', desc: '', href: '#about-overview', Icon: Building2 },
       { label: 'Our Story', desc: '', href: '#about-story', Icon: Eye },
-      { label: 'Mission & Vision', desc: '', href: '#about-approach', Icon: Compass },
+      { label: 'Mission & Vision', desc: '', href: '#about-mission',  Icon: Compass },
       { label: 'What We Do', desc: '', href: '#about-why', Icon: Star },
       { label: 'Why AiVantha', desc: '', href: '#about-partnerships', Icon: Users },
       { label: 'Impact & Partnerships', desc: '', href: '#about-partnerships', Icon: Users },
