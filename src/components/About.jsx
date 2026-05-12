@@ -98,14 +98,14 @@ export default function About() {
     m4: {
       title: 'A structured ecosystem for intelligent healthcare',
       cards: [
-        { title: 'AI & Health Research',          desc: 'Evidence-led discovery and model-driven insights.',             variant: 'cobalt' },
-        { title: 'Healthcare Consulting',          desc: 'Strategy, data architecture, and health system design.',        variant: 'gold'   },
-        { title: 'Systems Advisory',               desc: 'Interoperability, governance, and evaluation frameworks.',     variant: 'cobalt' },
-        { title: 'Governance & MEL',               desc: 'Measurement, learning, and responsible AI operations.',        variant: 'gold'   },
-        { title: 'AI Health Solutions',            desc: 'Applied AI for real-world healthcare intelligence.',            variant: 'cobalt' },
-        { title: 'Digital Health Platforms',       desc: 'Platforms that support analytics and interoperability.',       variant: 'gold'   },
-        { title: 'AiVantha Talent Marketplace',             desc: 'African AI & data specialists for mission-ready teams.',       variant: 'cobalt' },
-        { title: 'Implementation Teams',           desc: 'Embedded delivery to operationalize intelligence.',            variant: 'gold'   },
+        { title: 'AI & Data Strategy',                 desc: 'Tailored AI and data strategies that align with organisational goals and health system priorities.',      variant: 'cobalt' },
+        { title: 'Digital Health Transformation',      desc: 'End-to-end support for digitising health operations, from infrastructure to change management.',         variant: 'gold'   },
+        { title: 'AI Governance & Ethics',             desc: 'Frameworks for responsible AI deployment, accountability structures, and ethical compliance.',           variant: 'cobalt' },
+        { title: 'Technology & Research',              desc: 'Advisory on emerging health technologies, landscape analysis, and research-driven innovation.',          variant: 'gold'   },
+        { title: 'Clinical Decision Support',          desc: 'AI-powered tools that surface actionable insights at the point of care for better clinical outcomes.',   variant: 'cobalt' },
+        { title: 'Predictive Analytics & Intelligence',desc: 'Population health modelling, risk stratification, and predictive systems for proactive interventions.',  variant: 'gold'   },
+        { title: 'Data Systems & Interoperability',    desc: 'Architecture and integration solutions that unify fragmented health data across platforms and systems.',  variant: 'cobalt' },
+        { title: 'Applied Research & Evaluation',      desc: 'Rigorous evaluation frameworks that measure real-world impact and translate evidence into practice.',     variant: 'gold'   },
       ],
       img: 'https://images.unsplash.com/photo-1707944746058-4da338d0f827?auto=format&fit=crop&w=1920&h=1080&q=80',
     },
@@ -129,9 +129,10 @@ export default function About() {
     },
   }), [])
 
+  const CAP_TOTAL = Math.ceil(modules.m4.cards.length / 4)
   const goCapTo   = (i) => { if (i === capSlide) return; setCapDir(i > capSlide ? 1 : -1); setCapSlide(i) }
-  const goCapNext = () => { setCapDir(1);  setCapSlide(s => (s + 1) % modules.m4.cards.length) }
-  const goCapPrev = () => { setCapDir(-1); setCapSlide(s => (s - 1 + modules.m4.cards.length) % modules.m4.cards.length) }
+  const goCapNext = () => { setCapDir(1);  setCapSlide(s => (s + 1) % CAP_TOTAL) }
+  const goCapPrev = () => { setCapDir(-1); setCapSlide(s => (s - 1 + CAP_TOTAL) % CAP_TOTAL) }
 
   const capTotal = modules.m4.cards.length
 
@@ -297,14 +298,6 @@ export default function About() {
           </motion.div>
 
           <div className={styles.capabilityWrap}>
-            <div className={styles.capabilityBg}>
-              <img
-                className={`aboutParallax ${styles.capBgImg}`}
-                src={modules.m4.img} alt=""
-                onError={e => (e.currentTarget.style.display = 'none')}
-              />
-              <div className={styles.capBgOverlay} />
-            </div>
 
             {/* ── Carousel ── */}
             <motion.div className={styles.capCarousel} {...reveal(0.06)}>

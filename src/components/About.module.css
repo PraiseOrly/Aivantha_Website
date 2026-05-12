@@ -424,10 +424,8 @@
   align-items: stretch;
 }
 
-/* Left: cobalt text card — in normal flow, not absolute */
+/* Left: text column — no background, sits on section blue */
 .missionText {
-  background: var(--cobalt);
-  border-radius: 20px;
   padding: var(--space-2xl) var(--space-2xl);
   display: flex;
   flex-direction: column;
@@ -461,7 +459,7 @@
   font-size: clamp(1.5rem, 2.6vw, 2.2rem);
   font-weight: 700;
   letter-spacing: -0.015em;
-  color: var(--gray-900);
+  color: #fff;
   line-height: 1.28;
   margin: 0 0 var(--space-sm);
 }
@@ -469,35 +467,11 @@
 .capIntro {
   margin-top: var(--space-sm);
   font-size: 1.02rem;
-  color: var(--gray-400);
+  color: rgba(255, 255, 255, 0.62);
   line-height: 1.72;
 }
 
 .capabilityWrap { position: relative; }
-
-.capabilityBg {
-  position: absolute;
-  inset: -130px 0 auto 0;
-  height: 560px;
-  pointer-events: none;
-  overflow: hidden;
-  border-radius: var(--r-2xl);
-}
-
-.capBgImg {
-  display: block;
-  opacity: 0.11;
-  filter: blur(1px) saturate(1.3);
-}
-
-.capBgOverlay {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(900px 360px at 18% 20%, rgba(0, 74, 173, 0.14) 0%, transparent 58%),
-    radial-gradient(900px 360px at 82% 28%, rgba(200, 142, 40, 0.10) 0%, transparent 58%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(255, 255, 255, 0.75));
-}
 
 .capGrid {
   position: relative;
@@ -626,13 +600,7 @@
 
 .capSlide {
   width: 100%;
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-radius: var(--r-2xl);
-  border: 1px solid rgba(255, 255, 255, 0.22);
   padding: var(--space-2xl) var(--space-3xl);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.07), 0 2px 8px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
@@ -691,25 +659,28 @@
 }
 
 .capSlideCobalt .capSlideIcon {
-  color: var(--cobalt);
-  background: rgba(0, 74, 173, 0.07);
-  border: 1px solid rgba(0, 74, 173, 0.12);
+  color: rgba(168, 197, 240, 0.9);
+  background: rgba(168, 197, 240, 0.1);
+  border: 1px solid rgba(168, 197, 240, 0.2);
 }
 
 .capSlideGold .capSlideIcon {
   color: var(--gold-orange);
-  background: rgba(200, 142, 40, 0.07);
-  border: 1px solid rgba(200, 142, 40, 0.14);
+  background: rgba(200, 142, 40, 0.12);
+  border: 1px solid rgba(200, 142, 40, 0.22);
 }
 
-/* legacy numbering removed in favor of .capProgress */
 .capSlideNum {
-  display: none;
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: rgba(255, 255, 255, 0.14);
+  font-variant-numeric: tabular-nums;
+  user-select: none;
 }
 
-.capSlideGold .capSlideNum {
-  display: none;
-}
+.capSlideGold .capSlideNum { color: rgba(200, 142, 40, 0.4); }
 
 
 .capSlideTitle {
@@ -718,13 +689,13 @@
   font-weight: 700;
   letter-spacing: -0.015em;
   line-height: 1.25;
-  color: var(--gray-900);
+  color: #fff;
   margin: 0;
 }
 
 .capSlideDesc {
   font-size: 1rem;
-  color: var(--gray-500);
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.72;
   margin: 0;
   max-width: 54ch;
@@ -735,20 +706,19 @@
   width: 48px;
   height: 48px;
   border-radius: var(--r-full);
-  border: 1.5px solid rgba(0, 74, 173, 0.18);
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--cobalt);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .capArrow:hover {
-  background: #fff;
-  border-color: rgba(0, 74, 173, 0.4);
-  box-shadow: 0 4px 16px rgba(0, 74, 173, 0.14);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.52);
   transform: translateY(-2px);
 }
 
@@ -770,7 +740,7 @@
   height: 7px;
   width: 7px;
   border-radius: var(--r-full);
-  background: rgba(0, 74, 173, 0.2);
+  background: rgba(255, 255, 255, 0.28);
   border: none;
   cursor: pointer;
   padding: 0;
@@ -779,7 +749,7 @@
 
 .capDotActive {
   width: 22px;
-  background: var(--cobalt);
+  background: #fff;
 }
 
 @media (max-width: 640px) {
@@ -1068,7 +1038,6 @@
 
   .missionRow         { grid-template-columns: 1fr; }
   .missionImageWrap   { height: 260px; border-radius: 14px; }
-  .missionText        { border-radius: 14px; }
 }
 
 @media (max-width: 640px) {
