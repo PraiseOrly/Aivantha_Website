@@ -1,80 +1,107 @@
-import { BarChart3, Brain, Briefcase, Building2, Database, FileText, Globe, Heart, Shield, Zap } from 'lucide-react';
-import { useEffect, useRef } from 'react';
-import '../styles/global.css';
-import styles from './Services.module.css';
+import { AnimatePresence, motion } from 'framer-motion'
+import { BarChart3, Brain, Briefcase, Building2, Database, FileText, Globe, Heart, Shield, Stethoscope, Zap } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import '../styles/global.css'
+import styles from './Services.module.css'
 
-const services = [
+const serviceCategories = [
   {
-    title: 'AI & Data Strategy',
-    id: 'ai-data-strategy',
-    description: 'We design AI and data strategies that help health systems turn fragmented data into actionable intelligence.',
-    items: [
-      'National & institutional AI strategy design',
-      'Health data strategy and governance frameworks',
-      'AI readiness & maturity assessments',
-      'Strategic roadmaps for AI adoption in healthcare',
+    category: 'Advisory & Strategy',
+    id: 'advisory-strategy',
+    desc: 'Strategic consulting that guides healthcare organisations through AI adoption, data governance, and sustainable digital transformation.',
+    services: [
+      {
+        title: 'AI & Data Strategy',
+        id: 'ai-data-strategy',
+        description: 'We design AI and data strategies that help health systems turn fragmented data into actionable intelligence.',
+        items: [
+          'National & institutional AI strategy design',
+          'Health data strategy and governance frameworks',
+          'AI readiness & maturity assessments',
+          'Strategic roadmaps for AI adoption in healthcare',
+        ],
+        Icon: Brain,
+      },
+      {
+        title: 'Digital Health Transformation',
+        id: 'digital-health-transformation',
+        description: 'End-to-end support for digitising health operations, from infrastructure planning to change management.',
+        items: [
+          'Digital health transformation roadmaps',
+          'System modernisation and digitisation strategy',
+          'Scaling frameworks for health innovations',
+          'Change management and adoption support',
+        ],
+        Icon: Zap,
+      },
+      {
+        title: 'AI Governance & Ethics',
+        id: 'ai-governance-ethics',
+        description: 'Frameworks for responsible AI deployment, accountability structures, and ethical compliance in health systems.',
+        items: [
+          'Responsible AI frameworks',
+          'Data privacy & protection strategies',
+          'Regulatory compliance advisory',
+          'Ethical risk assessments for AI systems',
+        ],
+        Icon: Shield,
+      },
     ],
-    Icon: Brain,
   },
   {
-    title: 'Digital Health Transformation',
-    id: 'digital-health-transformation',
-    description: 'We support end-to-end transformation of healthcare systems through digital technologies and AI integration.',
-    items: [
-      'Digital health transformation roadmaps',
-      'System modernization and digitization strategy',
-      'Scaling frameworks for health innovations',
-      'Change management and adoption support',
+    category: 'Technology & Research',
+    id: 'technology-research',
+    desc: 'Data-driven technology solutions and applied research that power intelligent, scalable health systems across Africa.',
+    services: [
+      {
+        title: 'Clinical Decision Support',
+        id: 'clinical-decision-support',
+        description: 'AI-powered tools that surface actionable insights at the point of care to improve clinical outcomes.',
+        items: [
+          'Clinical AI model development and deployment',
+          'Diagnostic support systems',
+          'Real-time patient risk stratification',
+          'Clinician-facing decision dashboards',
+        ],
+        Icon: Stethoscope,
+      },
+      {
+        title: 'Predictive Analytics & Intelligence',
+        id: 'predictive-analytics',
+        description: 'Population health modelling, risk stratification, and predictive systems for proactive health interventions.',
+        items: [
+          'Population health modelling',
+          'Disease surveillance & outbreak forecasting',
+          'Resource and demand prediction systems',
+          'AI-driven health intelligence dashboards',
+        ],
+        Icon: BarChart3,
+      },
+      {
+        title: 'Data Systems & Interoperability',
+        id: 'health-data-systems',
+        description: 'Architecture and integration solutions that unify fragmented health data across platforms and systems.',
+        items: [
+          'Health information system design',
+          'Data architecture and system integration',
+          'Interoperability frameworks (FHIR / HL7 aligned)',
+          'Data pipelines and analytics infrastructure',
+        ],
+        Icon: Database,
+      },
+      {
+        title: 'Applied Research & Evaluation',
+        id: 'applied-research',
+        description: 'Rigorous evaluation frameworks that measure real-world impact and translate evidence into practice.',
+        items: [
+          'AI in healthcare research',
+          'Health systems modelling & analytics',
+          'Implementation research studies',
+          'Policy briefs & evidence reports',
+        ],
+        Icon: FileText,
+      },
     ],
-    Icon: Zap,
-  },
-  {
-    title: 'Health Data Systems & Architecture',
-    id: 'health-data-systems',
-    description: 'We build the foundational data infrastructure that enables interoperable, scalable, and real-time health decision-making.',
-    items: [
-      'Health information system design',
-      'Data architecture and system integration',
-      'Interoperability frameworks (FHIR / HL7 aligned)',
-      'Data pipelines and analytics infrastructure',
-    ],
-    Icon: Database,
-  },
-  {
-    title: 'AI Governance & Ethics',
-    id: 'ai-governance-ethics',
-    description: 'We ensure AI in healthcare is safe, ethical, and compliant with African and global standards.',
-    items: [
-      'Responsible AI frameworks',
-      'Data privacy & protection strategies',
-      'Regulatory compliance advisory',
-      'Ethical risk assessments for AI systems',
-    ],
-    Icon: Shield,
-  },
-  {
-    title: 'Monitoring, Evaluation & Learning',
-    id: 'monitoring-evaluation',
-    description: 'We help organizations measure impact and improve decision-making through data-driven evaluation systems.',
-    items: [
-      'MEL framework design',
-      'Impact evaluation of health programs',
-      'AI & digital health performance tracking',
-      'Learning systems for continuous improvement',
-    ],
-    Icon: BarChart3,
-  },
-  {
-    title: 'Applied Health Research',
-    id: 'applied-research',
-    description: 'We generate high-quality, Africa-relevant evidence to guide health policy, innovation, and investment.',
-    items: [
-      'AI in healthcare research',
-      'Health systems modeling & analytics',
-      'Implementation research studies',
-      'Policy briefs & evidence reports',
-    ],
-    Icon: FileText,
   },
 ]
 
@@ -125,8 +152,19 @@ const clients = [
   },
 ]
 
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.10, delayChildren: 0.05 } },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.62, ease: [0.16, 1, 0.3, 1] } },
+}
+
 export default function Services() {
   const ref = useRef(null)
+  const [activeCategory, setActiveCategory] = useState(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -150,25 +188,53 @@ export default function Services() {
           <div className="divider" />
         </div>
 
-        <div className={styles.servicesGrid}>
-          {services.map((service, index) => (
-            <div
-              id={service.id}
-              key={service.title}
-              className={`${styles.serviceCard} fade-up`}
-              style={{ transitionDelay: `${index * 0.08}s` }}
-            >
-              <div className={styles.iconWrap}>
-                <service.Icon size={24} />
-              </div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <ul>
-                {service.items.map((item, i) => <li key={i}>{item}</li>)}
-              </ul>
+        {serviceCategories.map((cat, catIdx) => (
+          <motion.div
+            key={cat.category}
+            id={cat.id}
+            className={styles.categoryBlock}
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.72, delay: catIdx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {/* Category header */}
+            <div className={styles.categoryHeader}>
+              <span className={styles.categoryLabel}>{cat.category}</span>
+              <p className={styles.categoryDesc}>{cat.desc}</p>
             </div>
-          ))}
-        </div>
+
+            {/* Service cards */}
+            <motion.div
+              className={`${styles.servicesGrid} ${cat.services.length === 4 ? styles.servicesGrid4 : ''}`}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+            >
+              {cat.services.map(service => (
+                <motion.div
+                  id={service.id}
+                  key={service.title}
+                  className={styles.serviceCard}
+                  variants={cardVariants}
+                  whileHover={{ y: -6, transition: { duration: 0.24 } }}
+                  onHoverStart={() => setActiveCategory(cat.category)}
+                  onHoverEnd={() => setActiveCategory(null)}
+                >
+                  <div className={styles.iconWrap}>
+                    <service.Icon size={24} />
+                  </div>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                  <ul>
+                    {service.items.map((item, i) => <li key={i}>{item}</li>)}
+                  </ul>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        ))}
 
         <div className={`${styles.whoWeServe} fade-up`}>
           <h3>Who We Serve</h3>

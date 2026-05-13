@@ -21,8 +21,9 @@ const navItems = [
       { label: 'Our Story', desc: '', href: '#about-story', Icon: Eye },
       { label: 'Mission & Vision', desc: '', href: '#about-mission',  Icon: Compass },
       { label: 'What We Do', desc: '', href: '#about-why', Icon: Star },
-      { label: 'Why AiVantha', desc: '', href: '#about-partnerships', Icon: Users },
-      { label: 'Impact & Partnerships', desc: '', href: '#about-partnerships', Icon: Users },
+      { label: 'Why AiVantha', desc: '', href: '#about-partnerships',      Icon: Users    },
+      { label: 'Impact',       desc: '', href: '#about-impact',             Icon: LineChart },
+      { label: 'Partnerships', desc: '', href: '#about-partnerships-panel', Icon: Network  },
 
     ],
   },

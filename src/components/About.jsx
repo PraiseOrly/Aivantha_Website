@@ -45,6 +45,8 @@ export default function About() {
   const [m3Slide, setM3Slide] = useState(0)
   const [capSlide, setCapSlide] = useState(0)
   const [capDir,   setCapDir]   = useState(1)
+  const [m5Slide,  setM5Slide]  = useState(0)
+  const [m5Dir,    setM5Dir]    = useState(1)
   const prefersReducedMotion = useReducedMotion() ?? false
 
   useEffect(() => {
@@ -120,21 +122,20 @@ export default function About() {
       img: 'https://images.unsplash.com/photo-1707944746058-4da338d0f827?auto=format&fit=crop&w=1920&h=1080&q=80',
     },
     m5: {
-      headline: 'Authority shaped by\nAfrican realities',
-      statements: [
-        'African-led design',
-        'Research-first approach',
-        'Ethical AI foundation',
-        'Integrated ecosystem model',
-        'Scalable architecture',
+      headline: 'Authority shaped by African realities',
+      slides: [
+        { num: '01', title: 'African-led design',         img: 'https://images.unsplash.com/photo-1758873269276-9518d0cb4a0b?auto=format&fit=crop&w=1920&h=1080&q=80' },
+        { num: '02', title: 'Research-first approach',    img: 'https://images.unsplash.com/photo-1758691463203-cce9d415b2b5?auto=format&fit=crop&w=1920&h=1080&q=80' },
+        { num: '03', title: 'Ethical AI foundation',      img: 'https://images.unsplash.com/photo-1666214280577-5f90bc36be92?auto=format&fit=crop&w=1920&h=1080&q=80' },
+        { num: '04', title: 'Integrated ecosystem model', img: 'https://images.unsplash.com/photo-1758691737045-3ece61135061?auto=format&fit=crop&w=1920&h=1080&q=80' },
+        { num: '05', title: 'Scalable architecture',      img: 'https://images.unsplash.com/photo-1707944746058-4da338d0f827?auto=format&fit=crop&w=1920&h=1080&q=80' },
       ],
-      img: 'https://images.unsplash.com/photo-1758873269276-9518d0cb4a0b?auto=format&fit=crop&w=1920&h=1080&q=80',
     },
     m6: {
       panels: [
-        { kicker: 'Impact',       text: 'Transforming healthcare systems across Africa through AI and data intelligence.', img: 'https://images.unsplash.com/photo-1758873269317-51888e824b28?auto=format&fit=crop&w=1920&h=1080&q=80' },
-        { kicker: 'Partnerships', text: 'Building healthcare ecosystems through collaboration.',                           img: 'https://images.unsplash.com/photo-1758691737543-09a1b2b715fa?auto=format&fit=crop&w=1920&h=1080&q=80' },
-        { kicker: 'Careers',      text: 'Join us in shaping the future of intelligent healthcare.',                       img: 'https://images.unsplash.com/photo-1758691737045-3ece61135061?auto=format&fit=crop&w=1920&h=1080&q=80' },
+        { kicker: 'Impact',       text: 'Transforming healthcare systems across Africa through AI and data intelligence.', img: 'https://images.unsplash.com/photo-1758873269317-51888e824b28?auto=format&fit=crop&w=1920&h=1080&q=80', cta: 'View Our Impact',      href: '#contact' },
+        { kicker: 'Partnerships', text: 'Building healthcare ecosystems through collaboration.',                           img: 'https://images.unsplash.com/photo-1758691737543-09a1b2b715fa?auto=format&fit=crop&w=1920&h=1080&q=80', cta: 'Explore Partnerships', href: '#contact' },
+        { kicker: 'Careers',      text: 'Join us in shaping the future of intelligent healthcare.',                       img: 'https://images.unsplash.com/photo-1758691737045-3ece61135061?auto=format&fit=crop&w=1920&h=1080&q=80', cta: 'Join the Team',        href: '#contact' },
       ],
     },
   }), [])
@@ -143,6 +144,19 @@ export default function About() {
   const goCapTo   = (i) => { if (i === capSlide) return; setCapDir(i > capSlide ? 1 : -1); setCapSlide(i) }
   const goCapNext = () => { setCapDir(1);  setCapSlide(s => (s + 1) % CAP_TOTAL) }
   const goCapPrev = () => { setCapDir(-1); setCapSlide(s => (s - 1 + CAP_TOTAL) % CAP_TOTAL) }
+
+  const M5_TOTAL = modules.m5.slides.length
+  const goM5To   = (i) => { if (i === m5Slide) return; setM5Dir(i > m5Slide ? 1 : -1); setM5Slide(i) }
+  const goM5Next = () => { setM5Dir(1);  setM5Slide(s => (s + 1) % M5_TOTAL) }
+  const goM5Prev = () => { setM5Dir(-1); setM5Slide(s => (s - 1 + M5_TOTAL) % M5_TOTAL) }
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setM5Dir(1)
+      setM5Slide(s => (s + 1) % M5_TOTAL)
+    }, 5000)
+    return () => clearInterval(id)
+  }, [M5_TOTAL])
 
 
   const reveal = (delay = 0) => ({
@@ -175,6 +189,10 @@ export default function About() {
                 {modules.m1.headlinePart1}
                 <em>{modules.m1.headlinePart2}</em>
               </motion.h2>
+              <motion.div
+                className={styles.sectionDivider}
+                variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] } } }}
+              />
               <div className={styles.overviewBody}>
                 {modules.m1.body.map((p, i) => (
                   <motion.p
@@ -234,6 +252,7 @@ export default function About() {
               >
                 <p className={styles.overviewEyebrow}>Our Story</p>
                 <h2 className={styles.storyHeadline}>{modules.m2.headline}</h2>
+                <div className={`${styles.sectionDivider} ${styles.sectionDividerLeft}`} />
                 {modules.m2.body.map((p, i) => (
                   <motion.p
                     key={i}
@@ -362,7 +381,13 @@ export default function About() {
             </motion.div>
           </motion.div>
 
-          <div className={styles.capabilityWrap}>
+          <motion.div
+            className={styles.capabilityWrap}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.65, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+          >
             <div className={styles.capCarousel}>
               <div className={styles.capSlideRow}>
 
@@ -441,64 +466,112 @@ export default function About() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* ── M5  Differentiation ── */}
+        {/* ── M5  Why AiVantha ── */}
         <div id="about-partnerships" className={styles.sectionAnchorPad}>
-          <div className={styles.diffTwoCol}>
 
-            {/* Left — text */}
-            <motion.div className={styles.diffLeft} {...reveal(0.02)}>
-              <p className={styles.overviewEyebrow}>Why AiVantha</p>
-              <h3 className={styles.diffHeadline}>
-                {modules.m5.headline.split('\n').map((line, i) => (
-                  <span key={i}>{line}{i === 0 && <br />}</span>
-                ))}
-              </h3>
-              <div className={styles.diffStatements}>
-                {modules.m5.statements.map((s, i) => (
-                  <motion.div
-                    key={s}
-                    className={styles.diffLine}
-                    {...reveal(0.06 + i * 0.09)}
-                  >
-                    <span className={styles.diffNum}>0{i + 1}</span>
-                    <span className={styles.diffStatement}>{s}</span>
-                  </motion.div>
+          {/* Section header */}
+          <motion.div className={styles.whyHeaderRow} {...reveal(0.02)}>
+            <p className={styles.overviewEyebrow}>Why AiVantha</p>
+            <h3 className={styles.whySectionHeadline}>{modules.m5.headline}</h3>
+            <div className={styles.sectionDivider} />
+          </motion.div>
+
+          {/* Full-bleed carousel */}
+          <motion.div
+            className={styles.whyCarousel}
+            initial={{ opacity: 0, y: 24, scale: 0.99 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.72, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+          >
+
+            {/* Crossfading background images */}
+            {modules.m5.slides.map((slide, i) => (
+              <div
+                key={i}
+                className={`${styles.whySlideBg} ${m5Slide === i ? styles.whySlideBgActive : ''}`}
+                style={{ backgroundImage: `url(${slide.img})` }}
+                aria-hidden="true"
+              />
+            ))}
+
+            {/* Gradient overlay */}
+            <div className={styles.whyGradient} aria-hidden="true" />
+
+            {/* Left arrow */}
+            <motion.button
+              className={`${styles.whyArrow} ${styles.whyArrowLeft}`}
+              onClick={goM5Prev}
+              aria-label="Previous slide"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              transition={{ duration: 0.18 }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </motion.button>
+
+            {/* Right arrow */}
+            <motion.button
+              className={`${styles.whyArrow} ${styles.whyArrowRight}`}
+              onClick={goM5Next}
+              aria-label="Next slide"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              transition={{ duration: 0.18 }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </motion.button>
+
+            {/* Bottom content — title + dots */}
+            <div className={styles.whyBottom}>
+              <AnimatePresence mode="wait" custom={m5Dir}>
+                <motion.div
+                  key={m5Slide}
+                  className={styles.whyCard}
+                  custom={m5Dir}
+                  initial={d => ({ opacity: 0, y: prefersReducedMotion ? 0 : d * 22 })}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={d => ({ opacity: 0, y: prefersReducedMotion ? 0 : d * -22 })}
+                  transition={{ duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <h4 className={styles.whySlideTitle}>{modules.m5.slides[m5Slide].title}</h4>
+                </motion.div>
+              </AnimatePresence>
+
+              <div className={styles.whyDots}>
+                {modules.m5.slides.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`${styles.whyDot} ${m5Slide === i ? styles.whyDotActive : ''}`}
+                    onClick={() => goM5To(i)}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
                 ))}
               </div>
-            </motion.div>
+            </div>
 
-            {/* Right — image */}
-            <motion.div
-              className={styles.diffImageCol}
-              initial={{ opacity: 0, x: 40, scale: 0.97 }}
-              whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <img
-                className={`aboutParallax ${styles.diffColImg}`}
-                src={modules.m5.img} alt=""
-                onError={e => (e.currentTarget.style.display = 'none')}
-              />
-            </motion.div>
-
-          </div>
+          </motion.div>
         </div>
 
         {/* ── M6  Impact & Partnerships ── */}
         <div id="about-impact" className={`${styles.sectionAnchorPad}`}>
           <motion.div className={styles.capHeader} {...reveal(0.02)}>
-            <p className={styles.eyebrow}>Impact &amp; Partnerships</p>
-            <h3>Where we create lasting value</h3>
+            <p className={styles.overviewEyebrow}>Impact &amp; Partnerships</p>
+            <h3 className={styles.overviewHeadline}>Where we create lasting value</h3>
+            <div className={styles.sectionDivider} />
           </motion.div>
           <div className={styles.panelStack}>
             {modules.m6.panels.map((p, i) => (
               <motion.div
                 key={p.kicker}
-                id={i === 0 ? 'about-impact' : i === 2 ? 'about-careers' : undefined}
+                id={i === 0 ? 'about-impact' : i === 1 ? 'about-partnerships-panel' : i === 2 ? 'about-careers' : undefined}
                 className={styles.panel}
                 {...reveal(0.04 + i * 0.09)}
                 whileHover={{ y: -5, transition: { duration: 0.28 } }}
@@ -512,6 +585,7 @@ export default function About() {
                 <div className={styles.panelContent}>
                   <span className={styles.panelKicker}>{p.kicker}</span>
                   <p className={styles.panelText}>{p.text}</p>
+                  <a href={p.href} className={styles.panelCta}>{p.cta}</a>
                 </div>
               </motion.div>
             ))}
