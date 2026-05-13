@@ -1,13 +1,12 @@
-import { AnimatePresence, motion } from 'framer-motion'
-import { BarChart3, Brain, Briefcase, Building2, Database, FileText, Globe, Heart, Shield, Stethoscope, Zap } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { Activity, Brain, Database, FileText, Shield, Stethoscope, Zap } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 import '../styles/global.css'
 import styles from './Services.module.css'
 
 const serviceCategories = [
   {
-    category: 'Advisory & Strategy',
-    id: 'advisory-strategy',
+    num: '01 · Advisory & Strategy',
+    title: 'Strategic Intelligence for Health System Leaders',
     desc: 'Strategic consulting that guides healthcare organisations through AI adoption, data governance, and sustainable digital transformation.',
     services: [
       {
@@ -49,8 +48,8 @@ const serviceCategories = [
     ],
   },
   {
-    category: 'Technology & Research',
-    id: 'technology-research',
+    num: '02 · Technology & Research',
+    title: 'Data-Driven Technology for Intelligent Health Systems',
     desc: 'Data-driven technology solutions and applied research that power intelligent, scalable health systems across Africa.',
     services: [
       {
@@ -75,7 +74,7 @@ const serviceCategories = [
           'Resource and demand prediction systems',
           'AI-driven health intelligence dashboards',
         ],
-        Icon: BarChart3,
+        Icon: Activity,
       },
       {
         title: 'Data Systems & Interoperability',
@@ -105,71 +104,13 @@ const serviceCategories = [
   },
 ]
 
-const clients = [
-  {
-    title: 'Governments & Ministries',
-    value: 'National AI strategy and health system transformation',
-    points: [
-      'National AI & data strategy',
-      'Health information system modernisation',
-      'AI readiness assessments',
-      'Policy research & implementation support',
-    ],
-    Icon: Building2,
-  },
-  {
-    title: 'Hospitals & Clinics',
-    value: 'Decision support, diagnostics, and workflow AI',
-    points: [
-      'AI clinical decision support',
-      'Predictive analytics & diagnostics',
-      'Workflow optimisation',
-      'Embedded AI talent deployment',
-    ],
-    Icon: Heart,
-  },
-  {
-    title: 'NGOs & Development Partners',
-    value: 'Applied research, MEL, and AI governance',
-    points: [
-      'Applied research & evidence generation',
-      'MEL frameworks & evaluation',
-      'Pilot deployment support',
-      'AI governance advisory',
-    ],
-    Icon: Globe,
-  },
-  {
-    title: 'Private Sector',
-    value: 'AI tools, vetted talent, and co-development',
-    points: [
-      'Purpose-built AI health solutions',
-      'Vetted AI & data talent',
-      'Digital health product co-development',
-      'Research collaboration & joint publication',
-    ],
-    Icon: Briefcase,
-  },
-]
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.10, delayChildren: 0.05 } },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.62, ease: [0.16, 1, 0.3, 1] } },
-}
-
 export default function Services() {
   const ref = useRef(null)
-  const [activeCategory, setActiveCategory] = useState(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      entries => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible')),
-      { threshold: 0.08 }
+      entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')),
+      { threshold: 0.06 }
     )
     ref.current?.querySelectorAll('.fade-up').forEach(el => observer.observe(el))
     return () => observer.disconnect()
@@ -177,89 +118,52 @@ export default function Services() {
 
   return (
     <section className={styles.servicesSection} id="services" ref={ref}>
+      <div className={styles.blob1} aria-hidden="true" />
+      <div className={styles.blob2} aria-hidden="true" />
+
       <div className="container">
 
         <div className="section-header fade-up">
-          <span className="section-tag">Our Services</span>
-          <h2>Strengthening Health Systems Through Data and AI</h2>
-          <p className="section-lead">
+          <span className="section-tag gold-tag">Our Services</span>
+          <h2 className="h2-light">Strengthening Health Systems Through Data and AI</h2>
+          <p className="section-lead lead-light">
             Evidence-based AI, data, and digital health advisory services designed to strengthen Africa&apos;s health systems.
           </p>
           <div className="divider" />
         </div>
 
         {serviceCategories.map((cat, catIdx) => (
-          <motion.div
-            key={cat.category}
-            id={cat.id}
-            className={styles.categoryBlock}
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.72, delay: catIdx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+          <div
+            key={cat.num}
+            className={`${styles.sectionBlock} ${catIdx > 0 ? styles.sectionBlockBorder : ''}`}
           >
-            {/* Category header */}
-            <div className={styles.categoryHeader}>
-              <span className={styles.categoryLabel}>{cat.category}</span>
-              <p className={styles.categoryDesc}>{cat.desc}</p>
+            <div className={`${styles.sectionMeta} fade-up`}>
+              <span className={styles.sectionNum}>{cat.num}</span>
+              <h3 className={styles.sectionTitle}>{cat.title}</h3>
+              <p className={styles.sectionDesc}>{cat.desc}</p>
             </div>
 
-            {/* Service cards */}
-            <motion.div
-              className={`${styles.servicesGrid} ${cat.services.length === 4 ? styles.servicesGrid4 : ''}`}
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-60px' }}
-            >
-              {cat.services.map(service => (
-                <motion.div
-                  id={service.id}
+            <div className={`${styles.capGrid} ${cat.services.length === 4 ? styles.capGrid4 : ''}`}>
+              {cat.services.map((service, i) => (
+                <div
                   key={service.title}
-                  className={styles.serviceCard}
-                  variants={cardVariants}
-                  whileHover={{ y: -6, transition: { duration: 0.24 } }}
-                  onHoverStart={() => setActiveCategory(cat.category)}
-                  onHoverEnd={() => setActiveCategory(null)}
+                  id={service.id}
+                  className={`${styles.capCard} fade-up`}
+                  style={{ transitionDelay: `${i * 0.08}s` }}
                 >
-                  <div className={styles.iconWrap}>
-                    <service.Icon size={24} />
+                  <div className={styles.capIconWrap}>
+                    <service.Icon size={20} strokeWidth={1.7} />
                   </div>
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
-                  <ul>
-                    {service.items.map((item, i) => <li key={i}>{item}</li>)}
+                  <h4 className={styles.capTitle}>{service.title}</h4>
+                  <p className={styles.capDesc}>{service.description}</p>
+                  <ul className={styles.capBullets}>
+                    {service.items.map(b => <li key={b}>{b}</li>)}
                   </ul>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        ))}
-
-        <div className={`${styles.whoWeServe} fade-up`}>
-          <h3>Who We Serve</h3>
-          <p className="section-lead">
-            Trusted by health system stakeholders across the continent. We build partnerships that strengthen systems — not dependencies.
-          </p>
-          <div className={styles.clientsGrid}>
-            {clients.map((client, i) => (
-              <div
-                key={client.title}
-                className={`${styles.clientCard} fade-up`}
-                style={{ transitionDelay: `${i * 0.08}s` }}
-              >
-                <div className={styles.clientIcon}>
-                  <client.Icon size={22} strokeWidth={1.7} />
                 </div>
-                <h4>{client.title}</h4>
-                <p className={styles.clientValue}>{client.value}</p>
-                <ul>
-                  {client.points.map(point => <li key={point}>{point}</li>)}
-                </ul>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        ))}
 
       </div>
     </section>
