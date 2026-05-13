@@ -777,12 +777,24 @@
 }
 
 @media (max-width: 640px) {
-  .capCarousel    { padding: var(--space-md) 0 var(--space-xl); }
-  .capSlideRow    { gap: var(--space-md); }
-  .capSlide       { grid-template-columns: 1fr; }
-  .capSlideTitle  { font-size: clamp(0.9rem, 4vw, 1.05rem); }
-  .capSlideDesc   { font-size: 0.88rem; line-height: 1.6; }
-  .capArrow       { width: 36px; height: 36px; flex-shrink: 0; }
+  .capCarousel  { padding: var(--space-md) 0 var(--space-xl); }
+  .capSlide     { grid-template-columns: 1fr; }
+  .capSlideTitle { font-size: clamp(0.9rem, 4vw, 1.05rem); }
+  .capSlideDesc  { font-size: 0.88rem; line-height: 1.6; }
+  .capSlideRow  {
+    position: relative;
+    gap: 0;
+  }
+  .capSlideWrap { width: 100%; }
+  .capArrow {
+    position: absolute;
+    top: var(--space-lg);
+    width: 34px;
+    height: 34px;
+    z-index: 2;
+  }
+  .capSlideRow > button:first-of-type { right: 46px; }
+  .capSlideRow > button:last-of-type  { right: 4px; }
   .capServiceItem {
     padding: var(--space-lg);
     border-left: none;
@@ -792,8 +804,8 @@
 }
 
 @media (max-width: 400px) {
-  .capSlideRow { gap: var(--space-sm); }
-  .capArrow    { width: 32px; height: 32px; }
+  .capArrow { width: 30px; height: 30px; }
+  .capSlideRow > button:first-of-type { right: 42px; }
 }
 
 /* ── M4 motion enhancements ── */
