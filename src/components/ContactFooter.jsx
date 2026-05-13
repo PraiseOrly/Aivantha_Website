@@ -211,7 +211,7 @@ export default function ContactFooter() {
             <div className={styles.brand}>
               <a href="#home" className={styles.logoLink}
                  onClick={e => { e.preventDefault(); scrollTo('#home') }}>
-                <img src="/logo.png" alt="AiVantha Health" className={styles.logoImg} />
+                <img src="/AiVantha Logo.png" alt="AiVantha Health" className={styles.logoImg} />
               </a>
               <p className={styles.tagline}><em>Building Africa's Intelligent Health Future</em></p>
             </div>

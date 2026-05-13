@@ -1,9 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion'
 
 import {
-  Activity, Bot, Brain, Briefcase,
+  Activity, BookOpen, Bot, Brain, Briefcase,
   Building2, Compass, Eye, FileSearch, FileText,
-  Heart, LineChart, Menu, Network,
+  Heart, LineChart, Menu, Network, PenSquare,
   Shield, Star, Stethoscope, Users, X, Zap,
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
@@ -50,7 +50,18 @@ const navItems = [
       { label: 'Oxylytics',           desc: '', href: '#solutions', Icon: Activity  },
       { label: 'AiVantha Coach',      desc: '', href: '#solutions', Icon: Bot       },
       { label: 'AiVantha Data',       desc: '', href: '#solutions', Icon: LineChart },
-      { label: 'AiVantha Talent Marketplace', desc: '', href: '#solutions', Icon: Users     },
+      { label: 'AiVantha Talent Marketplace', desc: '', href: '#solutions', Icon: Users },
+    ],
+  },
+  {
+    label: 'Resources',
+    href: '#resources',
+    type: 'list',
+    subItems: [
+      { label: 'Case Studies',    desc: '', href: '#contact', Icon: BookOpen  },
+      { label: 'Research Papers', desc: '', href: '#contact', Icon: FileText  },
+      { label: 'Policy Briefs',   desc: '', href: '#contact', Icon: PenSquare },
+      { label: 'News & Updates',  desc: '', href: '#contact', Icon: LineChart },
     ],
   },
 ]

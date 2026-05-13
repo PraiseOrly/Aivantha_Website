@@ -7,14 +7,15 @@
   position: relative;
   background: linear-gradient(
     180deg,
-    #001e60 0%,
-    #001040 12%,
-    #000820 32%,
-    #050912 65%,
-    #020610 100%
+    #001650 0%,
+    #001040 25%,
+    #000d38 55%,
+    #000b30 100%
   );
   overflow: hidden;
   color: white;
+  border-radius: 20px 20px 0 0;
+  margin: 0 24px 0;
 }
 
 /* ── Floating orbs ── */
@@ -406,6 +407,10 @@
 @media (max-width: 1024px) {
   .splitGrid { gap: var(--space-2xl); }
   .leftCol   { padding-right: 0; }
+}
+
+@media (max-width: 768px) {
+  .footer { margin: 0 12px 0; border-radius: 16px 16px 0 0; }
 }
 
 @media (max-width: 860px) {
