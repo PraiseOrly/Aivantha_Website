@@ -124,15 +124,24 @@ function StatCounter({ value, suffix, label, start }) {
   useEffect(() => {
     if (!start) return
     const duration = 1800
-    const startTime = performance.now()
-    const frame = (now) => {
-      const elapsed = now - startTime
+    let startTime = null
+    let rafId
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp
+      const elapsed = timestamp - startTime
       const progress = Math.min(elapsed / duration, 1)
       const eased = 1 - Math.pow(1 - progress, 3)
       setCount(Math.floor(eased * value))
-      if (progress < 1) requestAnimationFrame(frame)
+      if (progress < 1) {
+        rafId = requestAnimationFrame(animate)
+      } else {
+        setCount(value)
+      }
     }
-    requestAnimationFrame(frame)
+
+    rafId = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(rafId)
   }, [start, value])
 
   return (

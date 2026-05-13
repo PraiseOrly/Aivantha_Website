@@ -48,10 +48,7 @@
 .servicesSection {
   position: relative;
   padding: var(--space-2xl) 0 0;
-  background: linear-gradient(170deg, #001244 0%, #000c32 40%, #000920 100%);
   overflow: hidden;
-  border-radius: 20px;
-  margin: 0 24px 24px;
 }
 
 /* Background grid */
@@ -468,8 +465,8 @@
   z-index: 2;
   pointer-events: none;
 }
-.marqueeFadeLeft  { left: 0;  background: linear-gradient(90deg, #000920, transparent); }
-.marqueeFadeRight { right: 0; background: linear-gradient(-90deg, #000920, transparent); }
+.marqueeFadeLeft  { left: 0;  background: linear-gradient(90deg, #001e60, transparent); }
+.marqueeFadeRight { right: 0; background: linear-gradient(-90deg, #001e60, transparent); }
 
 .marqueeTrack {
   display: flex;
@@ -503,8 +500,7 @@
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .servicesSection { margin: 0 12px 12px; border-radius: 16px; }
-  .servicesHeader   { padding: var(--space-md) 0 var(--space-lg); }
+  .servicesHeader { padding: var(--space-md) 0 var(--space-lg); }
 }
 
 @media (max-width: 1024px) {
