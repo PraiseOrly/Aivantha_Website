@@ -318,8 +318,7 @@
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 0;
-  overflow: visible;
+  padding: var(--space-md) 0;
 }
 
 .bottomGrid {
@@ -327,7 +326,6 @@
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: var(--space-2xl);
-  height: 62px;
 }
 
 /* Brand */
