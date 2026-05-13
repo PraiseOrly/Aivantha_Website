@@ -1,7 +1,6 @@
 import About from './components/About'
 import Challenge from './components/Challenge'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import ContactFooter from './components/ContactFooter'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
 import Services from './components/Services'
@@ -17,9 +16,8 @@ export default function App() {
         <Challenge />
         <Services />
         <Solutions />
-        <Contact />
+        <ContactFooter />
       </main>
-      <Footer />
     </>
   )
 }

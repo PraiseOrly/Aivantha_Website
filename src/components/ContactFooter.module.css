@@ -1,0 +1,290 @@
+/* ===== WRAPPER ===== */
+.wrapper {
+  background: linear-gradient(180deg, var(--navy-900) 0%, #070f1e 100%);
+  border-radius: 20px;
+  margin: 0 24px 24px;
+  overflow: hidden;
+  color: var(--white);
+}
+
+/* ===== CONTACT SECTION ===== */
+.contactSection {
+  padding: var(--space-4xl) 0 var(--space-3xl);
+}
+
+/* ===== ENGAGE GRID ===== */
+.engageGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.engageCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: var(--r-md);
+  padding: 20px 18px;
+  transition: background var(--t-base), border-color var(--t-base);
+}
+.engageCard:hover {
+  background: rgba(255, 255, 255, .08);
+  border-color: rgba(200, 150, 12, .4);
+}
+
+.engageIcon {
+  width: 36px; height: 36px;
+  flex-shrink: 0;
+  background: rgba(200, 150, 12, .15);
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold-400);
+}
+.engageIcon svg { width: 18px; height: 18px; }
+
+.engageLabel {
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 3px;
+}
+.engageDesc {
+  font-size: .78rem;
+  color: rgba(255, 255, 255, .48);
+  line-height: 1.4;
+}
+
+/* ===== MAIN 2-COL GRID ===== */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 64px;
+}
+
+/* ===== INFO / CTA SIDE ===== */
+.ctaBlock { display: flex; flex-direction: column; }
+
+.ctaIcon {
+  width: 60px; height: 60px;
+  background: rgba(200, 150, 12, .15);
+  border: 1px solid rgba(200, 150, 12, .3);
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold-400);
+  margin-bottom: 24px;
+}
+.ctaIcon svg { width: 28px; height: 28px; }
+
+.ctaBlock h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 14px;
+  letter-spacing: -.015em;
+}
+.ctaBlock p {
+  color: rgba(255, 255, 255, .6);
+  font-size: .95rem;
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+
+.emailCta {
+  display: inline-block;
+  color: var(--gold-400);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  transition: color var(--t-base), transform var(--t-base);
+  margin-bottom: 24px;
+}
+.emailCta:hover { color: var(--gold-500); transform: translateX(3px); }
+
+.hqTag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, .38);
+  font-size: .82rem;
+}
+.hqTag svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ===== FORM SIDE ===== */
+.formWrap h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+
+.fRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.fg { margin-bottom: 18px; }
+
+.fg label {
+  display: block;
+  font-size: .8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, .7);
+  margin-bottom: 7px;
+  letter-spacing: .02em;
+}
+
+.fg input,
+.fg select,
+.fg textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, .07);
+  border: 1px solid rgba(255, 255, 255, .13);
+  border-radius: var(--r-sm);
+  padding: 11px 15px;
+  color: var(--white);
+  font-size: .93rem;
+  font-family: var(--font);
+  transition: border-color var(--t-base), background var(--t-base);
+  resize: vertical;
+}
+.fg input::placeholder,
+.fg textarea::placeholder { color: rgba(255, 255, 255, .28); }
+.fg input:focus,
+.fg select:focus,
+.fg textarea:focus {
+  outline: none;
+  border-color: var(--gold-500);
+  background: rgba(255, 255, 255, .1);
+}
+.fg select option { background: var(--navy-900); color: var(--white); }
+
+/* ===== FOOTER SECTION ===== */
+.footerSection {
+  border-top: 1px solid rgba(255, 255, 255, .07);
+  background: rgba(0, 0, 0, .25);
+  padding: 56px 0 32px;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.brand { display: flex; flex-direction: column; gap: 0; }
+
+.logoLink {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.logoImg {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  padding: 4px 10px;
+}
+
+.tagline {
+  color: rgba(255, 255, 255, .45);
+  font-size: .88rem;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.pillars {
+  display: flex;
+  flex-wrap: wrap;
+  color: rgba(255, 255, 255, .3);
+  font-size: .78rem;
+  margin-bottom: 18px;
+}
+.sep { margin: 0 6px; color: rgba(255, 255, 255, .2); }
+
+.hq {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, .32);
+  font-size: .78rem;
+}
+.hq svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+.col h4 {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .42);
+  margin-bottom: 18px;
+}
+.col ul { display: flex; flex-direction: column; gap: 10px; }
+.col a {
+  color: rgba(255, 255, 255, .55);
+  font-size: .88rem;
+  transition: color var(--t-base);
+  text-decoration: none;
+}
+.col a:hover { color: var(--gold-400); }
+
+.contactBlock { display: flex; flex-direction: column; gap: 12px; }
+
+.emailLink {
+  display: inline-block;
+  color: var(--gold-400) !important;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: color var(--t-base), opacity var(--t-base);
+}
+.emailLink:hover { color: var(--gold-500) !important; opacity: .85; }
+
+.contactNote {
+  color: rgba(255, 255, 255, .35) !important;
+  font-size: .8rem !important;
+  line-height: 1.6;
+}
+
+.bottom {
+  border-top: 1px solid rgba(255, 255, 255, .06);
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.bottom p {
+  color: rgba(255, 255, 255, .25);
+  font-size: .78rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  .engageGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .mainGrid    { grid-template-columns: 1fr; gap: 48px; }
+  .footerGrid  { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .wrapper { margin: 0 12px 12px; border-radius: 16px; }
+}
+
+@media (max-width: 560px) {
+  .engageGrid { grid-template-columns: 1fr; }
+  .fRow       { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 540px) {
+  .footerGrid { grid-template-columns: 1fr; gap: 36px; }
+  .bottom     { flex-direction: column; text-align: center; }
+}
