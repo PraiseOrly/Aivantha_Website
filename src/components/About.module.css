@@ -778,17 +778,22 @@
 
 @media (max-width: 640px) {
   .capCarousel    { padding: var(--space-md) 0 var(--space-xl); }
-  .capSlideRow    { gap: var(--space-lg); }
-  .capSlide       { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .capSlideTitle  { font-size: clamp(0.85rem, 3.5vw, 1rem); }
-  .capArrow       { width: 40px; height: 40px; }
-  .capServiceItem { padding: var(--space-lg) var(--space-lg); }
-  .capServiceItem:nth-child(3) { border-left: none; }
+  .capSlideRow    { gap: var(--space-md); }
+  .capSlide       { grid-template-columns: 1fr; }
+  .capSlideTitle  { font-size: clamp(0.9rem, 4vw, 1.05rem); }
+  .capSlideDesc   { font-size: 0.88rem; line-height: 1.6; }
+  .capArrow       { width: 36px; height: 36px; flex-shrink: 0; }
+  .capServiceItem {
+    padding: var(--space-lg);
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .capServiceItem:first-child { border-top: none; }
 }
 
 @media (max-width: 400px) {
-  .capSlideRow { gap: var(--space-md); }
-  .capArrow    { width: 36px; height: 36px; }
+  .capSlideRow { gap: var(--space-sm); }
+  .capArrow    { width: 32px; height: 32px; }
 }
 
 /* ── M4 motion enhancements ── */
