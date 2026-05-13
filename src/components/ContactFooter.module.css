@@ -318,7 +318,9 @@
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: var(--space-md) 0;
+  height: 62px;
+  overflow: visible;
+  padding: 0;
 }
 
 .bottomGrid {
@@ -326,10 +328,11 @@
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: var(--space-2xl);
+  height: 100%;
 }
 
 /* Brand */
-.brand { display: flex; flex-direction: column; gap: 5px; }
+.brand { display: flex; flex-direction: row; align-items: center; }
 
 .logoLink { display: inline-block; }
 
@@ -342,11 +345,7 @@
   transform-origin: left center;
 }
 
-.tagline {
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 0.73rem;
-  line-height: 1.4;
-}
+.tagline { display: none; }
 
 /* Horizontal nav */
 .bottomNav {
@@ -395,8 +394,9 @@
 .copy {
   text-align: right;
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }
 .copy p {
   color: rgba(0, 0, 0, 0.38);
