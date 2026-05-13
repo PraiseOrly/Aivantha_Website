@@ -152,6 +152,14 @@ export default function About() {
 
   useEffect(() => {
     const id = setInterval(() => {
+      setCapDir(1)
+      setCapSlide(s => (s + 1) % CAP_TOTAL)
+    }, 10000)
+    return () => clearInterval(id)
+  }, [CAP_TOTAL])
+
+  useEffect(() => {
+    const id = setInterval(() => {
       setM5Dir(1)
       setM5Slide(s => (s + 1) % M5_TOTAL)
     }, 5000)
