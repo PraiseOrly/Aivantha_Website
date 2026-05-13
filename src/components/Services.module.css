@@ -1,7 +1,53 @@
-/* ===== SERVICES SECTION ===== */
+/* ===== SERVICES HEADER (on body background) ===== */
+.servicesHeader {
+  padding: var(--space-lg) 0 var(--space-xl);
+  text-align: center;
+}
+
+.headerInner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sectionEyebrow {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.48);
+  margin-bottom: var(--space-sm);
+}
+
+.headerTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.015em;
+  line-height: 1.28;
+  margin-bottom: var(--space-md);
+}
+
+.headerLead {
+  font-size: clamp(1rem, 1.2vw, 1.0625rem);
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.headerDivider {
+  width: 56px;
+  height: 4px;
+  border-radius: var(--r-full);
+  background: linear-gradient(90deg, var(--gold-500), var(--gold-400));
+  margin: var(--space-lg) auto 0;
+}
+
+/* ===== SERVICES SECTION (dark card box) ===== */
 .servicesSection {
   position: relative;
-  padding: var(--space-4xl) 0;
+  padding: var(--space-2xl) 0 var(--space-3xl);
   background: linear-gradient(180deg, #001e60 0%, #000f38 100%);
   overflow: hidden;
   border-radius: 20px;
@@ -26,38 +72,13 @@
   pointer-events: none;
 }
 
-/* ===== SECTION BLOCKS ===== */
-.sectionBlock { margin: var(--space-3xl) 0; }
-.sectionBlockBorder {
+/* ===== CARD GROUPS ===== */
+.cardGroup { margin-bottom: 0; }
+
+.cardGroupBorder {
   border-top: 1px solid rgba(255, 255, 255, 0.07);
-  padding-top: var(--space-3xl);
-}
-
-.sectionMeta { margin-bottom: var(--space-2xl); }
-
-.sectionNum {
-  display: inline-block;
-  font-size: .66rem;
-  font-weight: 800;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--gold-orange);
-  opacity: 0.9;
-  margin-bottom: 10px;
-}
-.sectionTitle {
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
-  font-weight: 700;
-  color: white;
-  letter-spacing: -.022em;
-  line-height: 1.2;
-  margin-bottom: var(--space-md);
-}
-.sectionDesc {
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.65);
-  line-height: 1.72;
-  max-width: 600px;
+  padding-top: var(--space-2xl);
+  margin-top: var(--space-2xl);
 }
 
 /* ===== CAPABILITIES GRIDS ===== */
@@ -131,6 +152,7 @@
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .servicesSection { margin: 0 12px 12px; border-radius: 16px; }
+  .servicesHeader   { padding: var(--space-md) 0 var(--space-lg); }
 }
 
 @media (max-width: 1024px) {
@@ -144,5 +166,5 @@
 }
 
 @media (max-width: 640px) {
-  .sectionBlockBorder { padding-top: var(--space-2xl); }
+  .cardGroupBorder { padding-top: var(--space-xl); margin-top: var(--space-xl); }
 }

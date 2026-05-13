@@ -1,7 +1,6 @@
 import {
-  ArrowRight, BarChart3, Briefcase, Database,
-  GraduationCap, Heart, Network, Stethoscope,
-  TrendingUp, Users, Zap,
+  ArrowRight, Briefcase, Database,
+  GraduationCap, Heart, Users,
 } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import styles from './Solutions.module.css'
@@ -59,38 +58,6 @@ const deploymentModels = [
   'Capacity-building partnerships',
 ]
 
-const capabilities = [
-  {
-    title: 'Predictive Health Intelligence',
-    desc: 'AI models that forecast and detect health system risks before they become crises.',
-    bullets: ['Disease trend forecasting', 'Outbreak prediction and surveillance', 'Health system demand modeling'],
-    Icon: TrendingUp,
-  },
-  {
-    title: 'Clinical AI Systems',
-    desc: 'AI tools that support decision-making at the point of care.',
-    bullets: ['Diagnostic support systems', 'Treatment recommendation assistance', 'Real-time clinical decision tools'],
-    Icon: Stethoscope,
-  },
-  {
-    title: 'Interoperable Health Platforms',
-    desc: 'Systems that unify fragmented health data across institutions and borders.',
-    bullets: ['Built on FHIR / HL7 standards', 'Seamless data exchange across facilities', 'Integrated national health data ecosystems'],
-    Icon: Network,
-  },
-  {
-    title: 'Health Intelligence Dashboards',
-    desc: 'Decision-support platforms for health leaders and policymakers.',
-    bullets: ['Real-time health system visibility', 'Population health analytics', 'Policy and planning support'],
-    Icon: BarChart3,
-  },
-  {
-    title: 'Workflow Optimization Systems',
-    desc: 'AI systems that improve efficiency across every layer of healthcare delivery.',
-    bullets: ['Reduces administrative burden', 'Optimizes clinical workflows', 'Enhances patient throughput'],
-    Icon: Zap,
-  },
-]
 
 const BADGE = {
   dev:    styles.badgeDev,
@@ -126,16 +93,6 @@ export default function Solutions() {
             An integrated ecosystem of AI products, talent infrastructure, and health intelligence systems — built for African healthcare realities and scalable across the continent.
           </p>
           <div className="divider" />
-        </div>
-
-        {/* ── Platform Overview ── */}
-        <div className={`${styles.platformOverview} fade-up`}>
-          <p>
-            AiVantha Health Solutions is an integrated ecosystem of <strong>AI products</strong>, <strong>talent infrastructure</strong>, and <strong>health intelligence systems</strong>.
-          </p>
-          <p>
-            We design and deploy solutions that move from <strong>research to real-world impact</strong>, ensuring every system is built for African healthcare realities and scalable across institutions, regions, and countries.
-          </p>
         </div>
 
         {/* ════════════════════════ 01 · PRODUCTS ════════════════════════ */}
@@ -217,35 +174,6 @@ export default function Solutions() {
           </div>
         </div>
 
-        {/* ════════════════════════ 03 · HEALTH INTELLIGENCE SYSTEMS ════════════════════════ */}
-        <div className={`${styles.sectionBlock} ${styles.sectionBlockBorder}`}>
-          <div className={`${styles.sectionMeta} fade-up`}>
-            <span className={styles.sectionNum}>03 · Health Intelligence Systems</span>
-            <h3 className={styles.sectionTitle}>The Core Infrastructure Layer</h3>
-            <p className={styles.sectionDesc}>
-              AI and data infrastructure that powers modern, interoperable, and intelligent healthcare systems — the layer that connects all products into a unified ecosystem.
-            </p>
-          </div>
-
-          <div className={styles.capGrid}>
-            {capabilities.map((cap, i) => (
-              <div
-                key={cap.title}
-                className={`${styles.capCard} fade-up`}
-                style={{ transitionDelay: `${i * 0.08}s` }}
-              >
-                <div className={styles.capIconWrap}>
-                  <cap.Icon size={20} strokeWidth={1.7} />
-                </div>
-                <h4 className={styles.capTitle}>{cap.title}</h4>
-                <p className={styles.capDesc}>{cap.desc}</p>
-                <ul className={styles.capBullets}>
-                  {cap.bullets.map(b => <li key={b}>{b}</li>)}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
 
       </div>
     </section>

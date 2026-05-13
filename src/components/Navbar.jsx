@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion'
 
 import {
-  Activity, BookOpen, Bot, Brain, Briefcase,
+  Activity, Bot, Brain, Briefcase,
   Building2, Compass, Eye, FileSearch, FileText,
   Heart, LineChart, Menu, Network,
-  PenSquare, Shield, Star, Stethoscope, Users, X, Zap,
+  Shield, Star, Stethoscope, Users, X, Zap,
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import styles from './Navbar.module.css'
@@ -53,30 +53,11 @@ const navItems = [
       { label: 'AiVantha Talent Marketplace', desc: '', href: '#solutions', Icon: Users     },
     ],
   },
-  {
-    label: 'Resources',
-    href: '#resources',
-    type: 'resources',
-    subItems: [
-      { label: 'Research & Insights',   desc: '', href: '#resources', Icon: BookOpen   },
-      { label: 'Publications',          desc: '', href: '#resources', Icon: FileText   },
-      { label: 'Case Studies',          desc: '', href: '#resources', Icon: Briefcase  },
-      { label: 'Reports & Whitepapers', desc: '', href: '#resources', Icon: FileSearch },
-      { label: 'Blog & Articles',       desc: '', href: '#resources', Icon: PenSquare  },
-    ],
-    featured: {
-      label: 'Latest Report',
-      title: 'AI Readiness in Sub-Saharan Africa 2025',
-      desc: 'A landscape analysis of digital health infrastructure across 12 countries.',
-      href: '#resources',
-    },
-  },
 ]
 
 const DROPDOWN_POS = {
-  Services:  styles.dropdownServices,
-  Products:  styles.dropdownServices,
-  Resources: styles.dropdownResources,
+  Services: styles.dropdownServices,
+  Products: styles.dropdownServices,
 }
 
 const BADGE_CLASS = {

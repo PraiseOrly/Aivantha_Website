@@ -5,9 +5,6 @@ import styles from './Services.module.css'
 
 const serviceCategories = [
   {
-    num: '01 · Advisory & Strategy',
-    title: 'Strategic Intelligence for Health System Leaders',
-    desc: 'Strategic consulting that guides healthcare organisations through AI adoption, data governance, and sustainable digital transformation.',
     services: [
       {
         title: 'AI & Data Strategy',
@@ -48,9 +45,6 @@ const serviceCategories = [
     ],
   },
   {
-    num: '02 · Technology & Research',
-    title: 'Data-Driven Technology for Intelligent Health Systems',
-    desc: 'Data-driven technology solutions and applied research that power intelligent, scalable health systems across Africa.',
     services: [
       {
         title: 'Clinical Decision Support',
@@ -117,55 +111,57 @@ export default function Services() {
   }, [])
 
   return (
-    <section className={styles.servicesSection} id="services" ref={ref}>
-      <div className={styles.blob1} aria-hidden="true" />
-      <div className={styles.blob2} aria-hidden="true" />
+    <div ref={ref}>
 
-      <div className="container">
-
-        <div className="section-header fade-up">
-          <span className="section-tag gold-tag">Our Services</span>
-          <h2 className="h2-light">Strengthening Health Systems Through Data and AI</h2>
-          <p className="section-lead lead-light">
-            Evidence-based AI, data, and digital health advisory services designed to strengthen Africa&apos;s health systems.
-          </p>
-          <div className="divider" />
-        </div>
-
-        {serviceCategories.map((cat, catIdx) => (
-          <div
-            key={cat.num}
-            className={`${styles.sectionBlock} ${catIdx > 0 ? styles.sectionBlockBorder : ''}`}
-          >
-            <div className={`${styles.sectionMeta} fade-up`}>
-              <span className={styles.sectionNum}>{cat.num}</span>
-              <h3 className={styles.sectionTitle}>{cat.title}</h3>
-              <p className={styles.sectionDesc}>{cat.desc}</p>
-            </div>
-
-            <div className={`${styles.capGrid} ${cat.services.length === 4 ? styles.capGrid4 : ''}`}>
-              {cat.services.map((service, i) => (
-                <div
-                  key={service.title}
-                  id={service.id}
-                  className={`${styles.capCard} fade-up`}
-                  style={{ transitionDelay: `${i * 0.08}s` }}
-                >
-                  <div className={styles.capIconWrap}>
-                    <service.Icon size={20} strokeWidth={1.7} />
-                  </div>
-                  <h4 className={styles.capTitle}>{service.title}</h4>
-                  <p className={styles.capDesc}>{service.description}</p>
-                  <ul className={styles.capBullets}>
-                    {service.items.map(b => <li key={b}>{b}</li>)}
-                  </ul>
-                </div>
-              ))}
-            </div>
+      {/* Header sits directly on the #001e60 body background */}
+      <div id="services" className={styles.servicesHeader}>
+        <div className="container">
+          <div className={`${styles.headerInner} fade-up`}>
+            <p className={styles.sectionEyebrow}>Our Services</p>
+            <h2 className={styles.headerTitle}>Strengthening Health Systems Through Data and AI</h2>
+            <p className={styles.headerLead}>
+              Evidence-based AI, data, and digital health advisory services designed to strengthen Africa&apos;s health systems.
+            </p>
+            <div className={styles.headerDivider} />
           </div>
-        ))}
-
+        </div>
       </div>
-    </section>
+
+      {/* Dark card box */}
+      <section className={styles.servicesSection}>
+        <div className={styles.blob1} aria-hidden="true" />
+        <div className={styles.blob2} aria-hidden="true" />
+
+        <div className="container">
+          {serviceCategories.map((cat, catIdx) => (
+            <div
+              key={catIdx}
+              className={`${styles.cardGroup} ${catIdx > 0 ? styles.cardGroupBorder : ''}`}
+            >
+              <div className={`${styles.capGrid} ${cat.services.length === 4 ? styles.capGrid4 : ''}`}>
+                {cat.services.map((service, i) => (
+                  <div
+                    key={service.title}
+                    id={service.id}
+                    className={`${styles.capCard} fade-up`}
+                    style={{ transitionDelay: `${i * 0.08}s` }}
+                  >
+                    <div className={styles.capIconWrap}>
+                      <service.Icon size={20} strokeWidth={1.7} />
+                    </div>
+                    <h4 className={styles.capTitle}>{service.title}</h4>
+                    <p className={styles.capDesc}>{service.description}</p>
+                    <ul className={styles.capBullets}>
+                      {service.items.map(b => <li key={b}>{b}</li>)}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+    </div>
   )
 }

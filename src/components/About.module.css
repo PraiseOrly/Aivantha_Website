@@ -1398,7 +1398,7 @@
   }
 }
 
-.bottomPad { height: var(--space-4xl); }
+.bottomPad { height: var(--space-md); }
 
 
 /* ══════════════════════════════════════

@@ -1,7 +1,7 @@
 /* ===== SOLUTIONS SECTION ===== */
 .solutionsSection {
   position: relative;
-  padding: var(--space-4xl) 0;
+  padding: var(--space-3xl) 0;
   background: linear-gradient(180deg, #001e60 0%, #000f38 100%);
   overflow: hidden;
   border-radius: 20px;
@@ -65,6 +65,7 @@
   margin-bottom: 10px;
 }
 .sectionTitle {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(1.6rem, 3vw, 2.1rem);
   font-weight: 700;
   color: white;

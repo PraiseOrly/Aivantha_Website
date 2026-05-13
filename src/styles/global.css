@@ -174,9 +174,10 @@ input, textarea, select { font-family: var(--font); }
 }
 
 .section-header h2 {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(2rem, 3.5vw, 2.5rem);
-  font-weight: 600;
-  color: var(--navy-900);
+  font-weight: 700;
+  color: var(--white);
   letter-spacing: -.022em;
   margin-bottom: var(--space-md);
   line-height: 1.2;
