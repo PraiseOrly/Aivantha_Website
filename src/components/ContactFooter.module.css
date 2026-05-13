@@ -310,12 +310,15 @@
 }
 
 /* ═══════════════════════════════════════════════════════
-   BOTTOM ZONE — Logo | Nav | Copyright
+   BOTTOM ZONE — Logo | Nav | Copyright  (white, like navbar)
 ═══════════════════════════════════════════════════════ */
 .bottomZone {
   position: relative;
   z-index: 1;
-  padding: var(--space-2xl) 0 var(--space-2xl);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: var(--space-md) 0;
 }
 
 .bottomGrid {
@@ -326,22 +329,22 @@
 }
 
 /* Brand */
-.brand { display: flex; flex-direction: column; gap: 6px; }
+.brand { display: flex; flex-direction: column; gap: 5px; }
 
 .logoLink { display: inline-block; }
 
 .logoImg {
-  height: 42px;
+  height: 68px;
   width: auto;
   object-fit: contain;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 5px;
-  padding: 3px 9px;
+  display: block;
+  transform: scale(1.8);
+  transform-origin: left center;
 }
 
 .tagline {
-  color: rgba(255, 255, 255, 0.28);
-  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.73rem;
   line-height: 1.4;
 }
 
@@ -361,7 +364,7 @@
 
 .navLink {
   position: relative;
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(0, 0, 0, 0.5);
   font-size: 0.82rem;
   font-weight: 500;
   padding: 4px 6px;
@@ -373,16 +376,16 @@
   position: absolute;
   bottom: 2px; left: 6px;
   width: calc(100% - 12px); height: 1px;
-  background: var(--gold-orange);
+  background: var(--cobalt);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.26s ease;
 }
-.navLink:hover { color: rgba(255, 255, 255, 0.78); }
+.navLink:hover { color: var(--cobalt); }
 .navLink:hover::after { transform: scaleX(1); }
 
 .navSep {
-  color: rgba(255, 255, 255, 0.12);
+  color: rgba(0, 0, 0, 0.18);
   font-size: 0.7rem;
   padding: 0 2px;
   user-select: none;
@@ -396,7 +399,7 @@
   gap: 4px;
 }
 .copy p {
-  color: rgba(255, 255, 255, 0.18);
+  color: rgba(0, 0, 0, 0.38);
   font-size: 0.72rem;
   white-space: nowrap;
 }

@@ -32,10 +32,9 @@ const PARTICLES = [
 // ── Static content ────────────────────────────────────────────────────────────
 
 const NAV_LINKS = [
-  ['About',     '#about'    ],
-  ['Services',  '#services' ],
-  ['Solutions', '#solutions'],
-  ['Contact',   '#contact'  ],
+  ['Terms',    '#contact'],
+  ['Privacy',  '#contact'],
+  ['Security', '#contact'],
 ]
 
 const scrollTo = href => {
