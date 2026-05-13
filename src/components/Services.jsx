@@ -5,6 +5,8 @@ import styles from './Services.module.css'
 
 const serviceCategories = [
   {
+    label: 'Advisory & Strategy',
+    desc: 'Strategic consulting that guides healthcare organisations through AI adoption, data governance, and sustainable digital transformation.',
     services: [
       {
         title: 'AI & Data Strategy',
@@ -45,6 +47,8 @@ const serviceCategories = [
     ],
   },
   {
+    label: 'Technology & Research',
+    desc: 'Data-driven technology solutions and applied research that power intelligent, scalable health systems across Africa.',
     services: [
       {
         title: 'Clinical Decision Support',
@@ -138,6 +142,11 @@ export default function Services() {
               key={catIdx}
               className={`${styles.cardGroup} ${catIdx > 0 ? styles.cardGroupBorder : ''}`}
             >
+              <div className={`${styles.groupLabel} fade-up`}>
+                <span className={styles.groupTag}>{cat.label}</span>
+                <p className={styles.groupDesc}>{cat.desc}</p>
+              </div>
+
               <div className={`${styles.capGrid} ${cat.services.length === 4 ? styles.capGrid4 : ''}`}>
                 {cat.services.map((service, i) => (
                   <div
