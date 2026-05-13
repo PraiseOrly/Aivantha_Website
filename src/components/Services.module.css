@@ -51,17 +51,6 @@
   overflow: hidden;
 }
 
-/* Background grid */
-.bgGrid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
-  background-size: 64px 64px;
-  pointer-events: none;
-}
-
 /* Ambient blobs */
 .blob1 {
   position: absolute;
@@ -172,7 +161,7 @@
 
 .groupTag {
   flex-shrink: 0;
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -182,7 +171,7 @@
 }
 
 .groupDesc {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.50);
   line-height: 1.6;
   margin: 0;

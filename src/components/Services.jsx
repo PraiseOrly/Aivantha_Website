@@ -242,8 +242,6 @@ export default function Services() {
         <div className={styles.blob1} aria-hidden="true" />
         <div className={styles.blob2} aria-hidden="true" />
         <div className={styles.blob3} aria-hidden="true" />
-        <div className={styles.bgGrid} aria-hidden="true" />
-
         {!reduced && PARTICLES.map(p => (
           <span
             key={p.id}
