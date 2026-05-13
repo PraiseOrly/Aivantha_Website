@@ -1,12 +1,11 @@
 # TODO
 
-- [x] Update About.jsx: apply blue background to the root About section (M1–M6).
-- [x] Update About.jsx: remove blue background usage from M4 and M6 wrappers (to avoid seams/duplication).
-- [x] Update About.module.css: change overviewGrid + storyGrid to single-column (no split layout).
-- [x] Update About.module.css: ensure overviewRight/image wrap sizes reduce (max-height) and remain responsive.
-- [x] Update About.module.css: reduce storyImageWrap/storyImage height similarly.
-- [x] Verify visually in browser: About background is consistently blue; no two-column split; images reduced.
-- [x] Run build/lint checks.
-
-
+## What We Do section smooth scroll-triggered motion
+- [ ] Inspect existing animations for `#about-why` (“What We Do”) in `src/components/About.jsx` and related styles.
+- [ ] Add a premium, smooth section reveal (fade + subtle upward rise) triggered by scroll into view.
+- [ ] Add staggered animations for: heading / description / slideshow (capability cards).
+- [ ] Ensure animation runs both when clicking the nav link (hash scroll) and when scrolling manually.
+- [ ] Respect reduced-motion preference and keep motion lightweight for mobile.
+- [ ] Update `src/components/About.module.css` with minimal additional styling as needed.
+- [ ] Validate visually by running the dev server/build.
 

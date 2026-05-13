@@ -322,35 +322,44 @@ export default function About() {
             ))}
           </div>
 
-          {/* Header — word-by-word stagger */}
+          {/* Section reveal — premium fade + subtle upward rise */}
           <motion.div
             className={styles.capHeader}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, y: 26 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-56px' }}
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
+            transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.p
-              className={styles.overviewEyebrow}
-              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
-            >What We Do</motion.p>
-            <h3 className={styles.capHeadlineWrap}>
-              {modules.m4.title.split(' ').map((word, i, arr) => (
-                <motion.span
-                  key={i}
-                  className={styles.capWord}
-                  variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } } }}
-                >{word}{i < arr.length - 1 && ' '}</motion.span>
-              ))}
-            </h3>
+
+            {/* Heading — word-by-word stagger */}
             <motion.div
-              className={styles.capUnderline}
-              variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { duration: 0.65, delay: 0.3, ease: [0.16, 1, 0.3, 1] } } }}
-            />
-            <motion.p
-              className={styles.capIntro}
-              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.6, delay: 0.4 } } }}
-            >Eight integrated capabilities spanning research, technology, and implementation.</motion.p>
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-56px' }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
+            >
+              <motion.p
+                className={styles.overviewEyebrow}
+                variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
+              >What We Do</motion.p>
+              <h3 className={styles.capHeadlineWrap}>
+                {modules.m4.title.split(' ').map((word, i, arr) => (
+                  <motion.span
+                    key={i}
+                    className={styles.capWord}
+                    variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } } }}
+                  >{word}{i < arr.length - 1 && ' '}</motion.span>
+                ))}
+              </h3>
+              <motion.div
+                className={styles.capUnderline}
+                variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { duration: 0.65, delay: 0.3, ease: [0.16, 1, 0.3, 1] } } }}
+              />
+              <motion.p
+                className={styles.capIntro}
+                variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.6, delay: 0.4 } } }}
+              >Eight integrated capabilities spanning research, technology, and implementation.</motion.p>
+            </motion.div>
           </motion.div>
 
           <div className={styles.capabilityWrap}>
@@ -437,17 +446,10 @@ export default function About() {
 
         {/* ── M5  Differentiation ── */}
         <div id="about-partnerships" className={styles.sectionAnchorPad}>
-          <div className={styles.fullBleedDiff}>
-            <img
-              className={`aboutParallax ${styles.diffImg}`}
-              src={modules.m5.img} alt=""
-              onError={e => (e.currentTarget.style.display = 'none')}
-            />
-            <div className={styles.diffOverlay} />
-          </div>
+          <div className={styles.diffTwoCol}>
 
-          <div className={styles.diffContent}>
-            <motion.div className={styles.diffText} {...reveal(0.02)}>
+            {/* Left — text */}
+            <motion.div className={styles.diffLeft} {...reveal(0.02)}>
               <p className={styles.overviewEyebrow}>Why AiVantha</p>
               <h3 className={styles.diffHeadline}>
                 {modules.m5.headline.split('\n').map((line, i) => (
@@ -467,6 +469,22 @@ export default function About() {
                 ))}
               </div>
             </motion.div>
+
+            {/* Right — image */}
+            <motion.div
+              className={styles.diffImageCol}
+              initial={{ opacity: 0, x: 40, scale: 0.97 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <img
+                className={`aboutParallax ${styles.diffColImg}`}
+                src={modules.m5.img} alt=""
+                onError={e => (e.currentTarget.style.display = 'none')}
+              />
+            </motion.div>
+
           </div>
         </div>
 
