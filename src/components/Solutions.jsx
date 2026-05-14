@@ -278,18 +278,6 @@ export default function Solutions() {
               <p className={styles.groupDesc}>A curated platform connecting organizations with vetted African AI and health data professionals.</p>
             </motion.div>
 
-            <motion.div
-              className={styles.talentIntroCard}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <p>
-                A talent infrastructure that enables health systems to access <strong>specialized AI and data expertise on demand</strong> — from project-based engagements to embedded long-term specialists and fractional AI leadership.
-              </p>
-            </motion.div>
-
             <div className={styles.talentGrid}>
               {talentCards.map((card, i) => (
                 <TalentCard key={card.title} card={card} index={i} reduced={reduced} />
