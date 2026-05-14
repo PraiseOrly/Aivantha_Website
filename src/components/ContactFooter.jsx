@@ -202,7 +202,7 @@ export default function ContactFooter() {
       {/* ══════════════════════════════════════════
           BOTTOM: Logo | Nav | Copyright
       ══════════════════════════════════════════ */}
-      <motion.div className={styles.bottomZone} {...fadeUp(0.05)}>
+      <div className={styles.bottomZone}>
         <div className="container">
           <div className={styles.bottomGrid}>
 
@@ -236,7 +236,7 @@ export default function ContactFooter() {
 
           </div>
         </div>
-      </motion.div>
+      </div>
 
     </footer>
   )
