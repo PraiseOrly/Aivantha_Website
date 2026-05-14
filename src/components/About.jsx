@@ -126,8 +126,8 @@ export default function About() {
       slides: [
         { title: 'African-led design',            img: '/african%20led.jpg' },
         { title: 'Research-first approach',      img: '/research%20approach.jpg' },
-        { title: 'Ethical AI foundation',        img: 'https://plus.unsplash.com/premium_photo-1661405466370-d6d3d47825cb?auto=format&fit=crop&w=1920&h=1080&q=80' },
-        { title: 'Integrated health ecosystem',  img: 'https://plus.unsplash.com/premium_photo-1661636259322-25675b4d9a32?auto=format&fit=crop&w=1920&h=1080&q=80' },
+        { title: 'Ethical AI foundation',        img: 'https://images.unsplash.com/photo-1666886573531-48d2e3c2b684?auto=format&fit=crop&w=1920&h=1080&q=80' },
+        { title: 'Integrated health ecosystem',  img: 'https://images.unsplash.com/photo-1516841273335-e39b37888115?auto=format&fit=crop&w=1920&h=1080&q=80' },
         { title: 'Scalable health architecture', img: '/health%20architecture.jpg' },
       ],
     },
