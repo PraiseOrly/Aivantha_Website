@@ -124,11 +124,11 @@ export default function About() {
     m5: {
       headline: 'Authority shaped by African realities',
       slides: [
-        { num: '01', title: 'African-led design',         img: 'https://images.unsplash.com/photo-1758873269276-9518d0cb4a0b?auto=format&fit=crop&w=1920&h=1080&q=80' },
-        { num: '02', title: 'Research-first approach',    img: 'https://images.unsplash.com/photo-1758691463203-cce9d415b2b5?auto=format&fit=crop&w=1920&h=1080&q=80' },
-        { num: '03', title: 'Ethical AI foundation',      img: 'https://images.unsplash.com/photo-1666214280577-5f90bc36be92?auto=format&fit=crop&w=1920&h=1080&q=80' },
-        { num: '04', title: 'Integrated ecosystem model', img: 'https://images.unsplash.com/photo-1758691737045-3ece61135061?auto=format&fit=crop&w=1920&h=1080&q=80' },
-        { num: '05', title: 'Scalable architecture',      img: 'https://images.unsplash.com/photo-1707944746058-4da338d0f827?auto=format&fit=crop&w=1920&h=1080&q=80' },
+        { title: 'African-led design',            img: '/african%20led.jpg' },
+        { title: 'Research-first approach',      img: '/research%20approach.jpg' },
+        { title: 'Ethical AI foundation',        img: 'https://plus.unsplash.com/premium_photo-1661405466370-d6d3d47825cb?auto=format&fit=crop&w=1920&h=1080&q=80' },
+        { title: 'Integrated health ecosystem',  img: 'https://plus.unsplash.com/premium_photo-1661636259322-25675b4d9a32?auto=format&fit=crop&w=1920&h=1080&q=80' },
+        { title: 'Scalable health architecture', img: '/health%20architecture.jpg' },
       ],
     },
     m6: {

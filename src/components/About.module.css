@@ -1033,9 +1033,9 @@
   background:
     linear-gradient(
       180deg,
-      rgba(0, 30, 96, 0.10) 0%,
-      rgba(0, 30, 96, 0.18) 42%,
-      rgba(0, 30, 96, 0.86) 100%
+      rgba(0, 10, 40, 0.30) 0%,
+      rgba(0, 10, 40, 0.50) 42%,
+      rgba(0, 10, 40, 0.92) 100%
     ),
     radial-gradient(ellipse 55% 45% at 18% 100%, rgba(0, 74, 173, 0.24) 0%, transparent 62%);
   pointer-events: none;
